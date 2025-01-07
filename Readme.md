@@ -6,13 +6,17 @@ This library is subdivided into sections:
 - **Container Utilities** contains several utilities for container types (i.e., **std::vector**, **std::array**, etc. or custom compatible container types) which includes **appending elements** (combining), **filtering elements out**, etc. And several **operators** for these operations.
 - **String Manipulators** contains several utilities for **std::string** (or **std::string_view** as parameters) which includes **converting containers to string**, **word-wrap**, **trimming string**, converting **to lower case**, etc. And several **operators** from Container Utilities applied to string types.
 - **ANSI Escape Codes** contains easy handlers for manipulation output using decorator [ANSI Escape Codes](https://en.wikipedia.org/wiki/ANSI_escape_code).
-- **Argument Parser** contains functionality to parse **Command Line Arguments** and structures to **define options** (or **switches** if you are old and use Microsoft Windows) to easily validate arguments.
+- **Argument Parser** is [removed](#removed-sections).
 - **File Utilities** currently contains one function, to read all the file's content in a string.
 
 # Planned Sections
 There are several Utilities I am planning add to this library, notably:
 - **Binary Files** to contain several utilities for managing binary files to store and retrieve raw data.
 - **Security** to contain encryption and decryption functions (yeah that's it).
+
+# Removed Sections
+- **Argument Parser** contains functionality to parse **Command Line Arguments** and structures to **define options** (or **switches** if you are old and use Microsoft Windows) to easily validate arguments.
+  - This is removed from Alcelin, and is now available in [Optrone](https://github.com/anstropleuton/optrone).
 
 # Prerequisite
 - Know to program in C++
@@ -74,6 +78,8 @@ Check out [Guidelines](Guidelines.md) before you submit your code! Make sure to 
 Thanks to [jothepro](https://github.com/jothepro) for the stylesheet [Doxygen Awesome](https://github.com/jothepro/doxygen-awesome-css) for Doxygen.
 
 Thanks to Nuno Pinheiro (can't find link) for the background [Elarun](background.png). But I did find a [KDE store link](https://store.kde.org/p/1162360/) to the background image. I think you could consider that. If KDE developers are here, I would appreciate your help to find a proper link to the author.
+
+Thanks to GLFW for some code in CMake.
 
 # License
 This project is licensed under the terms of MIT License, see [License](License.md).

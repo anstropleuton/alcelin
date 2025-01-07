@@ -47,14 +47,17 @@
 #include "alcelin_container_utilities.hpp" // IWYU pragma: keep
 #include "alcelin_string_manipulators.hpp" // IWYU pragma: keep
 #include "alcelin_ansi_escape_codes.hpp" // IWYU pragma: keep
-#include "alcelin_argument_parser.hpp" // IWYU pragma: keep
 #include "alcelin_file_utilities.hpp" // IWYU pragma: keep
 // uncrustify:on
 
 /**
  *  @brief  All Alcelin's contents in this namespace.  Just do
- *          `using namespace alcelin` to make your life easier.
+ *          `using namespace alcelin;` to make your life easier.
  */
 namespace alcelin {
+
+/**
+ *  @brief  Alcelin version string.
+ */
 inline constinit std::string_view alcelin_version = ALCELIN_VERSION;
 } // namespace alcelin

@@ -66,12 +66,6 @@
 [[nodiscard]] CT_TESTER_FN(test_aec);
 
 /**
- *  @brief  Test Argument Parser.
- *  @return  Number of errors.
- */
-[[nodiscard]] CT_TESTER_FN(test_ap);
-
-/**
  *  @brief  Test File Utilities.
  *  @return  Number of errors.
  */
@@ -124,12 +118,6 @@ auto main() -> int try
         test_aec
     };
 
-    test ap_test = {
-        "Test Argument Parser",
-        "test_ap",
-        test_ap
-    };
-
     test file_test = {
         "Test File Utilities",
         "test_file",
@@ -139,7 +127,6 @@ auto main() -> int try
     suite.tests.emplace_back(&cu_test);
     suite.tests.emplace_back(&sm_test);
     suite.tests.emplace_back(&aec_test);
-    suite.tests.emplace_back(&ap_test);
     suite.tests.emplace_back(&file_test);
 
     auto failed_tests = suite.run();

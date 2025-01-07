@@ -1,6 +1,7 @@
 /**
  *  @author  Anstro Pleuton (https://github.com/anstropleuton)
- *  @brief   Test 0 of Argument Parser in Alcelin.
+ *  @brief   Implementations for non-inline functions from
+ *           @c alcelin.hpp and children.
  *
  *  @copyright  Copyright (c) 2024 Anstro Pleuton
  *
@@ -11,8 +12,6 @@
  *  /_/   \_\_|\___\___|_|_|_| |_|
  *
  *  Alcelin is a collection of utils for Anstro Pleuton's programs.
- *
- *  Never-nesters are advised to not take a look at this source file.
  *
  *  This software is licensed under the terms of MIT License.
  *
@@ -38,36 +37,3 @@
  *  - ASCII Art generated using https://www.patorjk.com/software/taag with font
  *    "Standard".
  */
-
-#include "test_ap.hpp"
-
-/**
- *  @brief  AP Test 0: No arguments test.
- *  @return  Number of errors.
- */
-[[nodiscard]] CT_TESTER_FN(test_ap_0)
-{
-    CT_BEGIN;
-
-    const char *argv[] = { "./program" };
-    int         argc   = lenof(argv);
-
-    std::vector<std::string>         args(argv + 1, argv + argc);
-    std::vector<ap::parsed_argument> expected = {};
-
-    auto parsed_1 = ap::parse_arguments(argc, argv, {}, {});
-    auto parsed_2 = ap::parse_arguments(args,       {}, {});
-
-    logln("args: {}", sm::to_string(args));
-    logln("parsed_1:\n{}\n",
-        sm::to_string(parsed_1, arg_to_string, "\n"));
-    logln("parsed_2:\n{}\n",
-        sm::to_string(parsed_2, arg_to_string, "\n"));
-    logln("expected:\n{}\n",
-        sm::to_string(expected, arg_to_string, "\n"));
-
-    CT_ASSERT_CTR(parsed_1, expected);
-    CT_ASSERT_CTR(parsed_2, expected);
-
-    CT_END;
-}

@@ -7,7 +7,8 @@ project(alcelin
     LANGUAGES CXX
 )
 
-option(ALCELIN_BUILD_EXAMPLES "Build Alcelin usage examples" OFF)
+option(ALCELIN_BUILD_TESTS "Build Alcelin tests" OFF)
+option(ALCELIN_BUILD_EXAMPLES "Build Alcelin examples" OFF)
 
 if(NOT DEFINED ALCELIN_CONFER_PATH)
     set(ALCELIN_CONFER_PATH "${CMAKE_CURRENT_SOURCE_DIR}/deps/confer")
@@ -29,17 +30,26 @@ configure_file(
     "${CMAKE_CURRENT_BINARY_DIR}/alcelin.pc"
 )
 configure_file(
-    "${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in"
+    "${CMAKE_CURRENT_SOURCE_DIR}/docs/Doxyfile.in"
     "${CMAKE_CURRENT_BINARY_DIR}/Doxyfile"
+    @ONLY
+)
+configure_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/docs/header.html.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/header.html"
+    @ONLY
+)
+configure_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/docs/footer.html.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/footer.html"
     @ONLY
 )
 
 set(ALCELIN_SOURCES
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/argument_parser.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/alcelin.cpp"
 )
 set(ALCELIN_HEADERS
     "${CMAKE_CURRENT_SOURCE_DIR}/include/alcelin_ansi_escape_codes.hpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/include/alcelin_argument_parser.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/alcelin_container_utilities.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/alcelin_file_utilities.hpp"
     "${CMAKE_CURRENT_BINARY_DIR}/alcelin_config.hpp"
