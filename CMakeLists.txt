@@ -24,10 +24,12 @@ set(DOXYGEN_ALCELIN_OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/docs")
 configure_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/include/alcelin_config.hpp.in"
     "${CMAKE_CURRENT_BINARY_DIR}/alcelin_config.hpp"
+    @ONLY
 )
 configure_file(
-    "${CMAKE_CURRENT_SOURCE_DIR}/cmake/alcelin.pc.in"
+    "${CMAKE_CURRENT_SOURCE_DIR}/cmake/pkgconfig.pc.in"
     "${CMAKE_CURRENT_BINARY_DIR}/alcelin.pc"
+    @ONLY
 )
 configure_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/docs/Doxyfile.in"
@@ -44,6 +46,26 @@ configure_file(
     "${CMAKE_CURRENT_BINARY_DIR}/footer.html"
     @ONLY
 )
+configure_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/cmake/config.cmake.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/alcelin_config.cmake"
+    @ONLY
+)
+
+# Taken from GLFW
+# Only generate this target if no higher-level project already has
+if (NOT TARGET uninstall)
+    configure_file(
+        "${CMAKE_CURRENT_SOURCE_DIR}/cmake/cmake_uninstall.cmake.in"
+        "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
+        IMMEDIATE @ONLY
+    )
+
+    add_custom_target(uninstall
+        "${CMAKE_COMMAND}" -P
+        "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
+    )
+endif()
 
 set(ALCELIN_SOURCES
     "${CMAKE_CURRENT_SOURCE_DIR}/src/alcelin.cpp"
@@ -111,18 +133,3 @@ install(
     NAMESPACE alcelin::
     DESTINATION "${CMAKE_INSTALL_DATADIR}/alcelin"
 )
-
-# Taken from GLFW
-# Only generate this target if no higher-level project already has
-if(NOT TARGET uninstall)
-    configure_file(
-        "${CMAKE_CURRENT_SOURCE_DIR}/cmake/cmake_uninstall.cmake.in"
-        "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
-        IMMEDIATE @ONLY
-    )
-
-    add_custom_target(uninstall
-        "${CMAKE_COMMAND}" -P
-        "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
-    )
-endif()
