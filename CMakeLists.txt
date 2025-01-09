@@ -1,19 +1,17 @@
 cmake_minimum_required(VERSION 3.30)
 
 project(alcelin
-    VERSION 2.1.0.1
+    VERSION 2.1.0.2
     DESCRIPTION "Alcelin is a collection of utils for Anstro Pleuton's programs."
-    HOMEPAGE_URL "https://anstropleuton.github.io/alcelin/"
     LANGUAGES CXX
 )
 
 option(ALCELIN_BUILD_TESTS "Build Alcelin tests" OFF)
 option(ALCELIN_BUILD_EXAMPLES "Build Alcelin examples" OFF)
 
-if(NOT DEFINED ALCELIN_CONFER_PATH)
-    set(ALCELIN_CONFER_PATH "${CMAKE_CURRENT_SOURCE_DIR}/deps/confer")
-endif()
-option(ALCELIN_FORCE_USE_CONFER_PATH "Force use Confer from subdirectory" OFF)
+include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/depman.cmake")
+
+depman_declare(confer "https://github.com/anstropleuton/confer.git" origin/main)
 
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
@@ -93,16 +91,7 @@ target_sources(alcelin PUBLIC
 )
 
 if(ALCELIN_BUILD_TESTS)
-    find_package(confer QUIET)
-    if(NOT confer_FOUND)
-        message("---> confer not found in system, adding subdirectory ${ALCELIN_CONFER_PATH}")
-        add_subdirectory(${ALCELIN_CONFER_PATH})
-    elseif(ALCELIN_FORCE_USE_CONFER_PATH)
-        message("---> Force using subdirectory ${ALCELIN_CONFER_PATH} for confer")
-        add_subdirectory(${ALCELIN_CONFER_PATH})
-    else()
-        message("---> confer found in system, using it instead")
-    endif()
+    depman_make_available(confer)
     add_subdirectory(tests)
 endif()
 
