@@ -72,7 +72,7 @@ namespace cu {
  *  free-standing function which return contiguous iterators, and a
  *  @c value_type member.
  *
- *  @tparam  container  The container type.
+ *  @tparam  container  Container type.
  */
 template<typename container>
 concept cu_compatible = requires {
@@ -83,14 +83,14 @@ concept cu_compatible = requires {
 
 /**
  *  @brief  Container's value_type member.
- *  @tparam  container  A compatible container type.
+ *  @tparam  container  Compatible container type.
  */
 template<cu_compatible container>
 using value_type = container::value_type;
 
 /**
  *  @brief  Many Container Utilities return this container.
- *  @tparam  container  A compatible container type.
+ *  @tparam  container  Compatible container type.
  */
 template<cu_compatible container>
 using result_container = std::vector<value_type<container>>;
@@ -98,7 +98,7 @@ using result_container = std::vector<value_type<container>>;
 /**
  *  @brief  Many Container Utilities return this container if the result is
  *          nested.
- *  @tparam  container  A compatible container type.
+ *  @tparam  container  Compatible container type.
  */
 template<cu_compatible container>
 using result_container_nested = std::vector<std::vector<value_type<container>>>;
@@ -108,7 +108,7 @@ using result_container_nested = std::vector<std::vector<value_type<container>>>;
  *
  *  The container and it's value type must satisfy @c cu_compatible .
  *
- *  @tparam  container  The container type.
+ *  @tparam  container  Container type.
  */
 template<typename container>
 concept cu_compatible_nested =
@@ -121,7 +121,7 @@ concept cu_compatible_nested =
  *  The container must satisfy @c cu_compatible and it's value type should also
  *  assignable with default constructed value type.
  *
- *  @tparam  container  The container type.
+ *  @tparam  container  Container type.
  */
 template<typename container>
 concept boundless_accessible = cu_compatible<container>
@@ -134,9 +134,9 @@ concept boundless_accessible = cu_compatible<container>
  *  @brief  Return element at index, or a default-constructed instance of the
  *          value type if the index is invalid.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   index      An index specifying element.
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   index      Index specifying element.
  *  @return  Element at index or default constructed instance of type.
  */
 template<cu_compatible Container>
@@ -153,9 +153,9 @@ template<cu_compatible Container>
  *  @brief  Return element at index, or a default-constructed instance of the
  *          value type if the index is invalid.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   index      An index specifying element.
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   index      Index specifying element.
  *  @return  Element at index or default constructed instance of type.
  */
 template<boundless_accessible Container>
@@ -178,7 +178,7 @@ template<boundless_accessible Container>
  *  Index-access of this vector always returns a default constructed element
  *  when an invalid index is provided.  Requires a default-constructible type.
  *
- *  @tparam  element_type  The type of element.
+ *  @tparam  element_type  Type of element.
  *  @tparam  alloc  Allocator type, defaults to @c std::allocator<T> .
  */
 template<typename element_type, typename alloc = std::allocator<element_type>>
@@ -200,7 +200,7 @@ struct boundless_vector : std::vector<element_type, alloc> {
     /**
      *  @brief  Creates a vector with no elements.
      *
-     *  @param  allocator  An allocator.
+     *  @param  allocator  Allocator.
      *  @see  @c std::vector 's constructor for more details.
      */
     explicit inline constexpr boundless_vector(
@@ -210,8 +210,8 @@ struct boundless_vector : std::vector<element_type, alloc> {
     /**
      *  @brief  Creates a vector with default constructed elements.
      *
-     *  @param  size       The number of elements to initially create.
-     *  @param  allocator  An allocator.
+     *  @param  size       Number of elements to initially create.
+     *  @param  allocator  Allocator.
      *  @see  @c std::vector 's constructor for more details.
      */
     explicit inline constexpr boundless_vector(
@@ -222,9 +222,9 @@ struct boundless_vector : std::vector<element_type, alloc> {
     /**
      *  @brief  Creates a vector with copies of an exemplar element.
      *
-     *  @param  size       The number of elements to initially create.
-     *  @param  value      An element to copy.
-     *  @param  allocator  An allocator.
+     *  @param  size       Number of elements to initially create.
+     *  @param  value      Element to copy.
+     *  @param  allocator  Allocator.
      *  @see  @c std::vector 's constructor for more details.
      */
     inline constexpr boundless_vector(
@@ -236,7 +236,7 @@ struct boundless_vector : std::vector<element_type, alloc> {
     /**
      *  @brief  Vector copy constructor.
      *
-     *  @param  vector  The other vector to copy from.
+     *  @param  vector  Other vector to copy from.
      *  @see  @c std::vector 's constructor for more details.
      */
     inline constexpr boundless_vector(const boundless_vector &vector) = default;
@@ -244,7 +244,7 @@ struct boundless_vector : std::vector<element_type, alloc> {
     /**
      *  @brief  Vector move constructor.
      *
-     *  @param  vector  The other vector to move from.
+     *  @param  vector  Other vector to move from.
      *  @see  @c std::vector 's constructor for more details.
      */
     inline constexpr boundless_vector(boundless_vector &&vector)
@@ -253,8 +253,8 @@ struct boundless_vector : std::vector<element_type, alloc> {
     /**
      *  @brief  Copy constructor with alternative allocator.
      *
-     *  @param  vector     The other vector to copy from.
-     *  @param  allocator  An allocator.
+     *  @param  vector     Other vector to copy from.
+     *  @param  allocator  Allocator.
      *  @see  @c std::vector 's constructor for more details.
      */
     inline constexpr boundless_vector(
@@ -265,8 +265,8 @@ struct boundless_vector : std::vector<element_type, alloc> {
     /**
      *  @brief  Move constructor with alternative allocator.
      *
-     *  @param  vector     The other vector to move from.
-     *  @param  allocator  An allocator.
+     *  @param  vector     Other vector to move from.
+     *  @param  allocator  Allocator.
      *  @see  @c std::vector 's constructor for more details.
      */
     inline constexpr boundless_vector(
@@ -278,7 +278,7 @@ struct boundless_vector : std::vector<element_type, alloc> {
      *  @brief  Creates a vector from an initializer list.
      *
      *  @param  list       An @c std::initializer_list .
-     *  @param  allocator  An allocator.
+     *  @param  allocator  Allocator.
      *  @see  @c std::vector 's constructor for more details.
      */
     inline constexpr boundless_vector(
@@ -289,10 +289,10 @@ struct boundless_vector : std::vector<element_type, alloc> {
     /**
      *  @brief  Creates a vector from a range.
      *
-     *  @tparam  InputIterator  The type of input iterators.
-     *  @param   first          An input iterator.
-     *  @param   last           An input iterator.
-     *  @param   allocator      An allocator.
+     *  @tparam  InputIterator  Type of input iterators.
+     *  @param   first          Input iterator.
+     *  @param   last           Input iterator.
+     *  @param   allocator      Allocator.
      *  @see  @c std::vector 's constructor for more details.
      */
     template<std::input_iterator InputIterator>
@@ -304,13 +304,13 @@ struct boundless_vector : std::vector<element_type, alloc> {
 
     /**
      *  @brief  Copy from base vector.
-     *  @param  vector  The base vector.
+     *  @param  vector  Base vector.
      */
     inline constexpr boundless_vector(const base &vector) : base(vector) {}
 
     /**
      *  @brief  Move from base vector.
-     *  @param  vector  The base vector.
+     *  @param  vector  Base vector.
      */
     inline constexpr boundless_vector(base &&vector)
         : base(std::move(vector)) {}
@@ -324,7 +324,7 @@ struct boundless_vector : std::vector<element_type, alloc> {
     /**
      *  @brief  Vector assign operator.
      *
-     *  @param  vector  A vector of identical element and allocator types.
+     *  @param  vector  Vector of identical element and allocator types.
      *  @return  Reference to self.
      *  @see  @c std::vector 's @c operator= for more details.
      */
@@ -335,7 +335,7 @@ struct boundless_vector : std::vector<element_type, alloc> {
     /**
      *  @brief  Vector move assign operator.
      *
-     *  @param  vector  A vector of identical element and allocator types.
+     *  @param  vector  Vector of identical element and allocator types.
      *  @return  Reference to self.
      *  @see  @c std::vector 's @c operator= for more details.
      */
@@ -346,7 +346,7 @@ struct boundless_vector : std::vector<element_type, alloc> {
     /**
      *  @brief  Vector list assignment operator.
      *
-     *  @param  list  An initializer list.
+     *  @param  list  Initializer list.
      *  @return  Reference to self.
      *  @see  @c std::vector 's @c operator= for more details.
      */
@@ -360,7 +360,7 @@ struct boundless_vector : std::vector<element_type, alloc> {
     /**
      *  @brief  Vector base assignment operator.
      *
-     *  @param  vector  The base vector.
+     *  @param  vector  Base vector.
      *  @return  Reference to self.
      */
     inline constexpr auto operator= (const base &vector) -> boundless_vector &
@@ -371,7 +371,7 @@ struct boundless_vector : std::vector<element_type, alloc> {
     /**
      *  @brief  Vector base move assignment operator.
      *
-     *  @param  vector  The base vector.
+     *  @param  vector  Base vector.
      *  @return  Reference to self.
      */
     inline constexpr auto operator= (base &&vector) -> boundless_vector &
@@ -383,7 +383,7 @@ struct boundless_vector : std::vector<element_type, alloc> {
      *  @brief  Get an element at index, or a default constructed instance of
      *          the value type when index is invalid.
      *
-     *  @param  index  An index specifying element.
+     *  @param  index  Index specifying element.
      *  @return  Element at index or default constructed instance.
      */
     [[nodiscard]] inline constexpr auto operator[] (std::size_t index) -> element_type &
@@ -395,7 +395,7 @@ struct boundless_vector : std::vector<element_type, alloc> {
      *  @brief  Get an element at index, or a default constructed instance of
      *          the value type when index is invalid.
      *
-     *  @param  index  An index specifying element.
+     *  @param  index  Index specifying element.
      *  @return  Element at index or default constructed instance.
      */
     [[nodiscard]] inline constexpr auto operator[] (std::size_t index)
@@ -408,7 +408,7 @@ struct boundless_vector : std::vector<element_type, alloc> {
      *  @brief  Get an element at index, or a default constructed instance of
      *          the value type when index is invalid.
      *
-     *  @param  index  An index specifying element.
+     *  @param  index  Index specifying element.
      *  @return  Element at index or default constructed instance.
      */
     [[nodiscard]] inline constexpr auto at(std::size_t index) -> element_type &
@@ -420,7 +420,7 @@ struct boundless_vector : std::vector<element_type, alloc> {
      *  @brief  Get an element at index, or a default constructed instance of
      *          the value type when index is invalid.
      *
-     *  @param  index  An index specifying element.
+     *  @param  index  Index specifying element.
      *  @return  Element at index or default constructed instance.
      */
     [[nodiscard]] inline constexpr auto at(std::size_t index) const -> element_type
@@ -474,9 +474,9 @@ struct boundless_vector : std::vector<element_type, alloc> {
  *
  *  Deduce types from initializer.
  *
- *  @tparam  input_iterator  The type of input iterator.
- *  @tparam  value_type      The type of elements of vector.
- *  @tparam  alloc           The type of an allocator object.
+ *  @tparam  input_iterator  Type of input iterator.
+ *  @tparam  value_type      Type of elements of vector.
+ *  @tparam  alloc           Type of an allocator object.
  */
 template<std::input_iterator input_iterator,
     typename value_type = std::iterator_traits<input_iterator>::value_type,
@@ -490,8 +490,8 @@ boundless_vector(input_iterator, input_iterator, alloc = alloc())
  *  Index-access of this array always returns a default constructed element
  *  when an invalid index is provided.  Requires a default-constructible type.
  *
- *  @tparam  element_type  The type of element.
- *  @tparam  count  The size of array.
+ *  @tparam  element_type  Type of element.
+ *  @tparam  count  Size of array.
  */
 template<typename element_type, std::size_t count>
 requires(std::is_default_constructible_v<element_type>)
@@ -503,7 +503,7 @@ struct boundless_array : std::array<element_type, count> {
      *  @brief  Get an element at index, or a default constructed instance of
      *          the value type when index is invalid.
      *
-     *  @param  index  An index specifying element.
+     *  @param  index  Index specifying element.
      *  @return  Element at index or default constructed instance.
      */
     [[nodiscard]] inline constexpr auto operator[] (std::size_t index) -> element_type &
@@ -515,7 +515,7 @@ struct boundless_array : std::array<element_type, count> {
      *  @brief  Get an element at index, or a default constructed instance of
      *          the value type when index is invalid.
      *
-     *  @param  index  An index specifying element.
+     *  @param  index  Index specifying element.
      *  @return  Element at index or default constructed instance.
      */
     [[nodiscard]] inline constexpr auto operator[] (std::size_t index)
@@ -528,7 +528,7 @@ struct boundless_array : std::array<element_type, count> {
      *  @brief  Get an element at index, or a default constructed instance of
      *          the value type when index is invalid.
      *
-     *  @param  index  An index specifying element.
+     *  @param  index  Index specifying element.
      *  @return  Element at index or default constructed instance.
      */
     [[nodiscard]] inline constexpr auto at(std::size_t index) -> element_type &
@@ -540,7 +540,7 @@ struct boundless_array : std::array<element_type, count> {
      *  @brief  Get an element at index, or a default constructed instance of
      *          the value type when index is invalid.
      *
-     *  @param  index  An index specifying element.
+     *  @param  index  Index specifying element.
      *  @return  Element at index or default constructed instance.
      */
     [[nodiscard]] inline constexpr auto at(std::size_t index) const -> element_type
@@ -594,8 +594,8 @@ struct boundless_array : std::array<element_type, count> {
  *
  *  Deduce types from initializer.
  *
- *  @tparam  element_type   The type of elements.
- *  @tparam  elements_type  The type of multiple elements in initializer.
+ *  @tparam  element_type   Type of elements.
+ *  @tparam  elements_type  Type of multiple elements in initializer.
  */
 template<typename element_type, typename... elements_type>
 requires(std::is_same_v<element_type, elements_type> && ...)
@@ -607,8 +607,8 @@ boundless_array(element_type, elements_type...) -> boundless_array<element_type,
  *  Index-access of this span always returns a default constructed element
  *  when an invalid index is provided.  Requires a default-constructible type.
  *
- *  @tparam  element_type    The type of element.
- *  @tparam  extents  The number of elements in the sequence, or
+ *  @tparam  element_type    Type of element.
+ *  @tparam  extents  Number of elements in the sequence, or
  *                    @c std::dynamic_extent if dynamic (default).
  */
 template<typename element_type, std::size_t extents = std::dynamic_extent>
@@ -620,7 +620,7 @@ struct boundless_span : std::span<element_type, extents> {
      *  @brief  Get an element at index, or a default constructed instance of
      *          the value type when index is invalid.
      *
-     *  @param  index  An index specifying element.
+     *  @param  index  Index specifying element.
      *  @return  Element at index or default constructed instance.
      */
     [[nodiscard]] inline constexpr auto operator[] (std::size_t index)
@@ -633,7 +633,7 @@ struct boundless_span : std::span<element_type, extents> {
      *  @brief  Get an element at index, or a default constructed instance of
      *          the value type when index is invalid.
      *
-     *  @param  index  An index specifying element.
+     *  @param  index  Index specifying element.
      *  @return  Element at index or default constructed instance.
      */
     [[nodiscard]] inline constexpr auto at(std::size_t index) const -> element_type
@@ -667,8 +667,8 @@ struct boundless_span : std::span<element_type, extents> {
  *
  *  Deduce type from raw array.
  *
- *  @tparam  element_type  The type of array elements.
- *  @tparam  count  The number of array elements.
+ *  @tparam  element_type  Type of array elements.
+ *  @tparam  count  Number of array elements.
  */
 template<typename element_type, std::size_t count>
 boundless_span(element_type(&)[count]) -> boundless_span<element_type, count>;
@@ -678,8 +678,8 @@ boundless_span(element_type(&)[count]) -> boundless_span<element_type, count>;
  *
  *  Deduce type from @c std::array .
  *
- *  @tparam  element_type  The type of array elements.
- *  @tparam  count  The number of array elements.
+ *  @tparam  element_type  Type of array elements.
+ *  @tparam  count  Number of array elements.
  */
 template<typename element_type, std::size_t count>
 boundless_span(std::array<element_type, count> &) -> boundless_span<element_type, count>;
@@ -689,8 +689,8 @@ boundless_span(std::array<element_type, count> &) -> boundless_span<element_type
  *
  *  Deduce type from constant @c std::array.
  *
- *  @tparam  element_type  The type of array elements.
- *  @tparam  count  The number of array elements.
+ *  @tparam  element_type  Type of array elements.
+ *  @tparam  count  Number of array elements.
  */
 template<typename element_type, size_t count>
 boundless_span(const std::array<element_type, count> &) -> boundless_span<const element_type, count>;
@@ -700,8 +700,8 @@ boundless_span(const std::array<element_type, count> &) -> boundless_span<const 
  *
  *  Deduce type from iterators.
  *
- *  @tparam  iter  The type of iterator.
- *  @tparam  end   The type of end of the iterator.
+ *  @tparam  iter  Type of iterator.
+ *  @tparam  end   Type of end of the iterator.
  */
 template<std::contiguous_iterator iter, typename end>
 boundless_span(iter, end) -> boundless_span<
@@ -712,7 +712,7 @@ boundless_span(iter, end) -> boundless_span<
  *
  *  Deduce type from range.
  *
- *  @tparam  Range  A range type.
+ *  @tparam  Range  Range type.
  */
 template<std::ranges::contiguous_range Range>
 boundless_span(Range &&) -> boundless_span<
@@ -724,9 +724,9 @@ boundless_span(Range &&) -> boundless_span<
  *  Index-access of this string always returns a default constructed element
  *  when an invalid index is provided.  Requires a default-constructible type.
  *
- *  @tparam  char_type  The character type.
- *  @tparam  traits  The character traits type.
- *  @tparam  alloc   The allocator type, defaults to @c std::allocator<char_type> .
+ *  @tparam  char_type  Character type.
+ *  @tparam  traits  Character traits type.
+ *  @tparam  alloc   Allocator type, defaults to @c std::allocator<char_type> .
  */
 template<typename char_type, typename traits = std::char_traits<char_type>,
     typename alloc = std::allocator<char_type>>
@@ -749,7 +749,7 @@ struct boundless_basic_string : std::basic_string<char_type, traits, alloc> {
     /**
      *  @brief  Create an empty string using allocator.
      *
-     *  @param  allocator  An allocator.
+     *  @param  allocator  Allocator.
      *  @see  @c std::basic_string 's constructor for more details.
      */
     inline constexpr boundless_basic_string(
@@ -759,7 +759,7 @@ struct boundless_basic_string : std::basic_string<char_type, traits, alloc> {
     /**
      *  @brief  String copy constructor.
      *
-     *  @param  string  The other string to copy from.
+     *  @param  string  Other string to copy from.
      *  @see  @c std::basic_string 's constructor for more details.
      */
     inline constexpr boundless_basic_string(
@@ -769,9 +769,9 @@ struct boundless_basic_string : std::basic_string<char_type, traits, alloc> {
     /**
      *  @brief  Creates a string as a copy of a substring.
      *
-     *  @param  string     A string to copy from.
-     *  @param  pos        The index of first character to copy from.
-     *  @param  allocator  An allocator.
+     *  @param  string     String to copy from.
+     *  @param  pos        Index of first character to copy from.
+     *  @param  allocator  Allocator.
      */
     inline constexpr boundless_basic_string(
         const boundless_basic_string &string,
@@ -782,10 +782,10 @@ struct boundless_basic_string : std::basic_string<char_type, traits, alloc> {
     /**
      *  @brief  Creates a string as a copy of a substring.
      *
-     *  @param  string     A string to copy from.
-     *  @param  pos        The index of first character to copy from.
-     *  @param  n          The number of characters to copy.
-     *  @param  allocator  An allocator.
+     *  @param  string     String to copy from.
+     *  @param  pos        Index of first character to copy from.
+     *  @param  n          Number of characters to copy.
+     *  @param  allocator  Allocator.
      */
     inline constexpr boundless_basic_string(
         const boundless_basic_string &string,
@@ -797,9 +797,9 @@ struct boundless_basic_string : std::basic_string<char_type, traits, alloc> {
     /**
      *  @brief  Creates a string initialized by a character array.
      *
-     *  @param  string     A character array.
-     *  @param  n          The number of characters to copy.
-     *  @param  allocator  An allocator.
+     *  @param  string     Character array.
+     *  @param  n          Number of characters to copy.
+     *  @param  allocator  Allocator.
      */
     inline constexpr boundless_basic_string(
         const char_type *string,
@@ -810,8 +810,8 @@ struct boundless_basic_string : std::basic_string<char_type, traits, alloc> {
     /**
      *  @brief  Creates a string initialized by a character array.
      *
-     *  @param  string     A null-terminated character array.
-     *  @param  allocator  An allocator.
+     *  @param  string     Null-terminated character array.
+     *  @param  allocator  Allocator.
      */
     inline constexpr boundless_basic_string(
         const char_type *string,
@@ -821,9 +821,9 @@ struct boundless_basic_string : std::basic_string<char_type, traits, alloc> {
     /**
      *  @brief  Creates a string with multiple characters.
      *
-     *  @param  n          The number of characters.
-     *  @param  c          The character to use.
-     *  @param  allocator  An allocator.
+     *  @param  n          Number of characters.
+     *  @param  c          Character to use.
+     *  @param  allocator  Allocator.
      */
     inline constexpr boundless_basic_string(
         std::size_t  n,
@@ -842,7 +842,7 @@ struct boundless_basic_string : std::basic_string<char_type, traits, alloc> {
      *  @brief  Creates a string from an initializer list.
      *
      *  @param  list       An @c std::initializer_list of characters.
-     *  @param  allocator  An allocator.
+     *  @param  allocator  Allocator.
      */
     inline constexpr boundless_basic_string(
         std::initializer_list<char_type> list,
@@ -852,8 +852,8 @@ struct boundless_basic_string : std::basic_string<char_type, traits, alloc> {
     /**
      *  @brief  Copy constructor with alternative allocator.
      *
-     *  @param  string     The other string to copy from.
-     *  @param  allocator  An allocator.
+     *  @param  string     Other string to copy from.
+     *  @param  allocator  Allocator.
      */
     inline constexpr boundless_basic_string(
         const boundless_basic_string &string,
@@ -863,8 +863,8 @@ struct boundless_basic_string : std::basic_string<char_type, traits, alloc> {
     /**
      *  @brief  Move constructor with alternative allocator.
      *
-     *  @param  string     The other string to move from.
-     *  @param  allocator  An allocator.
+     *  @param  string     Other string to move from.
+     *  @param  allocator  Allocator.
      */
     inline constexpr boundless_basic_string(
         boundless_basic_string &&string,
@@ -874,10 +874,10 @@ struct boundless_basic_string : std::basic_string<char_type, traits, alloc> {
     /**
      *  @brief  Creates a string from a range.
      *
-     *  @tparam  InputIterator  The type of input iterator.
-     *  @param   first          An input iterator.
-     *  @param   last           An input iterator.
-     *  @param   allocator      An allocator.
+     *  @tparam  InputIterator  Type of input iterator.
+     *  @param   first          Input iterator.
+     *  @param   last           Input iterator.
+     *  @param   allocator      Allocator.
      */
     template<std::input_iterator InputIterator>
     inline constexpr boundless_basic_string(
@@ -889,11 +889,11 @@ struct boundless_basic_string : std::basic_string<char_type, traits, alloc> {
     /**
      *  @brief  Creates a string from a substring of a @c std::basic_string_view .
      *
-     *  @tparam  element_type          A type convertible to @c std::basic_string_view .
-     *  @param   t          A string to copy from.
-     *  @param   pos        The index of the first character to copy from.
-     *  @param   n          The number of characters to copy.
-     *  @param   allocator  An allocator.
+     *  @tparam  element_type          Type convertible to @c std::basic_string_view .
+     *  @param   t          String to copy from.
+     *  @param   pos        Index of the first character to copy from.
+     *  @param   n          Number of characters to copy.
+     *  @param   allocator  Allocator.
      */
     template<std::convertible_to<std::basic_string_view<char_type>> T>
     inline constexpr boundless_basic_string(
@@ -906,9 +906,9 @@ struct boundless_basic_string : std::basic_string<char_type, traits, alloc> {
     /**
      *  @brief  Creates a string from a @c std::basic_string_view .
      *
-     *  @tparam  element_type          A type convertible to @c std::basic_string_view .
-     *  @param   t          A string to copy from.
-     *  @param   allocator  An allocator.
+     *  @tparam  element_type          Type convertible to @c std::basic_string_view .
+     *  @param   t          String to copy from.
+     *  @param   allocator  Allocator.
      */
     template<std::convertible_to<std::basic_string_view<char_type>> T>
     inline constexpr boundless_basic_string(
@@ -918,14 +918,14 @@ struct boundless_basic_string : std::basic_string<char_type, traits, alloc> {
 
     /**
      *  @brief  Copy from base string.
-     *  @param  string  The base string.
+     *  @param  string  Base string.
      */
     inline constexpr boundless_basic_string(const base &string)
         : base(string) {}
 
     /**
      *  @brief  Move from base string.
-     *  @param  string  The base string.
+     *  @param  string  Base string.
      */
     inline constexpr boundless_basic_string(base &&string)
         : base(std::move(string)) {}
@@ -938,7 +938,7 @@ struct boundless_basic_string : std::basic_string<char_type, traits, alloc> {
     /**
      *  @brief  String assign operator.
      *
-     *  @param  string  A string of identical char type and allocator.
+     *  @param  string  String of identical char type and allocator.
      *  @return  Reference to self.
      */
     inline constexpr auto operator= (
@@ -948,7 +948,7 @@ struct boundless_basic_string : std::basic_string<char_type, traits, alloc> {
     /**
      *  @brief  Copy contents of @c string to this string.
      *
-     *  @param  string  A string of identical char type and allocator.
+     *  @param  string  String of identical char type and allocator.
      *  @return  Reference to self.
      */
     inline constexpr auto operator= (
@@ -962,7 +962,7 @@ struct boundless_basic_string : std::basic_string<char_type, traits, alloc> {
     /**
      *  @brief  Set value of string to one character.
      *
-     *  @param  c  A character.
+     *  @param  c  Character.
      *  @return  Reference to self.
      */
     inline constexpr auto operator= (char_type c) -> boundless_basic_string &
@@ -974,7 +974,7 @@ struct boundless_basic_string : std::basic_string<char_type, traits, alloc> {
     /**
      *  @brief  String move assign operator.
      *
-     *  @param  string  A string of identical char type and allocator.
+     *  @param  string  String of identical char type and allocator.
      *  @return  Reference to self.
      */
     inline constexpr auto operator= (
@@ -998,8 +998,8 @@ struct boundless_basic_string : std::basic_string<char_type, traits, alloc> {
     /**
      *  @brief  Set value of string from a @c std::basic_string_view .
      *
-     *  @tparam  element_type          A type convertible to @c std::basic_string_view .
-     *  @param   t          A string to copy from.
+     *  @tparam  element_type          Type convertible to @c std::basic_string_view .
+     *  @param   t          String to copy from.
      *  @return  Reference to self.
      */
     template<std::convertible_to<std::basic_string_view<char_type>> T>
@@ -1014,7 +1014,7 @@ struct boundless_basic_string : std::basic_string<char_type, traits, alloc> {
     /**
      *  @brief  String base assignment operator.
      *
-     *  @param  string  The base string.
+     *  @param  string  Base string.
      *  @return  Reference to self.
      */
     inline constexpr auto operator= (
@@ -1027,7 +1027,7 @@ struct boundless_basic_string : std::basic_string<char_type, traits, alloc> {
     /**
      *  @brief  String base move assignment operator.
      *
-     *  @param  string  The base string.
+     *  @param  string  Base string.
      *  @return  Reference to self.
      */
     inline constexpr auto operator= (
@@ -1051,7 +1051,7 @@ struct boundless_basic_string : std::basic_string<char_type, traits, alloc> {
      *  @brief  Get a character at index, or a default constructed instance of
      *          the character type when index is invalid.
      *
-     *  @param  index  An index specifying element.
+     *  @param  index  Index specifying element.
      *  @return  Character at index or default constructed instance.
      */
     [[nodiscard]] inline constexpr auto operator[] (
@@ -1065,7 +1065,7 @@ struct boundless_basic_string : std::basic_string<char_type, traits, alloc> {
      *  @brief  Get a character at index, or a default constructed instance of
      *          the character type when index is invalid.
      *
-     *  @param  index  An index specifying element.
+     *  @param  index  Index specifying element.
      *  @return  Character at index or default constructed instance.
      */
     [[nodiscard]] inline constexpr auto operator[] (
@@ -1079,7 +1079,7 @@ struct boundless_basic_string : std::basic_string<char_type, traits, alloc> {
      *  @brief  Get a character at index, or a default constructed instance of
      *          the character type when index is invalid.
      *
-     *  @param  index  An index specifying element.
+     *  @param  index  Index specifying element.
      *  @return  Character at index or default constructed instance.
      */
     [[nodiscard]] inline constexpr auto at(std::size_t index)
@@ -1092,7 +1092,7 @@ struct boundless_basic_string : std::basic_string<char_type, traits, alloc> {
      *  @brief  Get a character at index, or a default constructed instance of
      *          the character type when index is invalid.
      *
-     *  @param  index  An index specifying element.
+     *  @param  index  Index specifying element.
      *  @return  Character at index or default constructed instance.
      */
     [[nodiscard]] inline constexpr auto at(std::size_t index)
@@ -1148,8 +1148,8 @@ struct boundless_basic_string : std::basic_string<char_type, traits, alloc> {
  *  Index-access of this string view always returns a default constructed element
  *  when an invalid index is provided.  Requires a default-constructible type.
  *
- *  @tparam  char_type   The character type.
- *  @tparam  traits  The character traits type.
+ *  @tparam  char_type   Character type.
+ *  @tparam  traits  Character traits type.
  */
 template<typename char_type, typename traits = std::char_traits<char_type>>
 requires(std::is_default_constructible_v<char_type>)
@@ -1169,7 +1169,7 @@ struct boundless_basic_string_view : std::basic_string_view<char_type, traits> {
 
     /**
      *  @brief  String view copy constructor.
-     *  @param  string  The other string view to copy from.
+     *  @param  string  Other string view to copy from.
      */
     inline constexpr boundless_basic_string_view(
         const boundless_basic_string_view &string
@@ -1177,7 +1177,7 @@ struct boundless_basic_string_view : std::basic_string_view<char_type, traits> {
 
     /**
      *  @brief  Creates a string view from a null-terminated character array.
-     *  @param  string  A null-terminated character array.
+     *  @param  string  Null-terminated character array.
      */
     inline constexpr boundless_basic_string_view(
         const char_type *string
@@ -1186,8 +1186,8 @@ struct boundless_basic_string_view : std::basic_string_view<char_type, traits> {
     /**
      *  @brief  Creates a string from a character array.
      *
-     *  @param  string  A character array of at least @c n length.
-     *  @param  n       The number of characters to create a view.
+     *  @param  string  Character array of at least @c n length.
+     *  @param  n       Number of characters to create a view.
      */
     inline constexpr boundless_basic_string_view(
         const char_type *string,
@@ -1197,9 +1197,9 @@ struct boundless_basic_string_view : std::basic_string_view<char_type, traits> {
     /**
      *  @brief  Creates a string view from a range.
      *
-     *  @tparam  InputIterator  An input iterator type.
-     *  @param   first          An input iterator.
-     *  @param   last           An input iterator.
+     *  @tparam  InputIterator  Input iterator type.
+     *  @param   first          Input iterator.
+     *  @param   last           Input iterator.
      */
     template<std::input_iterator InputIterator>
     inline constexpr boundless_basic_string_view(
@@ -1210,8 +1210,8 @@ struct boundless_basic_string_view : std::basic_string_view<char_type, traits> {
     /**
      *  @brief  Creates a string view from a C++20 range.
      *
-     *  @tparam  Range  A range type.
-     *  @param   range  A range of char type.
+     *  @tparam  Range  Range type.
+     *  @param   range  Range of char type.
      */
     template<std::ranges::range Range>
     explicit inline constexpr boundless_basic_string_view(
@@ -1220,7 +1220,7 @@ struct boundless_basic_string_view : std::basic_string_view<char_type, traits> {
 
     /**
      *  @brief  Copy from base string.
-     *  @param  string  The base string.
+     *  @param  string  Base string.
      */
     inline constexpr boundless_basic_string_view(const base &string)
         : base(string) {}
@@ -1235,7 +1235,7 @@ struct boundless_basic_string_view : std::basic_string_view<char_type, traits> {
     /**
      *  @brief  String base assignment operator.
      *
-     *  @param  string  The base string.
+     *  @param  string  Base string.
      *  @return  Reference to self.
      */
     inline constexpr auto operator= (
@@ -1249,7 +1249,7 @@ struct boundless_basic_string_view : std::basic_string_view<char_type, traits> {
      *  @brief  Get a character at index, or a default constructed instance of
      *          the character type when index is invalid.
      *
-     *  @param  index  An index specifying element.
+     *  @param  index  Index specifying element.
      *  @return  Character at index or default constructed instance.
      */
     [[nodiscard]] inline constexpr auto operator[] (
@@ -1263,7 +1263,7 @@ struct boundless_basic_string_view : std::basic_string_view<char_type, traits> {
      *  @brief  Get a character at index, or a default constructed instance of
      *          the character type when index is invalid.
      *
-     *  @param  index  An index specifying element.
+     *  @param  index  Index specifying element.
      *  @return  Character at index or default constructed instance.
      */
     [[nodiscard]] inline constexpr auto at(std::size_t index)
@@ -1365,8 +1365,8 @@ inline constexpr auto enum_max_v = enum_max<enum_type>::value;
 /**
  *  @brief  Array with enumerator as index.
  *
- *  @tparam  element_type  The type of element.
- *  @tparam  enum_type  A Container Utilities compatible enumerator type.
+ *  @tparam  element_type  Type of element.
+ *  @tparam  enum_type  Container Utilities compatible enumerator type.
  */
 template<typename element_type, cu_compatible_enum enum_type>
 struct enumerated_array : std::array<element_type, enum_max_v<enum_type>> {
@@ -1424,10 +1424,10 @@ struct enumerated_array : std::array<element_type, enum_max_v<enum_type>> {
 /**
  *  @brief  Get the subset of the container's elements.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   first      The first index (inclusive).
- *  @param   last       The last index (exclusive).
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   first      First index (inclusive).
+ *  @param   last       Last index (exclusive).
  *  @return  Subset of the container as @c result_container .
  */
 template<cu_compatible container>
@@ -1445,9 +1445,9 @@ template<cu_compatible container>
 /**
  *  @brief  Copy containers into one container.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr_a      The first container.
- *  @param   ctr_b      The second container.
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr_a      First container.
+ *  @param   ctr_b      Second container.
  *  @return  Combined container as @c result_container .
  */
 template<cu_compatible container>
@@ -1466,9 +1466,9 @@ template<cu_compatible container>
 /**
  *  @brief  Copy container and value into one container.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   value      A value of container's value type.
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   value      Value of container's value type.
  *  @return  Value-appended container as @c result_container .
  */
 template<cu_compatible container>
@@ -1483,9 +1483,9 @@ template<cu_compatible container>
 /**
  *  @brief  Filter out the occurrences of sequence from the container.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   pattern    A sequence to remove.
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   pattern    Sequence to remove.
  *  @return  Filtered container as @c result_container .
  */
 template<cu_compatible container>
@@ -1502,9 +1502,9 @@ template<cu_compatible container>
 /**
  *  @brief  Filter out the occurrences of any of values from the container.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   values     The elements to remove.
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   values     Elements to remove.
  *  @return  Filtered container as @c result_container .
  */
 template<cu_compatible container>
@@ -1525,10 +1525,10 @@ template<cu_compatible container>
 /**
  *  @brief  Filter out the occurrences of any of sequences from the container.
  *
- *  @tparam  container         A compatible container type.
- *  @tparam  nested_container  A compatible nested container type.
- *  @param   ctr               A container.
- *  @param   patterns          The sequences to remove.
+ *  @tparam  container         Compatible container type.
+ *  @tparam  nested_container  Compatible nested container type.
+ *  @param   ctr               Container.
+ *  @param   patterns          Sequences to remove.
  *  @return  Filtered container as @c result_container .
  */
 template<cu_compatible container, cu_compatible_nested nested_container>
@@ -1548,9 +1548,9 @@ template<cu_compatible container, cu_compatible_nested nested_container>
 /**
  *  @brief  Filter out the occurrences of value from the container.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   value      A value to remove.
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   value      Value to remove.
  *  @return  Filtered container as @c result_container .
  */
 template<cu_compatible container>
@@ -1565,9 +1565,9 @@ template<cu_compatible container>
 /**
  *  @brief  Repeat container @c n times.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   n          The number of times to repeat.
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   n          Number of times to repeat.
  *  @return  Repeated container as @c result_container .
  */
 template<cu_compatible container>
@@ -1584,9 +1584,9 @@ template<cu_compatible container>
 /**
  *  @brief  Repeat container @c n times.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   n          The number of times to repeat.
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   n          Number of times to repeat.
  *  @return  Repeated container as @c result_container .
  *
  *  @see  @c std::size_t overload of @c repeat .
@@ -1605,9 +1605,9 @@ template<cu_compatible container>
 /**
  *  @brief  Repeat container @c n times.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   n          The number of times to repeat.
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   n          Number of times to repeat.
  *  @return  Repeated container as @c result_container .
  *
  *  @see  @c std::size_t overload of @c repeat .
@@ -1624,9 +1624,9 @@ template<cu_compatible container>
 /**
  *  @brief  Repeat container @c n times.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   n          The number of times to repeat.
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   n          Number of times to repeat.
  *  @return  Repeated container as @c result_container .
  *
  *  @see  @c std::size_t overload of @c repeat .
@@ -1645,9 +1645,9 @@ template<cu_compatible container>
 /**
  *  @brief  Repeat container @c n times.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   n          The number of times to repeat.
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   n          Number of times to repeat.
  *  @return  Repeated container as @c result_container .
  *
  *  @see  @c std::size_t overload of @c repeat .
@@ -1666,9 +1666,9 @@ template<cu_compatible container>
 /**
  *  @brief  Repeat container @c n times.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   n          The number of times to repeat.
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   n          Number of times to repeat.
  *  @return  Repeated container as @c result_container .
  *
  *  @see  @c std::size_t overload of @c repeat .
@@ -1690,9 +1690,9 @@ template<cu_compatible container>
  *  added with subordinate container with `round(0.f * container.size())`
  *  elements from the beginning.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   n          The number of times to repeat.
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   n          Number of times to repeat.
  *  @return  Repeated container as @c result_container .
  *
  *  @note  This is scuffed.
@@ -1718,9 +1718,9 @@ template<cu_compatible container>
 /**
  *  @brief  Repeat container @c n times.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   n          The number of times to repeat.
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   n          Number of times to repeat.
  *  @return  Repeated container as @c result_container .
  *
  *  @note  This is scuffed.
@@ -1738,9 +1738,9 @@ template<cu_compatible container>
 /**
  *  @brief  Repeat container @c n times.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   n          The number of times to repeat.
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   n          Number of times to repeat.
  *  @return  Repeated container as @c result_container .
  *
  *  @note  This is scuffed.
@@ -1758,9 +1758,9 @@ template<cu_compatible container>
 /**
  *  @brief  Split the container with pattern.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   pattern    A pattern to split with.
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   pattern    Pattern to split with.
  *  @return  Split container as @c result_container_nested .
  */
 template<cu_compatible container>
@@ -1776,9 +1776,9 @@ template<cu_compatible container>
 /**
  *  @brief  Split the container with occurrences of value.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   values     The values to split with.
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   values     Values to split with.
  *  @return  Split container as @c result_container_nested .
  */
 template<cu_compatible container>
@@ -1806,10 +1806,10 @@ template<cu_compatible container>
 /**
  *  @brief  Split the container with occurrences of any of pattern.
  *
- *  @tparam  container        A compatible container type.
- *  @tparam  nested_container  A compatible container type nested container type.
- *  @param   ctr              A container.
- *  @param   patterns         The patterns to split with.
+ *  @tparam  container        Compatible container type.
+ *  @tparam  nested_container  Compatible container type nested container type.
+ *  @param   ctr              Container.
+ *  @param   patterns         Patterns to split with.
  *  @return  Split container as @c result_container_nested .
  */
 template<cu_compatible container, cu_compatible_nested nested_container>
@@ -1850,9 +1850,9 @@ template<cu_compatible container, cu_compatible_nested nested_container>
 /**
  *  @brief  Split the container with value.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   value      A value to split with.
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   value      Value to split with.
  *  @return  Split container as @c result_container_nested .
  */
 template<cu_compatible container>
@@ -1874,7 +1874,7 @@ namespace cu_operators {
 /**
  *  @brief  Copy containers into one container.
  *
- *  @tparam  container    A compatible container type.
+ *  @tparam  container    Compatible container type.
  *  @param   ctr      _a  The first container.
  *  @param   ctr      _b  The second container.
  *  @return  Combined container as @c result_container .
@@ -1895,9 +1895,9 @@ requires(!std::is_same_v<container, std::string>
 /**
  *  @brief  Copy container and value into one container.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   value      A value of container's value type.
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   value      Value of container's value type.
  *  @return  Value-appended container as @c result_container .
  *
  *  @see  cu::combine.
@@ -1916,9 +1916,9 @@ requires(!std::is_same_v<container, std::string>
 /**
  *  @brief  Filter out the occurrences of sequence from the container.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   pattern    A sequence to remove.
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   pattern    Sequence to remove.
  *  @return  Filtered container as @c result_container .
  *
  *  @note  Use String Manipulators' operators for @c std::string or
@@ -1940,9 +1940,9 @@ requires(!std::is_same_v<container, std::string>
 /**
  *  @brief  Filter out the occurrences of value from the container.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   value      A value to remove.
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   value      Value to remove.
  *  @return  Filtered container as @c result_container .
  *
  *  @note  Use String Manipulators' operators for @c std::string or
@@ -1964,9 +1964,9 @@ requires(!std::is_same_v<container, std::string>
 /**
  *  @brief  Repeat container @c n times.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   n          The number of times to repeat.
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   n          Number of times to repeat.
  *  @return  Repeated container as @c result_container .
  *
  *  @note  Use String Manipulators' operators for @c std::string or
@@ -1988,9 +1988,9 @@ requires(!std::is_same_v<container, std::string>
 /**
  *  @brief  Repeat container @c n times.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   n          The number of times to repeat.
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   n          Number of times to repeat.
  *  @return  Repeated container as @c result_container .
  *
  *  @note  Use String Manipulators' operators for @c std::string or
@@ -2012,9 +2012,9 @@ requires(!std::is_same_v<container, std::string>
 /**
  *  @brief  Repeat container @c n times.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   n          The number of times to repeat.
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   n          Number of times to repeat.
  *  @return  Repeated container as @c result_container .
  *
  *  @note  Use String Manipulators' operators for @c std::string or
@@ -2036,9 +2036,9 @@ requires(!std::is_same_v<container, std::string>
 /**
  *  @brief  Repeat container @c n times.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   n          The number of times to repeat.
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   n          Number of times to repeat.
  *  @return  Repeated container as @c result_container .
  *
  *  @note  Use String Manipulators' operators for @c std::string or
@@ -2060,9 +2060,9 @@ requires(!std::is_same_v<container, std::string>
 /**
  *  @brief  Repeat container @c n times.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   n          The number of times to repeat.
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   n          Number of times to repeat.
  *  @return  Repeated container as @c result_container .
  *
  *  @note  Use String Manipulators' operators for @c std::string or
@@ -2084,9 +2084,9 @@ requires(!std::is_same_v<container, std::string>
 /**
  *  @brief  Repeat container @c n times.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   n          The number of times to repeat.
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   n          Number of times to repeat.
  *  @return  Repeated container as @c result_container .
  *
  *  @note  Use String Manipulators' operators for @c std::string or
@@ -2108,9 +2108,9 @@ requires(!std::is_same_v<container, std::string>
 /**
  *  @brief  Repeat container @c n times.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   n          The number of times to repeat.
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   n          Number of times to repeat.
  *  @return  Repeated container as @c result_container .
  *
  *  @note  Use String Manipulators' operators for @c std::string or
@@ -2132,9 +2132,9 @@ requires(!std::is_same_v<container, std::string>
 /**
  *  @brief  Repeat container @c n times.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   n          The number of times to repeat.
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   n          Number of times to repeat.
  *  @return  Repeated container as @c result_container .
  *
  *  @note  Use String Manipulators' operators for @c std::string or
@@ -2156,9 +2156,9 @@ requires(!std::is_same_v<container, std::string>
 /**
  *  @brief  Repeat container @c n times.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   n          The number of times to repeat.
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   n          Number of times to repeat.
  *  @return  Repeated container as @c result_container .
  *
  *  @note  Use String Manipulators' operators for @c std::string or
@@ -2180,9 +2180,9 @@ requires(!std::is_same_v<container, std::string>
 /**
  *  @brief  Split the container with pattern.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   pattern    A pattern to split with.
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   pattern    Pattern to split with.
  *  @return  Split container as @c result_container_nested .
  *
  *  @note  Use String Manipulators' operators for @c std::string or
@@ -2204,9 +2204,9 @@ requires(!std::is_same_v<container, std::string>
 /**
  *  @brief  Split the container with value.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   value      A value to split with.
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   value      Value to split with.
  *  @return  Split container as @c result_container_nested .
  *
  *  @note  Use String Manipulators' operators for @c std::string or
@@ -2234,9 +2234,9 @@ namespace std {
 /**
  *  @brief  Formatter for @c cu::boundless_basic_string .
  *
- *  @tparam  char_type   The character type.
- *  @tparam  traits  The character traits type.
- *  @tparam  alloc   The allocator type, defaults to @c std::allocator<char_type> .
+ *  @tparam  char_type   Character type.
+ *  @tparam  traits  Character traits type.
+ *  @tparam  alloc   Allocator type, defaults to @c std::allocator<char_type> .
  */
 template<typename char_type, typename traits, typename alloc>
 struct formatter<alcelin::cu::boundless_basic_string<char_type,
@@ -2245,8 +2245,8 @@ struct formatter<alcelin::cu::boundless_basic_string<char_type,
     /**
      *  @brief  Parse the format specifiers (none).
      *
-     *  @tparam  parse_context  A parse context type.
-     *  @param   ctx           A parse context.
+     *  @tparam  parse_context  Parse context type.
+     *  @param   ctx            Parse context.
      *  @return  Iterator to begin of parse context.
      */
     template<typename parse_context>
@@ -2260,9 +2260,9 @@ struct formatter<alcelin::cu::boundless_basic_string<char_type,
     /**
      *  @brief  Format the string using parsed specifiers (none).
      *
-     *  @tparam  format_context  A format context type.
-     *  @param   string         The string to format.
-     *  @param   ctx            A format context.
+     *  @tparam  format_context  Format context type.
+     *  @param   string          String to format.
+     *  @param   ctx             Format context.
      *  @return  Iterator to end of format context.
      */
     template<typename format_context>
@@ -2279,8 +2279,8 @@ struct formatter<alcelin::cu::boundless_basic_string<char_type,
 /**
  *  @brief  Formatter for @c cu::boundless_basic_string_view .
  *
- *  @tparam  char_type   The character type.
- *  @tparam  traits  The character traits type.
+ *  @tparam  char_type   Character type.
+ *  @tparam  traits  Character traits type.
  */
 template<typename char_type, typename traits>
 struct formatter<alcelin::cu::boundless_basic_string_view<char_type,
@@ -2289,8 +2289,8 @@ struct formatter<alcelin::cu::boundless_basic_string_view<char_type,
     /**
      *  @brief  Parse the format specifiers (none).
      *
-     *  @tparam  parse_context  A parse context type.
-     *  @param   ctx            A parse context.
+     *  @tparam  parse_context  Parse context type.
+     *  @param   ctx            Parse context.
      *  @return  Iterator to begin of parse context.
      */
     template<typename parse_context>
@@ -2303,9 +2303,9 @@ struct formatter<alcelin::cu::boundless_basic_string_view<char_type,
     /**
      *  @brief  Format the string using parsed specifiers (none).
      *
-     *  @tparam  format_context  A format context type.
-     *  @param   string          The string to format.
-     *  @param   ctx             A format context.
+     *  @tparam  format_context  Format context type.
+     *  @param   string          String to format.
+     *  @param   ctx             Format context.
      *  @return  Iterator to end of format context.
      */
     template<typename format_context>

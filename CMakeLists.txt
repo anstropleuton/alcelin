@@ -16,8 +16,7 @@ depman_declare(confer "https://github.com/anstropleuton/confer.git" origin/main)
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
 
-set(DOXYGEN_ALCELIN_PROJECT_VERSION ${PROJECT_VERSION})
-set(DOXYGEN_ALCELIN_OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/docs")
+set(DOXYGEN_OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/docs")
 
 configure_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/include/alcelin_config.hpp.in"

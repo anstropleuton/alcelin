@@ -62,7 +62,7 @@ inline constinit std::string_view csi = "\x1b\x5b";
 /**
  *  @brief  Format code for Select Graphics Rendition.
  *
- *  @param  code  An SGR code.
+ *  @param  code  SGR code.
  *  @return  Formatted SGR code ready to be std::cout'd or std::print'd.
  */
 [[nodiscard]] inline constexpr auto sgr(std::string_view code)
@@ -113,7 +113,7 @@ struct aec_t {
      *  The setter sequence is placed before text, followed by the resetter
      *  sequence.
      *
-     *  @param  text  The text to format.
+     *  @param  text  Text to format.
      *  @return  Combined sequence for formatted text.
      */
     [[nodiscard]] inline constexpr auto operator() (std::string_view text) const
@@ -162,8 +162,8 @@ struct aec_t {
 /**
  *  @brief  Combine two AECs to get a combined AEC.
  *
- *  @param  a  The first AEC.
- *  @param  b  The second AEC.
+ *  @param  a  First AEC.
+ *  @param  b  Second AEC.
  *  @return  Combined AEC.
  */
 [[nodiscard]] inline constexpr auto combine(const aec_t a, const aec_t b)
@@ -225,8 +225,8 @@ namespace aec_operators {
 /**
  *  @brief  Overload << operator for streams and AEC.
  *
- *  @param  ostream  An output stream.
- *  @param  aec      An AEC.
+ *  @param  ostream  Output stream.
+ *  @param  aec      AEC.
  *  @return  Output stream.
  */
 [[nodiscard]] inline constexpr auto operator<< (
@@ -241,8 +241,8 @@ namespace aec_operators {
 /**
  *  @brief  Operator to combine AECs.
  *
- *  @param  a  The first AEC.
- *  @param  b  The second AEC.
+ *  @param  a  First AEC.
+ *  @param  b  Second AEC.
  *  @return  Combined AEC.
  */
 [[nodiscard]] inline constexpr auto operator+ (
@@ -256,8 +256,8 @@ namespace aec_operators {
 /**
  *  @brief  Operator to combine AECs.
  *
- *  @param  a  The first AEC.
- *  @param  b  The second AEC.
+ *  @param  a  First AEC.
+ *  @param  b  Second AEC.
  *  @return  Combined AEC.
  */
 [[nodiscard]] inline constexpr auto operator* (
@@ -271,8 +271,8 @@ namespace aec_operators {
 /**
  *  @brief  Operator to combine AECs.
  *
- *  @param  a  The first AEC.
- *  @param  b  The second AEC.
+ *  @param  a  First AEC.
+ *  @param  b  Second AEC.
  *  @return  Combined AEC.
  */
 [[nodiscard]] inline constexpr auto operator& (
@@ -286,8 +286,8 @@ namespace aec_operators {
 /**
  *  @brief  Operator to combine AECs.
  *
- *  @param  a  The first AEC.
- *  @param  b  The second AEC.
+ *  @param  a  First AEC.
+ *  @param  b  Second AEC.
  *  @return  Combined AEC.
  */
 [[nodiscard]] inline constexpr auto operator| (
@@ -301,8 +301,8 @@ namespace aec_operators {
 /**
  *  @brief  Operator to combine AECs.
  *
- *  @param  a  The first AEC.
- *  @param  b  The second AEC.
+ *  @param  a  First AEC.
+ *  @param  b  Second AEC.
  *  @return  Combined AEC.
  */
 [[nodiscard]] inline constexpr auto operator&& (
@@ -316,8 +316,8 @@ namespace aec_operators {
 /**
  *  @brief  Operator to combine AECs.
  *
- *  @param  a  The first AEC.
- *  @param  b  The second AEC.
+ *  @param  a  First AEC.
+ *  @param  b  Second AEC.
  *  @return  Combined AEC.
  */
 [[nodiscard]] inline constexpr auto operator|| (
@@ -337,7 +337,7 @@ namespace std {
 /**
  *  @brief  Formatter for @c aec::aec .
  *
- *  @param  char_type  The character type.
+ *  @param  char_type  Character type.
  */
 template<typename char_type>
 struct formatter<alcelin::aec::aec_t, char_type> {
@@ -345,8 +345,8 @@ struct formatter<alcelin::aec::aec_t, char_type> {
     /**
      *  @brief  Parse the format specifiers (none).
      *
-     *  @tparam  parse_context  A parse context type.
-     *  @param   ctx           A parse context.
+     *  @tparam  parse_context  Parse context type.
+     *  @param   ctx            Parse context.
      *  @return  Iterator to begin of parse context.
      */
     template<typename parse_context>
@@ -360,9 +360,9 @@ struct formatter<alcelin::aec::aec_t, char_type> {
     /**
      *  @brief  Format the string using parsed specifiers (none).
      *
-     *  @tparam  format_context  A format context type.
-     *  @param   aec            The AEC to format.
-     *  @param   ctx            A format context.
+     *  @tparam  format_context  Format context type.
+     *  @param   aec             AEC to format.
+     *  @param   ctx             Format context.
      *  @return  Iterator to end of format context.
      */
     template<typename format_context>

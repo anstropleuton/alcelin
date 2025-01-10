@@ -66,7 +66,7 @@ namespace sm {
  *  A container that is CU Compatible with elements type being @c std::string or
  *  @c std::string_view .
  *
- *  @tparam  container  The container type.
+ *  @tparam  container  Container type.
  */
 template<typename container>
 concept sm_compatible = cu::cu_compatible<container>
@@ -81,13 +81,13 @@ using result_string_nested = std::vector<std::string>;
 /**
  *  @brief  Convert a container to comma separated string.
  *
- *  @tparam  container  A compatible container type.
- *  @tparam  converter  The type of element stringify function.
- *  @param   ctr        A container.
+ *  @tparam  container  Compatible container type.
+ *  @tparam  converter  Type of element stringify function.
+ *  @param   ctr        Container.
  *  @param   conv       Element conversion function.
- *  @param   separator  The separator between elements (optional).
- *  @param   prefix     The prefix to the element (optional).
- *  @param   suffix     The suffix to the element (optional).
+ *  @param   separator  Separator between elements (optional).
+ *  @param   prefix     Prefix to the element (optional).
+ *  @param   suffix     Suffix to the element (optional).
  *  @return  String representation of all elements.
  *
  *  @note  The string is comma AND space separated by default.
@@ -116,11 +116,11 @@ requires(!std::is_same_v<converter, std::string>)
 /**
  *  @brief  Convert a container to comma separated string.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   separator  The separator between elements (optional).
- *  @param   prefix     The prefix to the element (optional).
- *  @param   suffix     The suffix to the element (optional).
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   separator  Separator between elements (optional).
+ *  @param   prefix     Prefix to the element (optional).
+ *  @param   suffix     Suffix to the element (optional).
  *  @return  String representation of all elements.
  *
  *  @note  The string is comma AND space separated by default.
@@ -141,11 +141,11 @@ template<cu::cu_compatible container>
  *  @brief  Convert a container of char to string with single-quoted elements
  *          separated by comma.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   separator  The separator between elements (optional).
- *  @param   prefix     The prefix to the element (optional).
- *  @param   suffix     The suffix to the element (optional).
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   separator  Separator between elements (optional).
+ *  @param   prefix     Prefix to the element (optional).
+ *  @param   suffix     Suffix to the element (optional).
  *  @return  String representation of all elements.
  *
  *  @note  The string is comma AND space separated by default.
@@ -171,11 +171,11 @@ requires std::is_same_v<cu::value_type<container>, char>
  *  @brief  Convert a container of @c std::string to string with double-quoted
  *          elements separated by comma.
  *
- *  @tparam  container  A compatible container type.
- *  @param   ctr        A container.
- *  @param   separator  The separator between elements (optional).
- *  @param   prefix     The prefix to the element (optional).
- *  @param   suffix     The suffix to the element (optional).
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   separator  Separator between elements (optional).
+ *  @param   prefix     Prefix to the element (optional).
+ *  @param   suffix     Suffix to the element (optional).
  *  @return  String representation of all elements.
  *
  *  @note  The string is comma AND space separated by default.
@@ -195,8 +195,8 @@ requires std::is_same_v<cu::value_type<container>, std::string>
 /**
  *  @brief  Convert a container of char to a regular string.
  *
- *  @tparam  container  A compatible container type with char element type.
- *  @param   ctr        A container.
+ *  @tparam  container  Compatible container type with char element type.
+ *  @param   ctr        Container.
  *  @return  String of all chars.
  */
 template<cu::cu_compatible container>
@@ -209,7 +209,7 @@ requires std::is_same_v<cu::value_type<container>, char>
 /**
  *  @brief  Convert a character to a string.
  *
- *  @param  character  A character.
+ *  @param  character  Character.
  *  @return  String of one character.
  */
 [[nodiscard]] inline constexpr auto to_string(char character)
@@ -228,11 +228,11 @@ requires std::is_same_v<cu::value_type<container>, char>
  *  specified width, the word is kept as is.  If you use force, the word will be
  *  split.
  *
- *  @param  string  A string to word-wrap.
- *  @param  width   The max word-wrap width.
+ *  @param  string  String to word-wrap.
+ *  @param  width   Width for max word-wrap.
  *  @param  force   Whether to force the string to always be less than or equal
  *                  to the width (optional).
- *  @param  delims  The delimiters, usually whitespace (optional).
+ *  @param  delims  Delimiters, usually whitespace (optional).
  *  @return  @c result_string_nested of word-wrapped lines.
  *
  *  @note  word-wrapped lines can be larger than width.
@@ -291,8 +291,8 @@ requires std::is_same_v<cu::value_type<container>, char>
  *  @brief  Trim a string (only from left side) using delimiters (usually
  *          whitespace).
  *
- *  @param  string  A string to trim from left.
- *  @param  delims  The delimiters, usually whitespace (optional).
+ *  @param  string  String to trim from left.
+ *  @param  delims  Delimiters, usually whitespace (optional).
  *  @return  Trimmed string.
  */
 [[nodiscard]] inline constexpr auto trim_left(
@@ -312,8 +312,8 @@ requires std::is_same_v<cu::value_type<container>, char>
  *  @brief  Trim a string (only from right side) using delimiters (usually
  *          whitespace).
  *
- *  @param  string  A string to trim from right.
- *  @param  delims  The delimiters, usually whitespace (optional).
+ *  @param  string  String to trim from right.
+ *  @param  delims  Delimiters, usually whitespace (optional).
  *  @return  Trimmed string.
  */
 [[nodiscard]] inline constexpr auto trim_right(
@@ -332,8 +332,8 @@ requires std::is_same_v<cu::value_type<container>, char>
 /**
  *  @brief  Trim a string using delimiters (usually whitespace).
  *
- *  @param  string  A string to trim.
- *  @param  delims  The delimiters, usually whitespace (optional).
+ *  @param  string  String to trim.
+ *  @param  delims  Delimiters, usually whitespace (optional).
  *  @return  Trimmed string.
  */
 [[nodiscard]] inline constexpr auto trim(
@@ -347,7 +347,7 @@ requires std::is_same_v<cu::value_type<container>, char>
 /**
  *  @brief  Convert string to uppercase.
  *
- *  @param  string  A string to convert.
+ *  @param  string  String to convert.
  *  @return  Uppercase string.
  */
 [[nodiscard]] inline constexpr auto to_upper(std::string_view string)
@@ -360,7 +360,7 @@ requires std::is_same_v<cu::value_type<container>, char>
 /**
  *  @brief  Convert string to lowercase.
  *
- *  @param  string  A string to convert.
+ *  @param  string  String to convert.
  *  @return  Lowercase string.
  */
 [[nodiscard]] inline constexpr auto to_lower(std::string_view string)
@@ -373,7 +373,7 @@ requires std::is_same_v<cu::value_type<container>, char>
 /**
  *  @brief  Convert character to uppercase (exists for consistency).
  *
- *  @param  character  A character to convert.
+ *  @param  character  Character to convert.
  *  @return  Uppercase character.
  */
 [[nodiscard]] inline constexpr auto to_upper(char character)
@@ -384,7 +384,7 @@ requires std::is_same_v<cu::value_type<container>, char>
 /**
  *  @brief  Convert character to lowercase (exists for consistency).
  *
- *  @param  character  A character to convert.
+ *  @param  character  Character to convert.
  *  @return  Lowercase character.
  */
 [[nodiscard]] inline constexpr auto to_lower(char character)
@@ -395,8 +395,8 @@ requires std::is_same_v<cu::value_type<container>, char>
 /**
  *  @brief  Compare string, case insensitivity.
  *
- *  @param  a  The first string.
- *  @param  b  The second string.
+ *  @param  a  First string.
+ *  @param  b  Second string.
  *  @return  True if they are equal, case insensitively.
  */
 [[nodiscard]] inline constexpr auto is_equal_ins(
@@ -411,8 +411,8 @@ requires std::is_same_v<cu::value_type<container>, char>
 /**
  *  @brief  Compare character, case insensitivity (exists for consistency).
  *
- *  @param  a  The first character.
- *  @param  b  The second character.
+ *  @param  a  First character.
+ *  @param  b  Second character.
  *  @return  True if they are equal, case insensitively.
  */
 [[nodiscard]] inline constexpr auto is_equal_ins(char a, char b)
@@ -424,8 +424,8 @@ requires std::is_same_v<cu::value_type<container>, char>
 /**
  *  @brief  Filter out the occurrences of sequence from the string.
  *
- *  @param  string   A string.
- *  @param  pattern  A sequence to remove.
+ *  @param  string   String.
+ *  @param  pattern  Sequence to remove.
  *  @return  Filtered string as @c std::string .
  *
  *  @see  cu::filter_out_seq.
@@ -443,8 +443,8 @@ requires std::is_same_v<cu::value_type<container>, char>
 /**
  *  @brief  Filter out the occurrences of any of characters from the string.
  *
- *  @param  string      A string.
- *  @param  characters  The characters to remove.
+ *  @param  string      String.
+ *  @param  characters  Characters to remove.
  *  @return  Filtered string as @c std::string .
  *
  *  @see  cu::filter_out_occ.
@@ -462,9 +462,9 @@ requires std::is_same_v<cu::value_type<container>, char>
 /**
  *  @brief  Filter out the occurrences of any of sequences from the string.
  *
- *  @tparam  strings   A CU compatible container with string elements.
- *  @param   string    A string.
- *  @param   patterns  The sequences to remove.
+ *  @tparam  strings   CU compatible container with string elements.
+ *  @param   string    String.
+ *  @param   patterns  Sequences to remove.
  *  @return  Filtered string as @c std::string .
  *
  *  @see  cu::filter_out_occ_seq.
@@ -488,8 +488,8 @@ template<sm_compatible strings>
 /**
  *  @brief  Filter out the occurrences of character from the string.
  *
- *  @param  string     A string.
- *  @param  character  A character to remove.
+ *  @param  string     String.
+ *  @param  character  Character to remove.
  *  @return  Filtered string as @c std::string .
  *
  *  @see  cu::filter_out.
@@ -506,8 +506,8 @@ template<sm_compatible strings>
 /**
  *  @brief  Repeat string @c n times.
  *
- *  @param  string  A string.
- *  @param  n       The number of times to repeat.
+ *  @param  string  String.
+ *  @param  n       Number of times to repeat.
  *  @return  Repeated string as @c std::string .
  *
  *  @see  cu::repeat.
@@ -524,8 +524,8 @@ template<sm_compatible strings>
 /**
  *  @brief  Repeat string @c n times.
  *
- *  @param  string  A string.
- *  @param  n       The number of times to repeat.
+ *  @param  string  String.
+ *  @param  n       Number of times to repeat.
  *  @return  Repeated string as @c std::string .
  *
  *  @see  cu::repeat.
@@ -542,8 +542,8 @@ template<sm_compatible strings>
 /**
  *  @brief  Repeat string @c n times.
  *
- *  @param  string  A string.
- *  @param  n       The number of times to repeat.
+ *  @param  string  String.
+ *  @param  n       Number of times to repeat.
  *  @return  Repeated string as @c std::string .
  *
  *  @see  cu::repeat.
@@ -560,8 +560,8 @@ template<sm_compatible strings>
 /**
  *  @brief  Repeat string @c n times.
  *
- *  @param  string  A string.
- *  @param  n       The number of times to repeat.
+ *  @param  string  String.
+ *  @param  n       Number of times to repeat.
  *  @return  Repeated string as @c std::string .
  *
  *  @see  cu::repeat.
@@ -578,8 +578,8 @@ template<sm_compatible strings>
 /**
  *  @brief  Repeat string @c n times.
  *
- *  @param  string  A string.
- *  @param  n       The number of times to repeat.
+ *  @param  string  String.
+ *  @param  n       Number of times to repeat.
  *  @return  Repeated string as @c std::string .
  *
  *  @see  cu::repeat.
@@ -596,8 +596,8 @@ template<sm_compatible strings>
 /**
  *  @brief  Repeat string @c n times.
  *
- *  @param  string  A string.
- *  @param  n       The number of times to repeat.
+ *  @param  string  String.
+ *  @param  n       Number of times to repeat.
  *  @return  Repeated string as @c std::string .
  *
  *  @see  cu::repeat.
@@ -614,8 +614,8 @@ template<sm_compatible strings>
 /**
  *  @brief  Repeat string @c n times.
  *
- *  @param  string  A string.
- *  @param  n       The number of times to repeat.
+ *  @param  string  String.
+ *  @param  n       Number of times to repeat.
  *  @return  Repeated string as @c std::string .
  *
  *  @see  cu::repeat.
@@ -632,8 +632,8 @@ template<sm_compatible strings>
 /**
  *  @brief  Repeat string @c n times.
  *
- *  @param  string  A string.
- *  @param  n       The number of times to repeat.
+ *  @param  string  String.
+ *  @param  n       Number of times to repeat.
  *  @return  Repeated string as @c std::string .
  *
  *  @see  cu::repeat.
@@ -650,8 +650,8 @@ template<sm_compatible strings>
 /**
  *  @brief  Repeat string @c n times.
  *
- *  @param  string  A string.
- *  @param  n       The number of times to repeat.
+ *  @param  string  String.
+ *  @param  n       Number of times to repeat.
  *  @return  Repeated string as @c std::string .
  *
  *  @see  cu::repeat.
@@ -668,8 +668,8 @@ template<sm_compatible strings>
 /**
  *  @brief  Split the string with pattern.
  *
- *  @param  string   A string.
- *  @param  pattern  A pattern to split with.
+ *  @param  string   String.
+ *  @param  pattern  Pattern to split with.
  *  @return  Split string as @c result_string_nested .
  *
  *  @see  cu::split_seq.
@@ -689,8 +689,8 @@ template<sm_compatible strings>
 /**
  *  @brief  Split the string with occurrences of value.
  *
- *  @param  string      A string.
- *  @param  characters  The characters to split with.
+ *  @param  string      String.
+ *  @param  characters  Characters to split with.
  *  @return  Split string as @c result_string_nested .
  *
  *  @see  cu::split_occ.
@@ -710,9 +710,9 @@ template<sm_compatible strings>
 /**
  *  @brief  Split the string with occurrences of any of pattern.
  *
- *  @tparam  strings   A CU compatible string with string elements.
- *  @param   string    A string.
- *  @param   patterns  The patterns to split with.
+ *  @tparam  strings   CU compatible string with string elements.
+ *  @param   string    String.
+ *  @param   patterns  Patterns to split with.
  *  @return  Split string as @c result_string_nested .
  *
  *  @see  cu::split_occ_seq.
@@ -737,8 +737,8 @@ template<sm_compatible strings>
 /**
  *  @brief  Split the string with value.
  *
- *  @param   string  A string.
- *  @param   value   A value to split with.
+ *  @param   string  String.
+ *  @param   value   Value to split with.
  *  @return  Split string as @c result_container_nested .
  *
  *  @see  cu::split.
@@ -764,8 +764,8 @@ namespace sm_operators {
 /**
  *  @brief  Filter out the occurrences of sequence from the string.
  *
- *  @param  string   A string.
- *  @param  pattern  A sequence to remove.
+ *  @param  string   String.
+ *  @param  pattern  Sequence to remove.
  *  @return  Filtered string as @c std::string .
  *
  *  @see  sm::filter_out_seq.
@@ -781,8 +781,8 @@ namespace sm_operators {
 /**
  *  @brief  Filter out the occurrences of character from the string.
  *
- *  @param  string     A string.
- *  @param  character  A character to remove.
+ *  @param  string     String.
+ *  @param  character  Character to remove.
  *  @return  Filtered string as @c std::string .
  *
  *  @see  sm::filter_out.
@@ -798,8 +798,8 @@ namespace sm_operators {
 /**
  *  @brief  Repeat string @c n times.
  *
- *  @param  string  A string.
- *  @param  n       The number of times to repeat.
+ *  @param  string  String.
+ *  @param  n       Number of times to repeat.
  *  @return  Repeated string as @c std::string .
  *
  *  @see  sm::repeat.
@@ -815,8 +815,8 @@ namespace sm_operators {
 /**
  *  @brief  Repeat string @c n times.
  *
- *  @param  string  A string.
- *  @param  n       The number of times to repeat.
+ *  @param  string  String.
+ *  @param  n       Number of times to repeat.
  *  @return  Repeated string as @c std::string .
  *
  *  @see  sm::repeat.
@@ -832,8 +832,8 @@ namespace sm_operators {
 /**
  *  @brief  Repeat string @c n times.
  *
- *  @param  string  A string.
- *  @param  n       The number of times to repeat.
+ *  @param  string  String.
+ *  @param  n       Number of times to repeat.
  *  @return  Repeated string as @c std::string .
  *
  *  @see  sm::repeat.
@@ -849,8 +849,8 @@ namespace sm_operators {
 /**
  *  @brief  Repeat string @c n times.
  *
- *  @param  string  A string.
- *  @param  n       The number of times to repeat.
+ *  @param  string  String.
+ *  @param  n       Number of times to repeat.
  *  @return  Repeated string as @c std::string .
  *
  *  @see  sm::repeat.
@@ -866,8 +866,8 @@ namespace sm_operators {
 /**
  *  @brief  Repeat string @c n times.
  *
- *  @param  string  A string.
- *  @param  n       The number of times to repeat.
+ *  @param  string  String.
+ *  @param  n       Number of times to repeat.
  *  @return  Repeated string as @c std::string .
  *
  *  @see  sm::repeat.
@@ -883,8 +883,8 @@ namespace sm_operators {
 /**
  *  @brief  Repeat string @c n times.
  *
- *  @param  string  A string.
- *  @param  n       The number of times to repeat.
+ *  @param  string  String.
+ *  @param  n       Number of times to repeat.
  *  @return  Repeated string as @c std::string .
  *
  *  @see  sm::repeat.
@@ -900,8 +900,8 @@ namespace sm_operators {
 /**
  *  @brief  Repeat string @c n times.
  *
- *  @param  string  A string.
- *  @param  n       The number of times to repeat.
+ *  @param  string  String.
+ *  @param  n       Number of times to repeat.
  *  @return  Repeated string as @c std::string .
  *
  *  @see  sm::repeat.
@@ -917,8 +917,8 @@ namespace sm_operators {
 /**
  *  @brief  Repeat string @c n times.
  *
- *  @param  string  A string.
- *  @param  n       The number of times to repeat.
+ *  @param  string  String.
+ *  @param  n       Number of times to repeat.
  *  @return  Repeated string as @c std::string .
  *
  *  @see  sm::repeat.
@@ -934,8 +934,8 @@ namespace sm_operators {
 /**
  *  @brief  Repeat string @c n times.
  *
- *  @param  string  A string.
- *  @param  n       The number of times to repeat.
+ *  @param  string  String.
+ *  @param  n       Number of times to repeat.
  *  @return  Repeated string as @c std::string .
  *
  *  @see  sm::repeat.
@@ -951,8 +951,8 @@ namespace sm_operators {
 /**
  *  @brief  Split the string with pattern.
  *
- *  @param  string   A string.
- *  @param  pattern  A pattern to split with.
+ *  @param  string   String.
+ *  @param  pattern  Pattern to split with.
  *  @return  Split string as @c sm::result_string_nested .
  *
  *  @see  sm::split_seq.
@@ -968,8 +968,8 @@ namespace sm_operators {
 /**
  *  @brief  Split the string with value.
  *
- *  @param   string  A string.
- *  @param   value   A value to split with.
+ *  @param   string  String.
+ *  @param   value   Value to split with.
  *  @return  Split string as @c result_container_nested .
  *
  *  @see  sm::split.

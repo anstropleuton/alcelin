@@ -134,7 +134,7 @@ auto main() -> int try
 
     print_failed_tests(failed_tests);
 
-    return sum_failed_tests_errors(failed_tests);
+    return sum_failed_tests_errors(failed_tests) != 0;
 }
 catch (const std::exception &e)
 {

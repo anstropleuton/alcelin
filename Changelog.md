@@ -17,5 +17,5 @@ Also, restructure documentations.
 Few CMake files I use in cmake/ folder are mostly reused throughout my project, so rename them to have generic name and configure them with proper name in CMakeLists.txt itself.
 Also fix the uninstall target.
 
-## v2.1.0.2
+## v2.1.0.2 - Add dependency helper
 Added [dependency helpers](cmake/depman.cmake). And removed submodules.

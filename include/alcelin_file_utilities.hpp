@@ -74,7 +74,7 @@ namespace file {
  *  @brief  Read all the file's content at once and return @c std::string
  *          representing the file's content.
  *
- *  @param  filename  The filename.
+ *  @param  filename  Filename.
  *  @return  @c std::string representing all the file's contents.
  *
  *  @note  Large files causes problems.
@@ -117,8 +117,8 @@ struct sd_chunk {
 /**
  *  @brief  Convert an object to a chunk.
  *
- *  @tparam  type  A trivially copyable type.
- *  @param   t     A trivially copyable value.
+ *  @tparam  type  Trivially copyable type.
+ *  @param   t     Trivially copyable value.
  *  @return  A newly allocated chunk.  Memory allocation failure may occur.
  *
  *  @note  Use @c delete_sd_chunk to free the allocated memory.
@@ -130,8 +130,8 @@ requires(std::is_trivially_copyable_v<type>)
 /**
  *  @brief  Convert a chunk to an object.
  *
- *  @tparam  type   A trivially copyable chunk.
- *  @param   chunk  A chunk with memory layout of type @c T .
+ *  @tparam  type   Trivially copyable chunk.
+ *  @param   chunk  Chunk with memory layout of type @c T .
  *  @return  An object of T with memory layout of the chunk.
  */
 template<typename type>
@@ -145,7 +145,7 @@ requires(std::is_trivially_copyable_v<type>)
  *  with it, be sure to call this function to delete the memory of the created
  *  chunk.
  *
- *  @param  chunk  The chunk to delete.
+ *  @param  chunk  Chunk to delete.
  */
 inline constexpr auto delete_sd_chunk(sd_chunk chunk) -> void;
 
