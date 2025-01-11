@@ -19,3 +19,6 @@ Also fix the uninstall target.
 
 ## v2.1.0.2 - Add dependency helper
 Added [dependency helpers](cmake/depman.cmake). And removed submodules.
+
+## v2.1.1.0 - Added binary functionality
+Added binary functionality to [alcelin_file_utilities.hpp](include/alcelin_file_utilities.hpp), including ability to convert any trivially copyable type from and to vector of bytes (`sd_chunk`) and read/write to file/generic streams.

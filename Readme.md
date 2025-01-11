@@ -7,12 +7,7 @@ This library is subdivided into sections:
 - **String Manipulators** contains several utilities for **std::string** (or **std::string_view** as parameters) which includes **converting containers to string**, **word-wrap**, **trimming string**, converting **to lower case**, etc. And several **operators** from Container Utilities applied to string types.
 - **ANSI Escape Codes** contains easy handlers for manipulation output using decorator [ANSI Escape Codes](https://en.wikipedia.org/wiki/ANSI_escape_code).
 - **Argument Parser** is [removed](#removed-sections).
-- **File Utilities** currently contains one function, to read all the file's content in a string.
-
-# Planned Sections
-There are several Utilities I am planning add to this library, notably:
-- **Binary Files** to contain several utilities for managing binary files to store and retrieve raw data.
-- **Security** to contain encryption and decryption functions (yeah that's it).
+- **File Utilities** contains file utilities such as function to **read all the file contents**, and other utilities ability to **convert any trivially copyable** type from and to **vector of bytes** (`sd_chunk`) and **read/write to file/generic streams**.
 
 # Removed Sections
 - **Argument Parser** contains functionality to parse **Command Line Arguments** and structures to **define options** (or **switches** if you are old and use Microsoft Windows) to easily validate arguments.
