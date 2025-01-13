@@ -51,8 +51,7 @@ using namespace cu_operators;
  *  @brief  Test CU's @c subordinate function.
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_cu_subordinate)
-{
+[[nodiscard]] static CT_TESTER_FN(test_cu_subordinate) {
     CT_BEGIN;
 
     std::vector container = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -77,8 +76,7 @@ using namespace cu_operators;
  *  @brief  Test CU's @c combine function (overload 1).
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_cu_combine_1)
-{
+[[nodiscard]] static CT_TESTER_FN(test_cu_combine_1) {
     CT_BEGIN;
 
     std::vector a        = { 1, 2, 3, 4, 5 };
@@ -101,8 +99,7 @@ using namespace cu_operators;
  *  @brief  Test CU's @c combine function (overload 2).
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_cu_combine_2)
-{
+[[nodiscard]] static CT_TESTER_FN(test_cu_combine_2) {
     CT_BEGIN;
 
     std::vector a        = { 1, 2, 3, 4, 5 };
@@ -125,8 +122,7 @@ using namespace cu_operators;
  *  @brief  Test CU's @c filter_out_seq function.
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_cu_filter_out_seq)
-{
+[[nodiscard]] static CT_TESTER_FN(test_cu_filter_out_seq) {
     CT_BEGIN;
 
     std::vector container = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -149,8 +145,7 @@ using namespace cu_operators;
  *  @brief  Test CU's @c filter_out_occ function.
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_cu_filter_out_occ)
-{
+[[nodiscard]] static CT_TESTER_FN(test_cu_filter_out_occ) {
     CT_BEGIN;
 
     std::vector container = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -173,8 +168,7 @@ using namespace cu_operators;
  *  @brief  Test CU's @c filter_out_occ_seq function.
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_cu_filter_out_occ_seq)
-{
+[[nodiscard]] static CT_TESTER_FN(test_cu_filter_out_occ_seq) {
     CT_BEGIN;
 
     std::vector container = { 1, 2, 3, 4, 4, 5, 6, 7, 7, 8, 9, 10 };
@@ -198,8 +192,7 @@ using namespace cu_operators;
  *  @brief  Test CU's @c filter_out function.
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_cu_filter_out)
-{
+[[nodiscard]] static CT_TESTER_FN(test_cu_filter_out) {
     CT_BEGIN;
 
     std::vector container = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -222,8 +215,7 @@ using namespace cu_operators;
  *  @brief  Test CU's @c repeat function (overload 1).
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_cu_repeat_1)
-{
+[[nodiscard]] static CT_TESTER_FN(test_cu_repeat_1) {
     CT_BEGIN;
 
     std::vector container = { 1, 2, 3, 4, 5 };
@@ -246,8 +238,7 @@ using namespace cu_operators;
  *  @brief  Test CU's @c repeat function (overload 2).
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_cu_repeat_2)
-{
+[[nodiscard]] static CT_TESTER_FN(test_cu_repeat_2) {
     CT_BEGIN;
 
     std::vector container = { 1, 2, 3, 4, 5 };
@@ -271,8 +262,7 @@ using namespace cu_operators;
  *  @brief  Test CU's @c split_seq function.
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_cu_split_seq)
-{
+[[nodiscard]] static CT_TESTER_FN(test_cu_split_seq) {
     CT_BEGIN;
 
     std::vector container = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -305,8 +295,7 @@ using namespace cu_operators;
  *  @brief  Test CU's @c split_occ function.
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_cu_split_occ)
-{
+[[nodiscard]] static CT_TESTER_FN(test_cu_split_occ) {
     CT_BEGIN;
 
     std::vector container = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -344,8 +333,7 @@ using namespace cu_operators;
  *  @brief  Test CU's @c split_occ_seq function.
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_cu_split_occ_seq)
-{
+[[nodiscard]] static CT_TESTER_FN(test_cu_split_occ_seq) {
     CT_BEGIN;
 
     std::vector container = { 1, 2, 3, 3, 4, 5, 6, 7, 8, 8, 9, 10 };
@@ -384,8 +372,7 @@ using namespace cu_operators;
  *  @brief  Test CU's @c split function.
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_cu_split)
-{
+[[nodiscard]] static CT_TESTER_FN(test_cu_split) {
     CT_BEGIN;
 
     std::vector container = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -418,8 +405,7 @@ using namespace cu_operators;
  *  @brief  Test CU operators' @c operator+ (overload 1).
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_cu_operator_plus_1)
-{
+[[nodiscard]] static CT_TESTER_FN(test_cu_operator_plus_1) {
     CT_BEGIN;
 
     std::vector a        = { 1, 2, 3, 4, 5 };
@@ -442,8 +428,7 @@ using namespace cu_operators;
  *  @brief  Test CU operators' @c operator+ (overload 2).
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_cu_operator_plus_2)
-{
+[[nodiscard]] static CT_TESTER_FN(test_cu_operator_plus_2) {
     CT_BEGIN;
 
     std::vector a        = { 1, 2, 3, 4, 5 };
@@ -466,8 +451,7 @@ using namespace cu_operators;
  *  @brief  Test CU operators' @c operator- (overload 1).
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_cu_operator_minus_1)
-{
+[[nodiscard]] static CT_TESTER_FN(test_cu_operator_minus_1) {
     CT_BEGIN;
 
     std::vector container = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -490,8 +474,7 @@ using namespace cu_operators;
  *  @brief  Test CU operators' @c operator- (overload 2).
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_cu_operator_minus_2)
-{
+[[nodiscard]] static CT_TESTER_FN(test_cu_operator_minus_2) {
     CT_BEGIN;
 
     std::vector container = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -514,8 +497,7 @@ using namespace cu_operators;
  *  @brief  Test CU operators' @c operator* (overload 1).
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_cu_operator_star_1)
-{
+[[nodiscard]] static CT_TESTER_FN(test_cu_operator_star_1) {
     CT_BEGIN;
 
     std::vector container = { 1, 2, 3, 4, 5 };
@@ -538,8 +520,7 @@ using namespace cu_operators;
  *  @brief  Test CU operators' @c operator* (overload 2).
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_cu_operator_star_2)
-{
+[[nodiscard]] static CT_TESTER_FN(test_cu_operator_star_2) {
     CT_BEGIN;
 
     std::vector container = { 1, 2, 3, 4, 5 };
@@ -563,8 +544,7 @@ using namespace cu_operators;
  *  @brief  Test CU operators' @c operator/ (overload 1).
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_cu_operator_slash_1)
-{
+[[nodiscard]] static CT_TESTER_FN(test_cu_operator_slash_1) {
     CT_BEGIN;
 
     std::vector container = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -597,8 +577,7 @@ using namespace cu_operators;
  *  @brief  Test CU operators' @c operator/ (overload 2).
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_cu_operator_slash_2)
-{
+[[nodiscard]] static CT_TESTER_FN(test_cu_operator_slash_2) {
     CT_BEGIN;
 
     std::vector container = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -673,210 +652,223 @@ using namespace cu_operators;
  *  @brief  Test... copper?  No wait, test Container Utilities.
  *  @return  Number of errors.
  */
-[[nodiscard]] CT_TESTER_FN(test_cu)
+[[nodiscard]] CT_TESTER_FN(test_cu) try
 {
-    test_suite suite = {};
-    suite.pre_run    = default_pre_runner('=', 3);
-    suite.post_run   = default_post_runner('=', 3);
-    // suite.run_failed = default_run_failed_quitter();
+    test_case cu_subordinate_test_case {
+        .title         = "Test CU's subordinate function",
+        .function_name = "test_cu_subordinate",
+        .function      = test_cu_subordinate
+    };
 
-    // Scary memory management
+    test_case cu_combine_1_test_case {
+        .title         = "Test CU's combine function (overload 1)",
+        .function_name = "test_cu_combine_1",
+        .function      = test_cu_combine_1
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test CU's subordinate function",
-        "test_cu_subordinate",
-        test_cu_subordinate
-    });
+    test_case cu_combine_2_test_case {
+        .title         = "Test CU's combine function (overload 2)",
+        .function_name = "test_cu_combine_2",
+        .function      = test_cu_combine_2
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test CU's combine function (overload 1)",
-        "test_cu_combine_1",
-        test_cu_combine_1
-    });
+    test_case cu_filter_out_seq_test_case {
+        .title         = "Test CU's filter_out_seq function",
+        .function_name = "test_cu_filter_out_seq",
+        .function      = test_cu_filter_out_seq
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test CU's combine function (overload 1)",
-        "test_cu_combine_1",
-        test_cu_combine_1
-    });
+    test_case cu_filter_out_occ_test_case {
+        .title         = "Test CU's filter_out_occ function",
+        .function_name = "test_cu_filter_out_occ",
+        .function      = test_cu_filter_out_occ
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test CU's combine function (overload 2)",
-        "test_cu_combine_2",
-        test_cu_combine_2
-    });
+    test_case cu_filter_out_occ_seq_test_case {
+        .title         = "Test CU's filter_out_occ_seq function",
+        .function_name = "test_cu_filter_out_occ_seq",
+        .function      = test_cu_filter_out_occ_seq
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test CU's filter_out_seq function",
-        "test_cu_filter_out_seq",
-        test_cu_filter_out_seq
-    });
+    test_case cu_filter_out_test_case {
+        .title         = "Test CU's filter_out function",
+        .function_name = "test_cu_filter_out",
+        .function      = test_cu_filter_out
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test CU's filter_out_occ function",
-        "test_cu_filter_out_occ",
-        test_cu_filter_out_occ
-    });
+    test_case cu_repeat_1_test_case {
+        .title         = "Test CU's repeat function (overload 1)",
+        .function_name = "test_cu_repeat_1",
+        .function      = test_cu_repeat_1
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test CU's filter_out_occ_seq function",
-        "test_cu_filter_out_occ_seq",
-        test_cu_filter_out_occ_seq
-    });
+    test_case cu_repeat_2_test_case {
+        .title         = "Test CU's repeat function (overload 2)",
+        .function_name = "test_cu_repeat_2",
+        .function      = test_cu_repeat_2
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test CU's filter_out function",
-        "test_cu_filter_out",
-        test_cu_filter_out
-    });
+    test_case cu_split_seq_test_case {
+        .title         = "Test CU's split_seq function",
+        .function_name = "test_cu_split_seq",
+        .function      = test_cu_split_seq
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test CU's repeat function (overload 1)",
-        "test_cu_repeat_1",
-        test_cu_repeat_1
-    });
+    test_case cu_split_occ_test_case {
+        .title         = "Test CU's split_occ function",
+        .function_name = "test_cu_split_occ",
+        .function      = test_cu_split_occ
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test CU's repeat function (overload 2)",
-        "test_cu_repeat_2",
-        test_cu_repeat_2
-    });
+    test_case cu_split_occ_seq_test_case {
+        .title         = "Test CU's split_occ_seq function",
+        .function_name = "test_cu_split_occ_seq",
+        .function      = test_cu_split_occ_seq
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test CU's split_seq function",
-        "test_cu_split_seq",
-        test_cu_split_seq
-    });
+    test_case cu_split_test_case {
+        .title         = "Test CU's split function",
+        .function_name = "test_cu_split",
+        .function      = test_cu_split
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test CU's split_occ function",
-        "test_cu_split_occ",
-        test_cu_split_occ
-    });
+    test_case cu_operator_plus_1_test_case {
+        .title         = "Test CU operators' operator+ (overload 1)",
+        .function_name = "test_cu_operator_plus_1",
+        .function      = test_cu_operator_plus_1
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test CU's split_occ_seq function",
-        "test_cu_split_occ_seq",
-        test_cu_split_occ_seq
-    });
+    test_case cu_operator_plus_2_test_case {
+        .title         = "Test CU operators' operator+ (overload 2)",
+        .function_name = "test_cu_operator_plus_2",
+        .function      = test_cu_operator_plus_2
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test CU's split function",
-        "test_cu_split",
-        test_cu_split
-    });
+    test_case cu_operator_minus_1_test_case {
+        .title         = "Test CU operators' operator- (overload 1)",
+        .function_name = "test_cu_operator_minus_1",
+        .function      = test_cu_operator_minus_1
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test CU operators' operator+ (overload 1)",
-        "test_cu_operator_plus_1",
-        test_cu_operator_plus_1
-    });
+    test_case cu_operator_minus_2_test_case {
+        .title         = "Test CU operators' operator- (overload 2)",
+        .function_name = "test_cu_operator_minus_2",
+        .function      = test_cu_operator_minus_2
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test CU operators' operator+ (overload 2)",
-        "test_cu_operator_plus_2",
-        test_cu_operator_plus_2
-    });
+    test_case cu_operator_star_1_test_case {
+        .title         = "Test CU operators' operator* (overload 1)",
+        .function_name = "test_cu_operator_star_1",
+        .function      = test_cu_operator_star_1
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test CU operators' operator- (overload 1)",
-        "test_cu_operator_minus_1",
-        test_cu_operator_minus_1
-    });
+    test_case cu_operator_star_2_test_case {
+        .title         = "Test CU operators' operator* (overload 2)",
+        .function_name = "test_cu_operator_star_2",
+        .function      = test_cu_operator_star_2
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test CU operators' operator- (overload 2)",
-        "test_cu_operator_minus_2",
-        test_cu_operator_minus_2
-    });
+    test_case cu_operator_slash_1_test_case {
+        .title         = "Test CU operators' operator/ (overload 1)",
+        .function_name = "test_cu_operator_slash_1",
+        .function      = test_cu_operator_slash_1
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test CU operators' operator* (overload 1)",
-        "test_cu_operator_star_1",
-        test_cu_operator_star_1
-    });
+    test_case cu_operator_slash_2_test_case {
+        .title         = "Test CU operators' operator/ (overload 2)",
+        .function_name = "test_cu_operator_slash_2",
+        .function      = test_cu_operator_slash_2
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test CU operators' operator* (overload 2)",
-        "test_cu_operator_star_2",
-        test_cu_operator_star_2
-    });
+    test_case cu_containers_boundless_access_test_case {
+        .title         = "Test CU containers' boundless_access function.",
+        .function_name = "test_cu_containers_boundless_access",
+        .function      = test_cu_containers_boundless_access
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test CU operators' operator/ (overload 1)",
-        "test_cu_operator_slash_1",
-        test_cu_operator_slash_1
-    });
+    test_case cu_containers_boundless_vector_test_case {
+        .title         = "Test CU containers' boundless_vector struct.",
+        .function_name = "test_cu_containers_boundless_vector",
+        .function      = test_cu_containers_boundless_vector
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test CU operators' operator/ (overload 2)",
-        "test_cu_operator_slash_2",
-        test_cu_operator_slash_2
-    });
+    test_case cu_containers_boundless_array_test_case {
+        .title         = "Test CU containers' boundless_array struct.",
+        .function_name = "test_cu_containers_boundless_array",
+        .function      = test_cu_containers_boundless_array
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test CU containers' boundless_access function.",
-        "test_cu_containers_boundless_access",
-        test_cu_containers_boundless_access
-    });
+    test_case cu_containers_boundless_span_test_case {
+        .title         = "Test CU containers' boundless_span struct.",
+        .function_name = "test_cu_containers_boundless_span",
+        .function      = test_cu_containers_boundless_span
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test CU containers' boundless_vector struct.",
-        "test_cu_containers_boundless_vector",
-        test_cu_containers_boundless_vector
-    });
+    test_case cu_containers_boundless_string_test_case {
+        .title         = "Test CU containers' boundless_string struct.",
+        .function_name = "test_cu_containers_boundless_string",
+        .function      = test_cu_containers_boundless_string
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test CU containers' boundless_array struct.",
-        "test_cu_containers_boundless_array",
-        test_cu_containers_boundless_array
-    });
+    test_case cu_containers_boundless_string_view_test_case {
+        .title         = "Test CU containers' boundless_string_view struct.",
+        .function_name = "test_cu_containers_boundless_string_view",
+        .function      = test_cu_containers_boundless_string_view
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test CU containers' boundless_span struct.",
-        "test_cu_containers_boundless_span",
-        test_cu_containers_boundless_span
-    });
+    test_case cu_containers_enumerated_array_test_case {
+        .title         = "Test CU containers' enumerated_array struct.",
+        .function_name = "test_cu_containers_enumerated_array",
+        .function      = test_cu_containers_enumerated_array
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test CU containers' boundless_string struct.",
-        "test_cu_containers_boundless_string",
-        test_cu_containers_boundless_string
-    });
+    test_suite suite = {
+        .tests       = {
+            &cu_subordinate_test_case,
+            &cu_combine_1_test_case,
+            &cu_combine_1_test_case,
+            &cu_combine_2_test_case,
+            &cu_filter_out_seq_test_case,
+            &cu_filter_out_occ_test_case,
+            &cu_filter_out_occ_seq_test_case,
+            &cu_filter_out_test_case,
+            &cu_repeat_1_test_case,
+            &cu_repeat_2_test_case,
+            &cu_split_seq_test_case,
+            &cu_split_occ_test_case,
+            &cu_split_occ_seq_test_case,
+            &cu_split_test_case,
+            &cu_operator_plus_1_test_case,
+            &cu_operator_plus_2_test_case,
+            &cu_operator_minus_1_test_case,
+            &cu_operator_minus_2_test_case,
+            &cu_operator_star_1_test_case,
+            &cu_operator_star_2_test_case,
+            &cu_operator_slash_1_test_case,
+            &cu_operator_slash_2_test_case,
+            &cu_containers_boundless_access_test_case,
+            &cu_containers_boundless_vector_test_case,
+            &cu_containers_boundless_array_test_case,
+            &cu_containers_boundless_span_test_case,
+            &cu_containers_boundless_string_test_case,
+            &cu_containers_boundless_string_view_test_case,
+            &cu_containers_enumerated_array_test_case
+        },
+        .pre_run  = default_pre_runner('=', 3),
+        .post_run = default_post_runner('=', 3)
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test CU containers' boundless_string_view struct.",
-        "test_cu_containers_boundless_string_view",
-        test_cu_containers_boundless_string_view
-    });
-
-    suite.tests.emplace_back(new test {
-        "Test CU containers' enumerated_array struct.",
-        "test_cu_containers_enumerated_array",
-        test_cu_containers_enumerated_array
-    });
-
-    std::size_t errors = (std::size_t)-1;
-    try
-    {
-        auto failed_tests = suite.run();
-
-        print_failed_tests(failed_tests);
-        errors = sum_failed_tests_errors(failed_tests);
-    }
-    catch (const std::exception &e)
-    {
-        logln("Exception occurred during test: {}", e.what());
-    }
-    catch (...)
-    {
-        logln("Unknown exception occurred during test");
-    }
-
-    for (auto &test : suite.tests)
-    {
-        delete test;
-    }
-
-    return errors;
+    auto failed_tests = suite.run();
+    print_failed_tests(failed_tests);
+    return sum_failed_tests_errors(failed_tests);
+}
+catch (const std::exception &e)
+{
+    logln("Exception occurred during test: {}", e.what());
+    return 1;
+}
+catch (...)
+{
+    logln("Unknown exception occurred during test");
+    return 1;
 }

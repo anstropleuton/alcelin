@@ -43,10 +43,9 @@
 
 using namespace alcelin;
 
-// This example is meant to be a kick-starter to start using container
-// arithmetic from container utilities, but they do not teach everything.  Refer
-// to the documentation for more details
-int main()
+// This example is meant to be a kick-starter to start using my library, but
+// they do not teach everything.  Refer to the documentation for more details
+auto main() -> int
 {
     std::vector a = { 1, 2, 3, 4, 5 };
     std::vector b = { 6, 7, 8, 9, 10 };
@@ -84,6 +83,12 @@ int main()
 
     // Splitting
     g = c / std::vector { 3, 6 };
+
+    // Use std::formatter overload for any containers from alcelin::sm !
+    std::println("d: [{}]", d);
+    std::println("e: [{}]", e);
+    std::println("f: [{}]", f);
+    std::println("g: [{:p'['s']'}]", g);
 
 
 

@@ -228,9 +228,9 @@ struct boundless_vector : std::vector<element_type, alloc> {
      *  @see  @c std::vector 's constructor for more details.
      */
     inline constexpr boundless_vector(
-        std::size_t  size,
-        const element_type     &value,
-        const alloc &allocator = alloc()
+        std::size_t         size,
+        const element_type &value,
+        const alloc        &allocator = alloc()
     ) : base(size, value, allocator) {}
 
     /**
@@ -283,7 +283,7 @@ struct boundless_vector : std::vector<element_type, alloc> {
      */
     inline constexpr boundless_vector(
         std::initializer_list<element_type> list,
-        const alloc             &allocator = alloc()
+        const alloc                        &allocator = alloc()
     ) : base(list, allocator) {}
 
     /**
@@ -386,7 +386,8 @@ struct boundless_vector : std::vector<element_type, alloc> {
      *  @param  index  Index specifying element.
      *  @return  Element at index or default constructed instance.
      */
-    [[nodiscard]] inline constexpr auto operator[] (std::size_t index) -> element_type &
+    [[nodiscard]] inline constexpr auto operator[] (
+        std::size_t index) -> element_type &
     {
         return boundless_access(*this, index);
     }
@@ -423,7 +424,8 @@ struct boundless_vector : std::vector<element_type, alloc> {
      *  @param  index  Index specifying element.
      *  @return  Element at index or default constructed instance.
      */
-    [[nodiscard]] inline constexpr auto at(std::size_t index) const -> element_type
+    [[nodiscard]] inline constexpr auto at(
+        std::size_t index) const -> element_type
     {
         return boundless_access(*this, index);
     }
@@ -482,7 +484,7 @@ template<std::input_iterator input_iterator,
     typename value_type = std::iterator_traits<input_iterator>::value_type,
     typename alloc = std::allocator<value_type>>
 boundless_vector(input_iterator, input_iterator, alloc = alloc())
-                       -> boundless_vector<value_type, alloc>;
+                          -> boundless_vector<value_type, alloc>;
 
 /**
  *  @brief  A boundless array.
@@ -506,7 +508,8 @@ struct boundless_array : std::array<element_type, count> {
      *  @param  index  Index specifying element.
      *  @return  Element at index or default constructed instance.
      */
-    [[nodiscard]] inline constexpr auto operator[] (std::size_t index) -> element_type &
+    [[nodiscard]] inline constexpr auto operator[] (
+        std::size_t index) -> element_type &
     {
         return boundless_access(*this, index);
     }
@@ -543,7 +546,8 @@ struct boundless_array : std::array<element_type, count> {
      *  @param  index  Index specifying element.
      *  @return  Element at index or default constructed instance.
      */
-    [[nodiscard]] inline constexpr auto at(std::size_t index) const -> element_type
+    [[nodiscard]] inline constexpr auto at(
+        std::size_t index) const -> element_type
     {
         return boundless_access(*this, index);
     }
@@ -597,9 +601,11 @@ struct boundless_array : std::array<element_type, count> {
  *  @tparam  element_type   Type of elements.
  *  @tparam  elements_type  Type of multiple elements in initializer.
  */
-template<typename element_type, typename... elements_type>
+template<typename element_type, typename ... elements_type>
 requires(std::is_same_v<element_type, elements_type> && ...)
-boundless_array(element_type, elements_type...) -> boundless_array<element_type, 1 + sizeof... (elements_type)>;
+boundless_array(element_type,
+    elements_type ...) -> boundless_array<element_type,
+    1 + sizeof... (elements_type)>;
 
 /**
  *  @brief  A boundless span.
@@ -636,7 +642,8 @@ struct boundless_span : std::span<element_type, extents> {
      *  @param  index  Index specifying element.
      *  @return  Element at index or default constructed instance.
      */
-    [[nodiscard]] inline constexpr auto at(std::size_t index) const -> element_type
+    [[nodiscard]] inline constexpr auto at(
+        std::size_t index) const -> element_type
     {
         return boundless_access(*this, index);
     }
@@ -682,7 +689,8 @@ boundless_span(element_type(&)[count]) -> boundless_span<element_type, count>;
  *  @tparam  count  Number of array elements.
  */
 template<typename element_type, std::size_t count>
-boundless_span(std::array<element_type, count> &) -> boundless_span<element_type, count>;
+boundless_span(std::array<element_type,
+    count> &) -> boundless_span<element_type, count>;
 
 /**
  *  @brief  Template parameter deduction guide for @c boundless_span .
@@ -693,7 +701,8 @@ boundless_span(std::array<element_type, count> &) -> boundless_span<element_type
  *  @tparam  count  Number of array elements.
  */
 template<typename element_type, size_t count>
-boundless_span(const std::array<element_type, count> &) -> boundless_span<const element_type, count>;
+boundless_span(const std::array<element_type,
+    count> &) -> boundless_span<const element_type, count>;
 
 /**
  *  @brief  Template parameter deduction guide for @c boundless_span .
@@ -803,8 +812,8 @@ struct boundless_basic_string : std::basic_string<char_type, traits, alloc> {
      */
     inline constexpr boundless_basic_string(
         const char_type *string,
-        std::size_t  n,
-        const alloc &allocator = alloc()
+        std::size_t      n,
+        const alloc     &allocator = alloc()
     ) : base(string, n, allocator) {}
 
     /**
@@ -815,7 +824,7 @@ struct boundless_basic_string : std::basic_string<char_type, traits, alloc> {
      */
     inline constexpr boundless_basic_string(
         const char_type *string,
-        const alloc &allocator = alloc()
+        const alloc     &allocator = alloc()
     ) : base(string, allocator) {}
 
     /**
@@ -827,7 +836,7 @@ struct boundless_basic_string : std::basic_string<char_type, traits, alloc> {
      */
     inline constexpr boundless_basic_string(
         std::size_t  n,
-        char_type        c,
+        char_type    c,
         const alloc &allocator
     ) : base(n, c, allocator) {}
 
@@ -846,7 +855,7 @@ struct boundless_basic_string : std::basic_string<char_type, traits, alloc> {
      */
     inline constexpr boundless_basic_string(
         std::initializer_list<char_type> list,
-        const alloc                 &allocator = alloc()
+        const alloc                     &allocator = alloc()
     ) : base(list, allocator) {}
 
     /**
@@ -1191,7 +1200,7 @@ struct boundless_basic_string_view : std::basic_string_view<char_type, traits> {
      */
     inline constexpr boundless_basic_string_view(
         const char_type *string,
-        std::size_t  n
+        std::size_t      n
     ) : base(string, n) {}
 
     /**
@@ -1345,7 +1354,8 @@ using boundless_u32string_view = boundless_basic_string_view<char32_t>;
  *         and determine that the @c max member is the largest member.
  */
 template<typename enum_type>
-concept cu_compatible_enum = std::is_enum_v<enum_type> && requires { { enum_type::max }; };
+concept cu_compatible_enum = std::is_enum_v<enum_type> &&
+                             requires { { enum_type::max }; };
 
 /**
  *  @brief  Integral constant for the enumerator's @c max member.
@@ -1382,7 +1392,8 @@ struct enumerated_array : std::array<element_type, enum_max_v<enum_type>> {
      *  @param  enumerator  Enumerator specifying index.
      *  @return  Element at index.
      */
-    [[nodiscard]] inline constexpr auto operator[] (enum_type e) -> element_type &
+    [[nodiscard]] inline constexpr auto operator[] (
+        enum_type e) -> element_type &
     {
         return base::operator[] (std::to_underlying(e));
     }
@@ -1393,7 +1404,8 @@ struct enumerated_array : std::array<element_type, enum_max_v<enum_type>> {
      *  @param  enumerator  Enumerator specifying index.
      *  @return  Element at index.
      */
-    [[nodiscard]] inline constexpr auto operator[] (enum_type e) const -> element_type
+    [[nodiscard]] inline constexpr auto operator[] (
+        enum_type e) const -> element_type
     {
         return base::operator[] (std::to_underlying(e));
     }
@@ -1533,7 +1545,7 @@ template<cu_compatible container>
  */
 template<cu_compatible container, cu_compatible_nested nested_container>
 [[nodiscard]] inline constexpr auto filter_out_occ_seq(
-    const container       &ctr,
+    const container        &ctr,
     const nested_container &patterns
 )
 {
@@ -1814,7 +1826,7 @@ template<cu_compatible container>
  */
 template<cu_compatible container, cu_compatible_nested nested_container>
 [[nodiscard]] inline constexpr auto split_occ_seq(
-    const container       &ctr,
+    const container        &ctr,
     const nested_container &patterns
 )
 {
@@ -2268,7 +2280,7 @@ struct formatter<alcelin::cu::boundless_basic_string<char_type,
     template<typename format_context>
     [[nodiscard]] inline constexpr auto format(
         const alcelin::cu::boundless_basic_string<char_type, traits,
-            alloc>    &string,
+            alloc>     &string,
         format_context &ctx
     ) const
     {
@@ -2311,7 +2323,7 @@ struct formatter<alcelin::cu::boundless_basic_string_view<char_type,
     template<typename format_context>
     [[nodiscard]] inline constexpr auto format(
         const alcelin::cu::boundless_basic_string_view<char_type,
-            traits>   &string,
+            traits>    &string,
         format_context &ctx
     ) const
     {

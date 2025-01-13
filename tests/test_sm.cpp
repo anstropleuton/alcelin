@@ -55,8 +55,7 @@ using namespace std::string_view_literals;
  *  @brief  Test SM's @c word_wrap function.
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_sm_word_wrap)
-{
+[[nodiscard]] static CT_TESTER_FN(test_sm_word_wrap) {
     CT_BEGIN;
 
     std::string long_string = "Never gonna give you up, "
@@ -116,8 +115,7 @@ using namespace std::string_view_literals;
  *  @brief  Test SM's @c trim_left function.
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_sm_trim_left)
-{
+[[nodiscard]] static CT_TESTER_FN(test_sm_trim_left) {
     CT_BEGIN;
 
     std::string string   = " \tAyo word \t";
@@ -138,8 +136,7 @@ using namespace std::string_view_literals;
  *  @brief  Test SM's @c trim_right function.
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_sm_trim_right)
-{
+[[nodiscard]] static CT_TESTER_FN(test_sm_trim_right) {
     CT_BEGIN;
 
     std::string string   = " \tAyo word \t";
@@ -160,8 +157,7 @@ using namespace std::string_view_literals;
  *  @brief  Test SM's @c trim function.
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_sm_trim)
-{
+[[nodiscard]] static CT_TESTER_FN(test_sm_trim) {
     CT_BEGIN;
 
     std::string string   = " \tAyo word \t";
@@ -182,8 +178,7 @@ using namespace std::string_view_literals;
  *  @brief  Test SM's @c to_upper function (overload 1).
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_sm_to_upper_1)
-{
+[[nodiscard]] static CT_TESTER_FN(test_sm_to_upper_1) {
     CT_BEGIN;
 
     std::string string   = "LaTeX";
@@ -204,8 +199,7 @@ using namespace std::string_view_literals;
  *  @brief  Test SM's @c to_lower function (overload 1).
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_sm_to_lower_1)
-{
+[[nodiscard]] static CT_TESTER_FN(test_sm_to_lower_1) {
     CT_BEGIN;
 
     std::string string   = "LaTeX";
@@ -226,8 +220,7 @@ using namespace std::string_view_literals;
  *  @brief  Test SM's @c to_upper function (overload 2).
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_sm_to_upper_2)
-{
+[[nodiscard]] static CT_TESTER_FN(test_sm_to_upper_2) {
     CT_BEGIN;
 
     char character = 'a';
@@ -248,8 +241,7 @@ using namespace std::string_view_literals;
  *  @brief  Test SM's @c to_lower function (overload 2).
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_sm_to_lower_2)
-{
+[[nodiscard]] static CT_TESTER_FN(test_sm_to_lower_2) {
     CT_BEGIN;
 
     char character = 'A';
@@ -270,8 +262,7 @@ using namespace std::string_view_literals;
  *  @brief  Test SM's @c is_equal_ins function (overload 1).
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_sm_is_equal_ins_1)
-{
+[[nodiscard]] static CT_TESTER_FN(test_sm_is_equal_ins_1) {
     CT_BEGIN;
 
     std::string a_1        = "LaTeX";
@@ -299,8 +290,7 @@ using namespace std::string_view_literals;
  *  @brief  Test SM's @c is_equal_ins function (overload 2).
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_sm_is_equal_ins_2)
-{
+[[nodiscard]] static CT_TESTER_FN(test_sm_is_equal_ins_2) {
     CT_BEGIN;
 
     char a_1        = 'a';
@@ -328,8 +318,7 @@ using namespace std::string_view_literals;
  *  @brief  Test SM operators' @c operator- (overload 1).
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_sm_operator_minus_1)
-{
+[[nodiscard]] static CT_TESTER_FN(test_sm_operator_minus_1) {
     CT_BEGIN;
 
     std::string string = "This is the text with a lot of \"the\" words in the "
@@ -356,8 +345,7 @@ using namespace std::string_view_literals;
  *  @brief  Test SM operators' @c operator- (overload 2).
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_sm_operator_minus_2)
-{
+[[nodiscard]] static CT_TESTER_FN(test_sm_operator_minus_2) {
     CT_BEGIN;
 
     std::string string   = "This is a very unreadable text because";
@@ -380,8 +368,7 @@ using namespace std::string_view_literals;
  *  @brief  Test SM operators' @c operator* (overload 1).
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_sm_operator_star_1)
-{
+[[nodiscard]] static CT_TESTER_FN(test_sm_operator_star_1) {
     CT_BEGIN;
 
     std::string string   = "Spam. ";
@@ -405,8 +392,7 @@ using namespace std::string_view_literals;
  *  @brief  Test SM operators' @c operator* (overload 2).
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_sm_operator_star_2)
-{
+[[nodiscard]] static CT_TESTER_FN(test_sm_operator_star_2) {
     CT_BEGIN;
 
     std::string string = "Spam. ";
@@ -431,8 +417,7 @@ using namespace std::string_view_literals;
  *  @brief  Test SM operators' @c operator/ (overload 1).
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_sm_operator_slash_1)
-{
+[[nodiscard]] static CT_TESTER_FN(test_sm_operator_slash_1) {
     CT_BEGIN;
 
     std::string string = "This is the text with the once again a lot of the "
@@ -471,8 +456,7 @@ using namespace std::string_view_literals;
  *  @brief  Test SM operators' @c operator/ (overload 2).
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_sm_operator_slash_2)
-{
+[[nodiscard]] static CT_TESTER_FN(test_sm_operator_slash_2) {
     CT_BEGIN;
 
     std::string string = "This is the text with the once again a lot of the "
@@ -513,132 +497,138 @@ using namespace std::string_view_literals;
  *  @brief  Test String Manipulators.
  *  @return  Number of errors.
  */
-[[nodiscard]] CT_TESTER_FN(test_sm)
+[[nodiscard]] CT_TESTER_FN(test_sm) try
 {
-    test_suite suite;
-    suite.pre_run  = default_pre_runner('=', 3);
-    suite.post_run = default_post_runner('=', 3);
-    // suite.run_failed = default_run_failed_quitter();
+    test_case sm_word_wrap_test_case {
+        .title         = "Test SM's word_wrap function",
+        .function_name = "test_sm_word_wrap",
+        .function      = test_sm_word_wrap
+    };
 
-    // Scary memory management
+    test_case sm_trim_left_test_case {
+        .title         = "Test SM's trim_left function",
+        .function_name = "test_sm_trim_left",
+        .function      = test_sm_trim_left
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test SM's word_wrap function",
-        "test_sm_word_wrap",
-        test_sm_word_wrap
-    });
+    test_case sm_trim_right_test_case {
+        .title         = "Test SM's trim_right function",
+        .function_name = "test_sm_trim_right",
+        .function      = test_sm_trim_right
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test SM's trim_left function",
-        "test_sm_trim_left",
-        test_sm_trim_left
-    });
+    test_case sm_trim_test_case {
+        .title         = "Test SM's trim function",
+        .function_name = "test_sm_trim",
+        .function      = test_sm_trim
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test SM's trim_right function",
-        "test_sm_trim_right",
-        test_sm_trim_right
-    });
+    test_case sm_to_upper_1_test_case {
+        .title         = "Test SM's trim_to_upper function (overload 1)",
+        .function_name = "test_sm_to_upper_1",
+        .function      = test_sm_to_upper_1
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test SM's trim function",
-        "test_sm_trim",
-        test_sm_trim
-    });
+    test_case sm_to_lower_1_test_case {
+        .title         = "Test SM's trim_to_lower function (overload 1)",
+        .function_name = "test_sm_to_lower_1",
+        .function      = test_sm_to_lower_1
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test SM's trim_to_upper function (overload 1)",
-        "test_sm_to_upper_1",
-        test_sm_to_upper_1
-    });
+    test_case sm_to_upper_2_test_case {
+        .title         = "Test SM's trim_to_upper function (overload 2)",
+        .function_name = "test_sm_to_upper_2",
+        .function      = test_sm_to_upper_2
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test SM's trim_to_lower function (overload 1)",
-        "test_sm_to_lower_1",
-        test_sm_to_lower_1
-    });
+    test_case sm_to_lower_2_test_case {
+        .title         = "Test SM's trim_to_lower function (overload 2)",
+        .function_name = "test_sm_to_lower_2",
+        .function      = test_sm_to_lower_2
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test SM's trim_to_upper function (overload 2)",
-        "test_sm_to_upper_2",
-        test_sm_to_upper_2
-    });
+    test_case sm_is_equal_ins_1_test_case {
+        .title         = "Test SM's is_equal_ins function (overload 1)",
+        .function_name = "test_sm_is_equal_ins_1",
+        .function      = test_sm_is_equal_ins_1
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test SM's trim_to_lower function (overload 2)",
-        "test_sm_to_lower_2",
-        test_sm_to_lower_2
-    });
+    test_case sm_is_equal_ins_2_test_case {
+        .title         = "Test SM's is_equal_ins function (overload 2)",
+        .function_name = "test_sm_is_equal_ins_2",
+        .function      = test_sm_is_equal_ins_2
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test SM's is_equal_ins function (overload 1)",
-        "test_sm_is_equal_ins_1",
-        test_sm_is_equal_ins_1
-    });
+    test_case sm_operator_minus_1_test_case {
+        .title         = "Test SM operators' operator- (overload 1)",
+        .function_name = "test_sm_operator_minus_1",
+        .function      = test_sm_operator_minus_1
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test SM's is_equal_ins function (overload 2)",
-        "test_sm_is_equal_ins_2",
-        test_sm_is_equal_ins_2
-    });
+    test_case sm_operator_minus_2_test_case {
+        .title         = "Test SM operators' operator- (overload 2)",
+        .function_name = "test_sm_operator_minus_2",
+        .function      = test_sm_operator_minus_2
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test SM operators' operator- (overload 1)",
-        "test_sm_operator_minus_1",
-        test_sm_operator_minus_1
-    });
+    test_case sm_operator_star_1_test_case {
+        .title         = "Test SM operators' operator- (overload 1)",
+        .function_name = "test_sm_operator_star_1",
+        .function      = test_sm_operator_star_1
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test SM operators' operator- (overload 2)",
-        "test_sm_operator_minus_2",
-        test_sm_operator_minus_2
-    });
+    test_case sm_operator_star_2_test_case {
+        .title         = "Test SM operators' operator- (overload 2)",
+        .function_name = "test_sm_operator_star_2",
+        .function      = test_sm_operator_star_2
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test SM operators' operator- (overload 1)",
-        "test_sm_operator_star_1",
-        test_sm_operator_star_1
-    });
+    test_case sm_operator_slash_1_test_case {
+        .title         = "Test SM operators' operator- (overload 1)",
+        .function_name = "test_sm_operator_slash_1",
+        .function      = test_sm_operator_slash_1
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test SM operators' operator- (overload 2)",
-        "test_sm_operator_star_2",
-        test_sm_operator_star_2
-    });
+    test_case sm_operator_slash_2_test_case {
+        .title         = "Test SM operators' operator- (overload 2)",
+        .function_name = "test_sm_operator_slash_2",
+        .function      = test_sm_operator_slash_2
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test SM operators' operator- (overload 1)",
-        "test_sm_operator_slash_1",
-        test_sm_operator_slash_1
-    });
+    test_suite suite = {
+        .tests       = {
+            &sm_word_wrap_test_case,
+            &sm_trim_left_test_case,
+            &sm_trim_right_test_case,
+            &sm_trim_test_case,
+            &sm_to_upper_1_test_case,
+            &sm_to_lower_1_test_case,
+            &sm_to_upper_2_test_case,
+            &sm_to_lower_2_test_case,
+            &sm_is_equal_ins_1_test_case,
+            &sm_is_equal_ins_2_test_case,
+            &sm_operator_minus_1_test_case,
+            &sm_operator_minus_2_test_case,
+            &sm_operator_star_1_test_case,
+            &sm_operator_star_2_test_case,
+            &sm_operator_slash_1_test_case,
+            &sm_operator_slash_2_test_case
+        },
+        .pre_run  = default_pre_runner('=', 3),
+        .post_run = default_post_runner('=', 3)
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test SM operators' operator- (overload 2)",
-        "test_sm_operator_slash_2",
-        test_sm_operator_slash_2
-    });
-
-    std::size_t errors = (std::size_t)-1;
-    try
-    {
-        auto failed_tests = suite.run();
-
-        print_failed_tests(failed_tests);
-        errors = sum_failed_tests_errors(failed_tests);
-    }
-    catch (const std::exception &e)
-    {
-        logln("Exception occurred during test: {}", e.what());
-    }
-    catch (...)
-    {
-        logln("Unknown exception occurred during test");
-    }
-
-    for (auto &test : suite.tests)
-    {
-        delete test;
-    }
-
-    return errors;
+    auto failed_tests = suite.run();
+    print_failed_tests(failed_tests);
+    return sum_failed_tests_errors(failed_tests);
+}
+catch (const std::exception &e)
+{
+    logln("Exception occurred during test: {}", e.what());
+    return 1;
+}
+catch (...)
+{
+    logln("Unknown exception occurred during test");
+    return 1;
 }

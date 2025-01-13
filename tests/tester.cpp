@@ -37,9 +37,9 @@
  *    "Standard".
  */
 
-#include "confer.hpp"
-
 #include <cstddef>
+
+#include "confer.hpp"
 
 /**
  *  @brief  Test String Manipulators' to_string.
@@ -87,47 +87,43 @@ auto main() -> int try
     }
     log_file.close();
 
-    test_suite suite = {};
-    suite.pre_run    = [&](const test *test)
-    {
-        log_file.open(test->function_name + ".log");
-        default_pre_runner('=', 5)(test);
-    };
-    suite.post_run = [&](const test *test, std::size_t errors)
-    {
-        default_post_runner('=', 5)(test, errors);
-        log_file.close();
-    };
-    // suite.run_failed = default_run_failed_quitter();
-
-    test cu_test = {
-        "Test Container Utilities",
-        "test_cu",
-        test_cu
+    test_case cu_test  = {
+        .title         = "Test Container Utilities",
+        .function_name = "test_cu",
+        .function      = test_cu
     };
 
-    test sm_test = {
-        "Test String Manipulators",
-        "test_sm",
-        test_sm
+    test_case sm_test  = {
+        .title         = "Test String Manipulators",
+        .function_name = "test_sm",
+        .function      = test_sm
     };
 
-    test aec_test = {
-        "Test ANSI Escape Codes",
-        "test_aec",
-        test_aec
+    test_case aec_test = {
+        .title         = "Test ANSI Escape Codes",
+        .function_name = "test_aec",
+        .function      = test_aec
     };
 
-    test file_test = {
-        "Test File Utilities",
-        "test_file",
-        test_file
+    test_case file_test = {
+        .title          = "Test File Utilities",
+        .function_name  = "test_file",
+        .function       = test_file
     };
 
-    suite.tests.emplace_back(&cu_test);
-    suite.tests.emplace_back(&sm_test);
-    suite.tests.emplace_back(&aec_test);
-    suite.tests.emplace_back(&file_test);
+    test_suite suite = {
+        .tests       = { &cu_test, &sm_test, &aec_test, &file_test },
+        .pre_run     = [&](const test_case *test)
+        {
+            log_file.open(test->function_name + ".log");
+            default_pre_runner('=', 5)(test);
+        },
+        .post_run    = [&](const test_case *test, std::size_t errors)
+        {
+            default_post_runner('=', 5)(test, errors);
+            log_file.close();
+        }
+    };
 
     auto failed_tests = suite.run();
     log_file.open("tester.log");

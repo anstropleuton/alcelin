@@ -1,6 +1,6 @@
 /**
  *  @author  Anstro Pleuton (https://github.com/anstropleuton)
- *  @brief   How to use CU's string arithmetic functions.
+ *  @brief   How to use File Utilities functions.
  *
  *  @copyright  Copyright (c) 2024 Anstro Pleuton
  *
@@ -37,6 +37,8 @@
  *    "Standard".
  */
 
+#include <fstream>
+#include <ios>
 #include <print>
 
 #include "alcelin.hpp" // IWYU pragma: export
@@ -47,38 +49,54 @@ using namespace alcelin;
 // they do not teach everything.  Refer to the documentation for more details
 auto main() -> int
 {
-    // I recommend you to check out examples/cu/arithmetic.cpp before this one
+    // Write to a binary file and read it back
+    int my_very_special_number = 2'189'263;
+    int a_copy_of_that_number = my_very_special_number;
+    int my_another_very_special_number = 3'786'231;
+    int another_copy_of_that_number = my_another_very_special_number;
 
-    std::string hello_world = "Hello, world! ";
+    std::ofstream outfile("binary_file.bin", std::ios::binary);
+    if (!outfile)
+    {
+        std::println("Failed to write to binary_file.bin");
+        return 1;
+    }
 
-    // No need for sm::combine because std::string already has operator+
+    file::write_data(outfile, my_very_special_number);
+    file::write_data(outfile, my_another_very_special_number);
 
-    // Filtering out occurrences the elements
-    // Note: we are using c
-    auto e = sm::filter_out_occ(hello_world, " "); // e is "Hello,world!"
+    outfile.close();
 
-    // Repeating the container
-    // Note: we are using a
-    auto f = sm::repeat(hello_world, 2); // f is "Hello, world! Hello, world! "
+    std::ifstream infile("binary_file.bin", std::ios::binary);
+    if (!infile)
+    {
+        std::println("Failed to read from binary_file.bin");
+        return 1;
+    }
 
-    // Splitting the container into sub containers
-    // Note: we are using c
-    auto g = sm::split_seq(hello_world, ", "); // g is { "Hello", "world! " }
+    my_very_special_number = file::read_data<int>(infile);
+    my_another_very_special_number = file::read_data<int>(infile);
 
-    using namespace sm_operators;
-
-    // Same examples using operators
-
-    // Filtering out
-    e = hello_world - " ";
-
-    // Repeating
-    f = hello_world * 2;
-
-    // Splitting
-    g = hello_world / ", ";
-
-    std::println("e: {}", e);
-    std::println("f: {}", f);
-    std::println("g: {}", g);
+    // Compare values with original to see if it worked
+    if (my_very_special_number == a_copy_of_that_number
+     && my_another_very_special_number == another_copy_of_that_number)
+    {
+        std::println("Written and read back a number, it works!");
+    }
+    else
+    {
+        if (my_very_special_number != a_copy_of_that_number)
+        {
+            std::println("Written {} but read back {}, it does not work",
+                a_copy_of_that_number, my_very_special_number);
+        }
+        if (my_another_very_special_number != another_copy_of_that_number)
+        {
+            std::println("Written {} but read back {}, it does not work",
+                another_copy_of_that_number, my_another_very_special_number);
+        }
+        std::println("NOTE: Please build and run tests to ensure functionality,"
+            " and report a bug to me (Anstro Pleuton) for this output");
+        return 1;
+    }
 }

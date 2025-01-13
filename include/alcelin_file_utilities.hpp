@@ -73,9 +73,9 @@ namespace alcelin {
 namespace file {
 
 /**
- *  @brief  A "SD chunk" is basically a vector of bytes.
+ *  @brief  A "SD chunk" is basically a vector of unsigned characters (bytes).
  */
-using sd_chunk = std::vector<std::byte>;
+using sd_chunk = std::vector<unsigned char>;
 
 /**
  *  @brief  Read all the file's content at once and return @c std::string
@@ -150,7 +150,7 @@ requires(std::is_trivially_copyable_v<type>)
 [[nodiscard]] inline constexpr auto read_chunk(std::istream &input)
 {
     std::size_t size = 0;
-    input.read((char *)&size, sizeof(std::size_t));
+    input.read((char *)&size, sizeof (std::size_t));
 
     sd_chunk chunk(size);
     input.read((char *)chunk.data(), chunk.size());
@@ -164,12 +164,12 @@ requires(std::is_trivially_copyable_v<type>)
  *  @param  chunk   Chunk to write.
  */
 [[nodiscard]] inline constexpr auto write_chunk(
-    std::ostream &output,
+    std::ostream   &output,
     const sd_chunk &chunk
 )
 {
     std::size_t size = chunk.size();
-    output.write((char *)&size, sizeof(std::size_t));
+    output.write((char *)&size, sizeof (std::size_t));
 
     output.write((char *)chunk.data(), chunk.size());
 }
@@ -191,7 +191,7 @@ requires(std::is_trivially_copyable_v<type>)
 
 /**
  *  @brief  Helper to convert the type to chunk and write it.
- *  
+ *
  *  @tparam  type    Trivially copyable type.
  *  @param   output  Output stream to write to.
  *  @param   t       Trivially copyable value.
@@ -200,7 +200,7 @@ template<typename type>
 requires(std::is_trivially_copyable_v<type>)
 [[nodiscard]] inline constexpr auto write_data(
     std::ostream &output,
-    const type &t
+    const type   &t
 )
 {
     auto chunk = to_sd_chunk(t);

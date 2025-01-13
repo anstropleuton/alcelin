@@ -52,8 +52,7 @@ using namespace std::string_literals;
  *  @brief  Test SM's to_string function (overload 1).
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_sm_to_string_1)
-{
+[[nodiscard]] static CT_TESTER_FN(test_sm_to_string_1) {
     CT_BEGIN;
 
     std::vector vector = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -75,8 +74,7 @@ using namespace std::string_literals;
  *  @brief  Test SM's to_string function (overload 2).
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_sm_to_string_2)
-{
+[[nodiscard]] static CT_TESTER_FN(test_sm_to_string_2) {
     CT_BEGIN;
 
     std::vector vector   = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -96,8 +94,7 @@ using namespace std::string_literals;
  *  @brief  Test SM's to_string function (overload 3).
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_sm_to_string_3)
-{
+[[nodiscard]] static CT_TESTER_FN(test_sm_to_string_3) {
     CT_BEGIN;
 
     std::vector vector   = { 'a', 'b', 'c', 'd', 'e' };
@@ -117,8 +114,7 @@ using namespace std::string_literals;
  *  @brief  Test SM's to_string function (overload 4).
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_sm_to_string_4)
-{
+[[nodiscard]] static CT_TESTER_FN(test_sm_to_string_4) {
     CT_BEGIN;
 
     std::vector vector = { "Well"s, "Hello"s, "There"s, "General"s,
@@ -140,8 +136,7 @@ using namespace std::string_literals;
  *  @brief  Test SM's chars_to_string function.
  *  @return  Number of errors.
  */
-[[nodiscard]] static CT_TESTER_FN(test_sm_chars_to_string)
-{
+[[nodiscard]] static CT_TESTER_FN(test_sm_chars_to_string) {
     CT_BEGIN;
 
     std::vector vector = {
@@ -163,66 +158,63 @@ using namespace std::string_literals;
  *  @brief  Test String Manipulators' to_string.
  *  @return  Number of errors.
  */
-[[nodiscard]] CT_TESTER_FN(test_sm_to_string)
+[[nodiscard]] CT_TESTER_FN(test_sm_to_string) try
 {
-    test_suite suite;
-    suite.pre_run    = default_pre_runner('=', 3);
-    suite.post_run   = default_post_runner('=', 3);
-    suite.run_failed = default_run_failed_quitter();
+    test_case sm_to_string_1_test_case {
+        .title         = "Test SM's to_string function (overload 1)",
+        .function_name = "test_sm_to_string_1",
+        .function      = test_sm_to_string_1
+    };
 
-    // Scary memory management
+    test_case sm_to_string_2_test_case {
+        .title         = "Test SM's to_string function (overload 2)",
+        .function_name = "test_sm_to_string_2",
+        .function      = test_sm_to_string_2
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test SM's to_string function (overload 1)",
-        "test_sm_to_string_1",
-        test_sm_to_string_1
-    });
+    test_case sm_to_string_3_test_case {
+        .title         = "Test SM's to_string function (overload 3)",
+        .function_name = "test_sm_to_string_3",
+        .function      = test_sm_to_string_3
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test SM's to_string function (overload 2)",
-        "test_sm_to_string_2",
-        test_sm_to_string_2
-    });
+    test_case sm_to_string_4_test_case {
+        .title         = "Test SM's to_string function (overload 4)",
+        .function_name = "test_sm_to_string_4",
+        .function      = test_sm_to_string_4
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test SM's to_string function (overload 3)",
-        "test_sm_to_string_3",
-        test_sm_to_string_3
-    });
+    test_case sm_chars_to_string_test_case {
+        .title         = "Test SM's chars_to_string function",
+        .function_name = "test_sm_chars_to_string",
+        .function      = test_sm_chars_to_string
+    };
 
-    suite.tests.emplace_back(new test {
-        "Test SM's to_string function (overload 4)",
-        "test_sm_to_string_4",
-        test_sm_to_string_4
-    });
 
-    suite.tests.emplace_back(new test {
-        "Test SM's chars_to_string function",
-        "test_sm_chars_to_string",
-        test_sm_chars_to_string
-    });
+    test_suite suite = {
+        .tests       = {
+            &sm_to_string_1_test_case,
+            &sm_to_string_2_test_case,
+            &sm_to_string_3_test_case,
+            &sm_to_string_4_test_case,
+            &sm_chars_to_string_test_case
+        },
+        .pre_run    = default_pre_runner('=', 3),
+        .post_run   = default_post_runner('=', 3),
+        .run_failed = default_run_failed_quitter()
+    };
 
-    std::size_t errors = (std::size_t)-1;
-    try
-    {
-        auto failed_tests = suite.run();
-
-        print_failed_tests(failed_tests);
-        errors = sum_failed_tests_errors(failed_tests);
-    }
-    catch (const std::exception &e)
-    {
-        logln("Exception occurred during test: {}", e.what());
-    }
-    catch (...)
-    {
-        logln("Unknown exception occurred during test");
-    }
-
-    for (auto &test : suite.tests)
-    {
-        delete test;
-    }
-
-    return errors;
+    auto failed_tests = suite.run();
+    print_failed_tests(failed_tests);
+    return sum_failed_tests_errors(failed_tests);
+}
+catch (const std::exception &e)
+{
+    logln("Exception occurred during test: {}", e.what());
+    return 1;
+}
+catch (...)
+{
+    logln("Unknown exception occurred during test");
+    return 2;
 }

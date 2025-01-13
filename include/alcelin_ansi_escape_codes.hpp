@@ -368,7 +368,7 @@ struct formatter<alcelin::aec::aec_t, char_type> {
     template<typename format_context>
     [[nodiscard]] inline constexpr auto format(
         const alcelin::aec::aec_t &aec,
-        format_context          &ctx
+        format_context            &ctx
     ) const
     {
         return std::ranges::copy((std::string)aec, ctx.out()).out;

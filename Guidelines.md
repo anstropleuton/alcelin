@@ -166,7 +166,7 @@ Use Doxygen-style comments for documentation.
 ```
 Use two spaces after tags (e.g., `@param`, `@return`) and two spaces after tag's parameters (e.g., `a`, `b`).
 
-Do not use articles in the description of tags.
+Do not begin with articles in the description of tags.
 
 ### Punctuations
 Use periods to end the sentence in a document comment, and not in regular comment.

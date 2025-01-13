@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.30)
 
 project(alcelin
-    VERSION 2.1.1.0
+    VERSION 2.2.0.0
     DESCRIPTION "Alcelin is a collection of utils for Anstro Pleuton's programs."
     LANGUAGES CXX
 )

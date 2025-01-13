@@ -43,10 +43,9 @@
 
 using namespace alcelin;
 
-// This example is meant to be a kick-starter to start using enumerated array
-// from container utilities, but they do not teach everything.  Refer to the
-// documentation for more details
-int main()
+// This example is meant to be a kick-starter to start using my library, but
+// they do not teach everything.  Refer to the documentation for more details
+auto main() -> int
 {
     // Let's consider an RPG game example where each character is an enum member
     // and has different stats

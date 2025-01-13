@@ -46,7 +46,9 @@
 using namespace alcelin;
 using namespace std::string_literals;
 
-int main()
+// This example is meant to be a kick-starter to start using my library, but
+// they do not teach everything.  Refer to the documentation for more details
+auto main() -> int
 {
     // Know these conversion tricks before checking out other examples
     std::vector vector = { 1, 2, 3, 4, 5 };

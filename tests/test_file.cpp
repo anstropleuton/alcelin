@@ -37,20 +37,24 @@
  *    "Standard".
  */
 
+#include <cstddef>
+#include <exception>
+#include <sstream>
 #include <string>
 #include <string_view>
 
 #include "alcelin_file_utilities.hpp"
+#include "alcelin_string_manipulators.hpp"
 #include "confer.hpp"
 
 using namespace alcelin;
 using namespace std::string_literals;
+
 /**
- *  @brief  Test File Utilities.
+ *  @brief  Test File Utilities' read_all function.
  *  @return  Number of errors.
  */
-[[nodiscard]] CT_TESTER_FN(test_file)
-{
+[[nodiscard]] CT_TESTER_FN(test_file_read_all) {
     CT_BEGIN;
 
     std::string_view filename = "test_file_read_all_file.txt";
@@ -69,4 +73,81 @@ using namespace std::string_literals;
     CT_ASSERT_CTR(content, expected);
 
     CT_END;
+}
+
+/**
+ *  @brief  Test File Utilities' SD chunk conversion functions.
+ */
+[[nodiscard]] CT_TESTER_FN(test_file_sd_chunk_conversion) {
+    CT_BEGIN;
+
+    unsigned int   value         = (unsigned int)-1;
+    file::sd_chunk to_sd_chunk   = file::to_sd_chunk<unsigned int>(value);
+    unsigned int   from_sd_chunk =
+        file::from_sd_chunk<unsigned int>(to_sd_chunk);
+
+    CT_ASSERT(value, from_sd_chunk, "Conversion to chunk and back from chunk "
+        "should yield same value");
+
+    std::stringstream stringstream;
+
+    file::write_chunk(stringstream, to_sd_chunk);
+    auto read_chunk = file::read_chunk(stringstream);
+
+    CT_ASSERT(to_sd_chunk, read_chunk, "Chunk written to a stream and then read"
+        " back should yield same chunk");
+
+    // Reset string stream to reuse
+    stringstream.clear();
+
+    file::write_data(stringstream, value);
+    unsigned int read_data = file::read_data<unsigned int>(stringstream);
+
+    CT_ASSERT(value, read_data, "Conversion to chunk and written to a stream, "
+        "and then read back from stream and conversion back to type should "
+        "yield same value");
+
+    CT_END;
+}
+
+/**
+ *  @brief  Test File Utilities.
+ *  @return  Number of errors.
+ */
+[[nodiscard]] CT_TESTER_FN(test_file) try
+{
+    test_case file_read_all_test_case {
+        .title         = "Test File Utilities's read_all function",
+        .function_name = "test_file_read_all",
+        .function      = test_file_read_all
+    };
+
+    test_case file_sd_chunk_conversion_test_case {
+        .title         = "Test File Utilities' SD chunk conversion functions",
+        .function_name = "test_file_sd_chunk_conversion",
+        .function      = test_file_sd_chunk_conversion
+    };
+
+    test_suite suite = {
+        .tests       = {
+            &file_read_all_test_case,
+            &file_sd_chunk_conversion_test_case
+        },
+        .pre_run  = default_pre_runner('=', 3),
+        .post_run = default_post_runner('=', 3)
+    };
+
+    auto failed_tests = suite.run();
+    print_failed_tests(failed_tests);
+    return sum_failed_tests_errors(failed_tests);
+}
+catch (const std::exception &e)
+{
+    logln("Exception occurred during test: {}", e.what());
+    return 1;
+}
+catch (...)
+{
+    logln("Unknown exception occurred during test");
+    return 1;
 }

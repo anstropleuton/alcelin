@@ -41,6 +41,7 @@
 
 #include <cctype>
 #include <cstddef>
+#include <format>
 #include <iterator>
 #include <ranges>
 #include <string>
@@ -985,3 +986,131 @@ namespace sm_operators {
 } // namespace sm_operators
 
 } // namespace alcelin
+
+namespace std {
+
+/**
+ *  @brief  Formatter for container.
+ *
+ *  @tparam  container   Compatible container type.
+ *  @tparam  char_type   Character type.
+ */
+template<alcelin::cu::cu_compatible container, typename char_type>
+struct formatter<container, char_type> {
+
+    /**
+     *  @brief  Separator between each element.  Use e'SEPARATOR' in format
+     *          specifier to customize separator.
+     */
+    std::string separator = ", ";
+
+    /**
+     *  @brief  Prefix for each element.  Use p'PREFIX' in format specifier to
+     *          customize prefix.
+     */
+    std::string prefix = "";
+
+    /**
+     *  @brief  Suffix for each element.  Use s'SUFFIX' in format specifier to
+     *          customize suffix.
+     */
+    std::string suffix = "";
+
+    /**
+     *  @brief  Format specifier for elements.  Use f'FORMAT' in format
+     *          specifier to customize element format specifier.
+     */
+    std::string element_format = "";
+
+    /**
+     *  @brief  Parse the string within the format specifier (single quoted).
+     *
+     *  @tparam  parse_context  Parse context type.
+     *  @param   it             Parse context's iterator.
+     *  @return  Iterator to the end of single quoted string (exclusive).
+     */
+    template<typename parse_context>
+    [[nodiscard]] inline constexpr auto parse_str(parse_context::iterator &it)
+    {
+        std::string result = "";
+
+        if (*it != '\'')
+        {
+            throw std::format_error("Expected string in single quotes for "
+                "beginning character for container");
+        }
+        ++it;
+
+        while (*it != '\'')
+        {
+            if (*it == '}')
+            {
+                throw std::format_error("Unexpected end of format specifier"
+                    " for beginning character for container");
+            }
+            result += *it;
+            ++it;
+        }
+        ++it;
+
+        return result;
+    };
+
+    /**
+     *  @brief  Parse the format specifiers.
+     *
+     *  @tparam  parse_context  Parse context type.
+     *  @param   ctx            Parse context.
+     *  @return  Iterator to end of format specifier.
+     */
+    template<typename parse_context>
+    [[nodiscard]] inline constexpr auto parse(parse_context &ctx)
+    -> parse_context::iterator
+    {
+        auto it = ctx.begin();
+        if (it == ctx.end()) return it;
+
+        while (*it != '}')
+        {
+            switch (*(it++))
+            {
+                case 'e': separator      = parse_str<parse_context>(it); break;
+                case 'p': prefix         = parse_str<parse_context>(it); break;
+                case 's': suffix         = parse_str<parse_context>(it); break;
+                case 'f': element_format = parse_str<parse_context>(it); break;
+
+                default: throw std::format_error("Invalid format specifier for "
+                "container");
+            }
+        }
+
+        return it;
+    }
+
+    /**
+     *  @brief  Format to string using parsed specifiers.
+     *
+     *  @tparam  format_context  Format context type.
+     *  @param   ctr             Container.
+     *  @param   ctx             Format context.
+     *  @return  Iterator to end of format context.
+     */
+    template<typename format_context>
+    [[nodiscard]] inline constexpr auto format(
+        const container &ctr,
+        format_context  &ctx
+    ) const
+    {
+        // WTF?
+        auto string = alcelin::sm::to_string(ctr, [&](
+            const alcelin::cu::value_type<container> &element)
+        {
+            return std::vformat("{" + element_format + "}",
+                std::make_format_args(element));
+        }, separator, prefix, suffix);
+
+        return std::ranges::copy(string, ctx.out()).out;
+    }
+};
+
+} // namespace std

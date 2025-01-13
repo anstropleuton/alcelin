@@ -44,10 +44,9 @@
 
 using namespace alcelin;
 
-// This example is meant to be a kick-starter to start using boundless
-// containers from container utilities, but they do not teach everything.  Refer
-// to the documentation for more details
-int main()
+// This example is meant to be a kick-starter to start using my library, but
+// they do not teach everything.  Refer to the documentation for more details
+auto main() -> int
 {
     std::vector my_vector = { 1, 2, 3, 4, 5 };
 
