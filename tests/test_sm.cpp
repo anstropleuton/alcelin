@@ -494,6 +494,109 @@ using namespace std::string_view_literals;
 }
 
 /**
+ *  @brief  Test SM operators' @c operator-= (overload 1).
+ *  @return  Number of errors.
+ */
+[[nodiscard]] static CT_TESTER_FN(test_sm_operator_minus_equals_1) {
+    CT_BEGIN;
+
+    std::string string = "This is the text with a lot of \"the\" words in the "
+                         "text as of the day I am writing the text as this is "
+                         "the way to test the text";
+    std::string filter   = "the ";
+    std::string expected = "This is text with a lot of \"the\" words in text "
+                           "as of day I am writing text as this is way to test "
+                           "text";
+
+    auto filtered = string;
+    filtered -= filter;
+
+    logln("string: {}",   string);
+    logln("filter: {}",   filter);
+    logln("filtered: {}", filtered);
+    logln("expected: {}", expected);
+
+    CT_ASSERT_CTR(filtered, expected);
+
+    CT_END;
+}
+
+/**
+ *  @brief  Test SM operators' @c operator-= (overload 2).
+ *  @return  Number of errors.
+ */
+[[nodiscard]] static CT_TESTER_FN(test_sm_operator_minus_equals_2) {
+    CT_BEGIN;
+
+    std::string string   = "This is a very unreadable text because";
+    char        filter   = ' ';
+    std::string expected = "Thisisaveryunreadabletextbecause";
+
+    auto filtered = string;
+    filtered -= filter;
+
+    logln("string: {}",   string);
+    logln("filter: '{}'", filter);
+    logln("filtered: {}", filtered);
+    logln("expected: {}", expected);
+
+    CT_ASSERT_CTR(filtered, expected);
+
+    CT_END;
+}
+
+/**
+ *  @brief  Test SM operators' @c operator*= (overload 1).
+ *  @return  Number of errors.
+ */
+[[nodiscard]] static CT_TESTER_FN(test_sm_operator_star_equals_1) {
+    CT_BEGIN;
+
+    std::string string   = "Spam. ";
+    std::size_t repeat   = 10;
+    std::string expected = "Spam. Spam. Spam. Spam. Spam. "
+                           "Spam. Spam. Spam. Spam. Spam. ";
+
+    auto repeated = string;
+    repeated *= repeat;
+
+    logln("string: {}",   string);
+    logln("repeat: {}",   repeat);
+    logln("repeated: {}", repeated);
+    logln("expected: {}", expected);
+
+    CT_ASSERT_CTR(repeated, expected);
+
+    CT_END;
+}
+
+/**
+ *  @brief  Test SM operators' @c operator*= (overload 2).
+ *  @return  Number of errors.
+ */
+[[nodiscard]] static CT_TESTER_FN(test_sm_operator_star_equals_2) {
+    CT_BEGIN;
+
+    std::string string = "Spam. ";
+    long double repeat = 10.0 - 1.0 / 6.0 // 9.83333333333333
+                       + std::numeric_limits<float>::epsilon();
+    std::string expected = "Spam. Spam. Spam. Spam. Spam. "
+                           "Spam. Spam. Spam. Spam. Spam.";
+
+    auto repeated = string;
+    repeated *= repeat;
+
+    logln("string: {}",   string);
+    logln("repeat: {}",   repeat);
+    logln("repeated: {}", repeated);
+    logln("expected: {}", expected);
+
+    CT_ASSERT_CTR(repeated, expected);
+
+    CT_END;
+}
+
+/**
  *  @brief  Test String Manipulators.
  *  @return  Number of errors.
  */
@@ -572,27 +675,51 @@ using namespace std::string_view_literals;
     };
 
     test_case sm_operator_star_1_test_case {
-        .title         = "Test SM operators' operator- (overload 1)",
+        .title         = "Test SM operators' operator* (overload 1)",
         .function_name = "test_sm_operator_star_1",
         .function      = test_sm_operator_star_1
     };
 
     test_case sm_operator_star_2_test_case {
-        .title         = "Test SM operators' operator- (overload 2)",
+        .title         = "Test SM operators' operator* (overload 2)",
         .function_name = "test_sm_operator_star_2",
         .function      = test_sm_operator_star_2
     };
 
     test_case sm_operator_slash_1_test_case {
-        .title         = "Test SM operators' operator- (overload 1)",
+        .title         = "Test SM operators' operator/ (overload 1)",
         .function_name = "test_sm_operator_slash_1",
         .function      = test_sm_operator_slash_1
     };
 
     test_case sm_operator_slash_2_test_case {
-        .title         = "Test SM operators' operator- (overload 2)",
+        .title         = "Test SM operators' operator/ (overload 2)",
         .function_name = "test_sm_operator_slash_2",
         .function      = test_sm_operator_slash_2
+    };
+
+    test_case sm_operator_minus_equals_1_test_case {
+        .title         = "Test SM operators' operator-= (overload 1)",
+        .function_name = "test_sm_operator_minus_equals_1",
+        .function      = test_sm_operator_minus_equals_1
+    };
+
+    test_case sm_operator_minus_equals_2_test_case {
+        .title         = "Test SM operators' operator-= (overload 2)",
+        .function_name = "test_sm_operator_minus_equals_2",
+        .function      = test_sm_operator_minus_equals_2
+    };
+
+    test_case sm_operator_star_equals_1_test_case {
+        .title         = "Test SM operators' operator*= (overload 1)",
+        .function_name = "test_sm_operator_star_equals_1",
+        .function      = test_sm_operator_star_equals_1
+    };
+
+    test_case sm_operator_star_equals_2_test_case {
+        .title         = "Test SM operators' operator*= (overload 2)",
+        .function_name = "test_sm_operator_star_equals_2",
+        .function      = test_sm_operator_star_equals_2
     };
 
     test_suite suite = {
@@ -612,7 +739,11 @@ using namespace std::string_view_literals;
             &sm_operator_star_1_test_case,
             &sm_operator_star_2_test_case,
             &sm_operator_slash_1_test_case,
-            &sm_operator_slash_2_test_case
+            &sm_operator_slash_2_test_case,
+            &sm_operator_minus_equals_1_test_case,
+            &sm_operator_minus_equals_2_test_case,
+            &sm_operator_star_equals_1_test_case,
+            &sm_operator_star_equals_2_test_case
         },
         .pre_run  = default_pre_runner('=', 3),
         .post_run = default_post_runner('=', 3)

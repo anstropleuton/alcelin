@@ -607,6 +607,151 @@ using namespace cu_operators;
 }
 
 /**
+ *  @brief  Test CU operators' @c operator+= (overload 1).
+ *  @return  Number of errors.
+ */
+[[nodiscard]] static CT_TESTER_FN(test_cu_operator_plus_equals_1) {
+    CT_BEGIN;
+
+    std::vector a        = { 1, 2, 3, 4, 5 };
+    std::vector b        = { 6, 7, 8, 9, 10 };
+    std::vector expected = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+    auto combined = a;
+    combined += b;
+
+    logln("a: {}",        sm::to_string(a));
+    logln("b: {}",        sm::to_string(b));
+    logln("combined: {}", sm::to_string(combined));
+    logln("expected: {}", sm::to_string(expected));
+
+    CT_ASSERT_CTR(combined, expected);
+
+    CT_END;
+}
+
+/**
+ *  @brief  Test CU operators' @c operator+= (overload 2).
+ *  @return  Number of errors.
+ */
+[[nodiscard]] static CT_TESTER_FN(test_cu_operator_plus_equals_2) {
+    CT_BEGIN;
+
+    std::vector a        = { 1, 2, 3, 4, 5 };
+    int         b        = 6;
+    std::vector expected = { 1, 2, 3, 4, 5, 6 };
+
+    auto combined = a;
+    combined += b;
+
+    logln("a: {}",        sm::to_string(a));
+    logln("b: {}",        b);
+    logln("combined: {}", sm::to_string(combined));
+    logln("expected: {}", sm::to_string(expected));
+
+    CT_ASSERT_CTR(combined, expected);
+
+    CT_END;
+}
+
+/**
+ *  @brief  Test CU operators' @c operator-= (overload 1).
+ *  @return  Number of errors.
+ */
+[[nodiscard]] static CT_TESTER_FN(test_cu_operator_minus_equals_1) {
+    CT_BEGIN;
+
+    std::vector container = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    std::vector filter    = { 4, 5, 6 };
+    std::vector expected  = { 1, 2, 3, 7, 8, 9, 10 };
+
+    auto filtered = container;
+    filtered -= filter;
+
+    logln("container: {}", sm::to_string(container));
+    logln("filter: {}",    sm::to_string(filter));
+    logln("filtered: {}",  sm::to_string(filtered));
+    logln("expected: {}",  sm::to_string(expected));
+
+    CT_ASSERT_CTR(filtered, expected);
+
+    CT_END;
+}
+
+/**
+ *  @brief  Test CU operators' @c operator-= (overload 2).
+ *  @return  Number of errors.
+ */
+[[nodiscard]] static CT_TESTER_FN(test_cu_operator_minus_equals_2) {
+    CT_BEGIN;
+
+    std::vector container = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    int         filter    = 3;
+    std::vector expected  = { 1, 2, 4, 5, 6, 7, 8, 9, 10 };
+
+    auto filtered = container;
+    filtered -= filter;
+
+    logln("container: {}", sm::to_string(container));
+    logln("filter: {}",    filter);
+    logln("filtered: {}",  sm::to_string(filtered));
+    logln("expected: {}",  sm::to_string(expected));
+
+    CT_ASSERT_CTR(filtered, expected);
+
+    CT_END;
+}
+
+/**
+ *  @brief  Test CU operators' @c operator*= (overload 1).
+ *  @return  Number of errors.
+ */
+[[nodiscard]] static CT_TESTER_FN(test_cu_operator_star_equals_1) {
+    CT_BEGIN;
+
+    std::vector container = { 1, 2, 3, 4, 5 };
+    std::size_t times     = 3;
+    std::vector expected  = { 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5 };
+
+    auto repeated = container;
+    repeated *= times;
+
+    logln("container: {}", sm::to_string(container));
+    logln("times: {}",     times);
+    logln("repeated: {}",  sm::to_string(repeated));
+    logln("expected: {}",  sm::to_string(expected));
+
+    CT_ASSERT_CTR(repeated, expected);
+
+    CT_END;
+}
+
+/**
+ *  @brief  Test CU operators' @c operator*= (overload 2).
+ *  @return  Number of errors.
+ */
+[[nodiscard]] static CT_TESTER_FN(test_cu_operator_star_equals_2) {
+    CT_BEGIN;
+
+    std::vector container = { 1, 2, 3, 4, 5 };
+    long double times     = 3.6;
+    std::vector expected  = { 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2,
+        3 };
+
+    auto repeated = container;
+    repeated *= times;
+
+    logln("container: {}", sm::to_string(container));
+    logln("times: {}",     times);
+    logln("repeated: {}",  sm::to_string(repeated));
+    logln("expected: {}",  sm::to_string(expected));
+
+    CT_ASSERT_CTR(repeated, expected);
+
+    CT_END;
+}
+
+/**
  *  @brief  Test CU containers' @c boundless_access function.
  *  @return  Number of errors.
  */
@@ -780,6 +925,42 @@ using namespace cu_operators;
         .function      = test_cu_operator_slash_2
     };
 
+    test_case cu_operator_plus_equals_1_test_case {
+        .title         = "Test CU operators' operator+= (overload 1)",
+        .function_name = "test_cu_operator_plus_equals_1",
+        .function      = test_cu_operator_plus_equals_1
+    };
+
+    test_case cu_operator_plus_equals_2_test_case {
+        .title         = "Test CU operators' operator+= (overload 2)",
+        .function_name = "test_cu_operator_plus_equals_2",
+        .function      = test_cu_operator_plus_equals_2
+    };
+
+    test_case cu_operator_minus_equals_1_test_case {
+        .title         = "Test CU operators' operator-= (overload 1)",
+        .function_name = "test_cu_operator_minus_equals_1",
+        .function      = test_cu_operator_minus_equals_1
+    };
+
+    test_case cu_operator_minus_equals_2_test_case {
+        .title         = "Test CU operators' operator-= (overload 2)",
+        .function_name = "test_cu_operator_minus_equals_2",
+        .function      = test_cu_operator_minus_equals_2
+    };
+
+    test_case cu_operator_star_equals_1_test_case {
+        .title         = "Test CU operators' operator*= (overload 1)",
+        .function_name = "test_cu_operator_star_equals_1",
+        .function      = test_cu_operator_star_equals_1
+    };
+
+    test_case cu_operator_star_equals_2_test_case {
+        .title         = "Test CU operators' operator*= (overload 2)",
+        .function_name = "test_cu_operator_star_equals_2",
+        .function      = test_cu_operator_star_equals_2
+    };
+
     test_case cu_containers_boundless_access_test_case {
         .title         = "Test CU containers' boundless_access function.",
         .function_name = "test_cu_containers_boundless_access",
@@ -846,6 +1027,12 @@ using namespace cu_operators;
             &cu_operator_star_2_test_case,
             &cu_operator_slash_1_test_case,
             &cu_operator_slash_2_test_case,
+            &cu_operator_plus_equals_1_test_case,
+            &cu_operator_plus_equals_2_test_case,
+            &cu_operator_minus_equals_1_test_case,
+            &cu_operator_minus_equals_2_test_case,
+            &cu_operator_star_equals_1_test_case,
+            &cu_operator_star_equals_2_test_case,
             &cu_containers_boundless_access_test_case,
             &cu_containers_boundless_vector_test_case,
             &cu_containers_boundless_array_test_case,

@@ -39,3 +39,6 @@ Added binary functionality to [alcelin_file_utilities.hpp](include/alcelin_file_
 ## v2.2.0.0 - Refactors and container to string formatter
 Refactor tests, format files, and several small changes.
 Also added `std::formatter` for formatting containers. Automatically works with nested containers too!
+
+## v2.2.1.0 - Add member assignment operators
+Added member assignment operators (`operator+=`, `operator-=` and `operator*/`) for CU and member assignment operators (`operator-=` and `operator*=`) for SM.

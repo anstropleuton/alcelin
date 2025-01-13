@@ -43,8 +43,7 @@
 #include <string>
 
 /**
- *  @brief  All Alcelin's contents in this namespace.  Just do
- *          `using namespace alcelin` to make your life easier.
+ *  @brief  All Alcelin's contents in this namespace.
  */
 namespace alcelin {
 

@@ -55,8 +55,7 @@
 #include <vector>
 
 /**
- *  @brief  All Alcelin's contents in this namespace.  Just do
- *          `using namespace alcelin` to make your life easier.
+ *  @brief  All Alcelin's contents in this namespace.
  */
 namespace alcelin {
 
@@ -1578,14 +1577,16 @@ template<cu_compatible container>
  *  @brief  Repeat container @c n times.
  *
  *  @tparam  container  Compatible container type.
+ *  @tparam  count      Integral type for repeat count.
  *  @param   ctr        Container.
  *  @param   n          Number of times to repeat.
  *  @return  Repeated container as @c result_container .
  */
-template<cu_compatible container>
+template<cu_compatible container, typename count>
+requires(std::is_integral_v<count> && !std::is_floating_point_v<count>)
 [[nodiscard]] inline constexpr auto repeat(
     const container &ctr,
-    std::size_t      n
+    count            n
 )
 {
     return std::views::repeat(ctr, n)
@@ -1596,175 +1597,36 @@ template<cu_compatible container>
 /**
  *  @brief  Repeat container @c n times.
  *
- *  @tparam  container  Compatible container type.
- *  @param   ctr        Container.
- *  @param   n          Number of times to repeat.
- *  @return  Repeated container as @c result_container .
- *
- *  @see  @c std::size_t overload of @c repeat .
- */
-template<cu_compatible container>
-[[nodiscard]] inline constexpr auto repeat(
-    const container &ctr,
-    int              n
-)
-{
-    // Performance-critical, don't use exceptions
-    if (n < 0) n = 0;
-    return repeat(ctr, (std::size_t)n);
-}
-
-/**
- *  @brief  Repeat container @c n times.
- *
- *  @tparam  container  Compatible container type.
- *  @param   ctr        Container.
- *  @param   n          Number of times to repeat.
- *  @return  Repeated container as @c result_container .
- *
- *  @see  @c std::size_t overload of @c repeat .
- */
-template<cu_compatible container>
-[[nodiscard]] inline constexpr auto repeat(
-    const container &ctr,
-    unsigned         n
-)
-{
-    return repeat(ctr, (std::size_t)n);
-}
-
-/**
- *  @brief  Repeat container @c n times.
- *
- *  @tparam  container  Compatible container type.
- *  @param   ctr        Container.
- *  @param   n          Number of times to repeat.
- *  @return  Repeated container as @c result_container .
- *
- *  @see  @c std::size_t overload of @c repeat .
- */
-template<cu_compatible container>
-[[nodiscard]] inline constexpr auto repeat(
-    const container &ctr,
-    long             n
-)
-{
-    // Performance-critical, don't use exceptions
-    if (n < 0) n = 0;
-    return repeat(ctr, (std::size_t)n);
-}
-
-/**
- *  @brief  Repeat container @c n times.
- *
- *  @tparam  container  Compatible container type.
- *  @param   ctr        Container.
- *  @param   n          Number of times to repeat.
- *  @return  Repeated container as @c result_container .
- *
- *  @see  @c std::size_t overload of @c repeat .
- */
-template<cu_compatible container>
-[[nodiscard]] inline constexpr auto repeat(
-    const container &ctr,
-    long long        n
-)
-{
-    // Performance-critical, don't use exceptions
-    if (n < 0) n = 0;
-    return repeat(ctr, (std::size_t)n);
-}
-
-/**
- *  @brief  Repeat container @c n times.
- *
- *  @tparam  container  Compatible container type.
- *  @param   ctr        Container.
- *  @param   n          Number of times to repeat.
- *  @return  Repeated container as @c result_container .
- *
- *  @see  @c std::size_t overload of @c repeat .
- */
-template<cu_compatible container>
-[[nodiscard]] inline constexpr auto repeat(
-    const container   &ctr,
-    unsigned long long n
-)
-{
-    return repeat(ctr, (std::size_t)n);
-}
-
-/**
- *  @brief  Repeat container @c n times.
- *
  *  Considering integer part of the number @c n as @c i, and fraction part as
  *  @c f. The container is repeated @c i.0 times, and then the container is
- *  added with subordinate container with `round(0.f * container.size())`
+ *  added with subordinate container with `floor(0.f * container.size())`
  *  elements from the beginning.
  *
  *  @tparam  container  Compatible container type.
+ *  @tparam  count      Floating type for repeat count.
  *  @param   ctr        Container.
  *  @param   n          Number of times to repeat.
  *  @return  Repeated container as @c result_container .
  *
  *  @note  This is scuffed.
  */
-template<cu_compatible container>
+template<cu_compatible container, typename count>
+requires(!std::is_integral_v<count> && std::is_floating_point_v<count>)
 [[nodiscard]] inline constexpr auto repeat(
     const container &ctr,
-    long double      n
+    count            n
 )
 {
     // Performance-critical, don't use exceptions
     if (n < 0.0l) n = 0.0l;
 
-    long double i_part         = 0.0l;
-    long double f_part         = std::modf(n, &i_part);
+    count       i_part         = 0.0l;
+    count       f_part         = std::modf(n, &i_part);
     std::size_t regular_repeat = i_part;
     std::size_t sub_size       = std::floor(f_part * ctr.size());
     container   sub = subordinate(ctr, 0, sub_size);
 
     return combine(repeat(ctr, regular_repeat), sub);
-}
-
-/**
- *  @brief  Repeat container @c n times.
- *
- *  @tparam  container  Compatible container type.
- *  @param   ctr        Container.
- *  @param   n          Number of times to repeat.
- *  @return  Repeated container as @c result_container .
- *
- *  @note  This is scuffed.
- *  @see  `long double` overload of @c repeat .
- */
-template<cu_compatible container>
-[[nodiscard]] inline constexpr auto repeat(
-    const container &ctr,
-    float            n
-)
-{
-    return repeat(ctr, (long double)n);
-}
-
-/**
- *  @brief  Repeat container @c n times.
- *
- *  @tparam  container  Compatible container type.
- *  @param   ctr        Container.
- *  @param   n          Number of times to repeat.
- *  @return  Repeated container as @c result_container .
- *
- *  @note  This is scuffed.
- *  @see  `long double` overload of @c repeat .
- */
-template<cu_compatible container>
-[[nodiscard]] inline constexpr auto repeat(
-    const container &ctr,
-    double           n
-)
-{
-    return repeat(ctr, (long double)n);
 }
 
 /**
@@ -1886,9 +1748,9 @@ namespace cu_operators {
 /**
  *  @brief  Copy containers into one container.
  *
- *  @tparam  container    Compatible container type.
- *  @param   ctr      _a  The first container.
- *  @param   ctr      _b  The second container.
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr_a      First container.
+ *  @param   ctr_b      Second container.
  *  @return  Combined container as @c result_container .
  *
  *  @see  cu::combine.
@@ -1977,6 +1839,7 @@ requires(!std::is_same_v<container, std::string>
  *  @brief  Repeat container @c n times.
  *
  *  @tparam  container  Compatible container type.
+ *  @tparam  count      Integral or floating type for repeat count.
  *  @param   ctr        Container.
  *  @param   n          Number of times to repeat.
  *  @return  Repeated container as @c result_container .
@@ -1986,204 +1849,12 @@ requires(!std::is_same_v<container, std::string>
  *
  *  @see  cu::repeat.
  */
-template<cu::cu_compatible container>
+template<cu::cu_compatible container, typename count>
 requires(!std::is_same_v<container, std::string>
       && !std::is_same_v<container, std::string_view>)
 [[nodiscard]] inline constexpr auto operator* (
     const container &ctr,
-    int              n
-)
-{
-    return cu::repeat(ctr, n);
-}
-
-/**
- *  @brief  Repeat container @c n times.
- *
- *  @tparam  container  Compatible container type.
- *  @param   ctr        Container.
- *  @param   n          Number of times to repeat.
- *  @return  Repeated container as @c result_container .
- *
- *  @note  Use String Manipulators' operators for @c std::string or
- *         @c std::basic_string_view .
- *
- *  @see  cu::repeat.
- */
-template<cu::cu_compatible container>
-requires(!std::is_same_v<container, std::string>
-      && !std::is_same_v<container, std::string_view>)
-[[nodiscard]] inline constexpr auto operator* (
-    const container &ctr,
-    unsigned         n
-)
-{
-    return cu::repeat(ctr, n);
-}
-
-/**
- *  @brief  Repeat container @c n times.
- *
- *  @tparam  container  Compatible container type.
- *  @param   ctr        Container.
- *  @param   n          Number of times to repeat.
- *  @return  Repeated container as @c result_container .
- *
- *  @note  Use String Manipulators' operators for @c std::string or
- *         @c std::basic_string_view .
- *
- *  @see  cu::repeat.
- */
-template<cu::cu_compatible container>
-requires(!std::is_same_v<container, std::string>
-      && !std::is_same_v<container, std::string_view>)
-[[nodiscard]] inline constexpr auto operator* (
-    const container &ctr,
-    long             n
-)
-{
-    return cu::repeat(ctr, n);
-}
-
-/**
- *  @brief  Repeat container @c n times.
- *
- *  @tparam  container  Compatible container type.
- *  @param   ctr        Container.
- *  @param   n          Number of times to repeat.
- *  @return  Repeated container as @c result_container .
- *
- *  @note  Use String Manipulators' operators for @c std::string or
- *         @c std::basic_string_view .
- *
- *  @see  cu::repeat.
- */
-template<cu::cu_compatible container>
-requires(!std::is_same_v<container, std::string>
-      && !std::is_same_v<container, std::string_view>)
-[[nodiscard]] inline constexpr auto operator* (
-    const container &ctr,
-    unsigned long    n
-)
-{
-    return cu::repeat(ctr, n);
-}
-
-/**
- *  @brief  Repeat container @c n times.
- *
- *  @tparam  container  Compatible container type.
- *  @param   ctr        Container.
- *  @param   n          Number of times to repeat.
- *  @return  Repeated container as @c result_container .
- *
- *  @note  Use String Manipulators' operators for @c std::string or
- *         @c std::basic_string_view .
- *
- *  @see  cu::repeat.
- */
-template<cu::cu_compatible container>
-requires(!std::is_same_v<container, std::string>
-      && !std::is_same_v<container, std::string_view>)
-[[nodiscard]] inline constexpr auto operator* (
-    const container &ctr,
-    long long        n
-)
-{
-    return cu::repeat(ctr, n);
-}
-
-/**
- *  @brief  Repeat container @c n times.
- *
- *  @tparam  container  Compatible container type.
- *  @param   ctr        Container.
- *  @param   n          Number of times to repeat.
- *  @return  Repeated container as @c result_container .
- *
- *  @note  Use String Manipulators' operators for @c std::string or
- *         @c std::basic_string_view .
- *
- *  @see  cu::repeat.
- */
-template<cu::cu_compatible container>
-requires(!std::is_same_v<container, std::string>
-      && !std::is_same_v<container, std::string_view>)
-[[nodiscard]] inline constexpr auto operator* (
-    const container   &ctr,
-    unsigned long long n
-)
-{
-    return cu::repeat(ctr, n);
-}
-
-/**
- *  @brief  Repeat container @c n times.
- *
- *  @tparam  container  Compatible container type.
- *  @param   ctr        Container.
- *  @param   n          Number of times to repeat.
- *  @return  Repeated container as @c result_container .
- *
- *  @note  Use String Manipulators' operators for @c std::string or
- *         @c std::basic_string_view .
- *
- *  @see  cu::repeat.
- */
-template<cu::cu_compatible container>
-requires(!std::is_same_v<container, std::string>
-      && !std::is_same_v<container, std::string_view>)
-[[nodiscard]] inline constexpr auto operator* (
-    const container &ctr,
-    float            n
-)
-{
-    return cu::repeat(ctr, n);
-}
-
-/**
- *  @brief  Repeat container @c n times.
- *
- *  @tparam  container  Compatible container type.
- *  @param   ctr        Container.
- *  @param   n          Number of times to repeat.
- *  @return  Repeated container as @c result_container .
- *
- *  @note  Use String Manipulators' operators for @c std::string or
- *         @c std::basic_string_view .
- *
- *  @see  cu::repeat.
- */
-template<cu::cu_compatible container>
-requires(!std::is_same_v<container, std::string>
-      && !std::is_same_v<container, std::string_view>)
-[[nodiscard]] inline constexpr auto operator* (
-    const container &ctr,
-    double           n
-)
-{
-    return cu::repeat(ctr, n);
-}
-
-/**
- *  @brief  Repeat container @c n times.
- *
- *  @tparam  container  Compatible container type.
- *  @param   ctr        Container.
- *  @param   n          Number of times to repeat.
- *  @return  Repeated container as @c result_container .
- *
- *  @note  Use String Manipulators' operators for @c std::string or
- *         @c std::basic_string_view .
- *
- *  @see  cu::repeat.
- */
-template<cu::cu_compatible container>
-requires(!std::is_same_v<container, std::string>
-      && !std::is_same_v<container, std::string_view>)
-[[nodiscard]] inline constexpr auto operator* (
-    const container &ctr,
-    long double      n
+    count            n
 )
 {
     return cu::repeat(ctr, n);
@@ -2235,6 +1906,125 @@ requires(!std::is_same_v<container, std::string>
 )
 {
     return cu::split(ctr, value);
+}
+
+/**
+ *  @brief  Copy second container at the end of first container.
+ *
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr_a      First container.
+ *  @param   ctr_b      Second container.
+ *  @return  Combined container as @c result_container .
+ *
+ *  @see  cu::combine.
+ */
+template<cu::cu_compatible container>
+requires(!std::is_same_v<container, std::string>
+      && !std::is_same_v<container, std::string_view>)
+inline constexpr auto operator+= (
+    container       &ctr_a,
+    const container &ctr_b
+) -> container &
+{
+    ctr_a = ctr_a + ctr_b;
+    return ctr_a;
+}
+
+/**
+ *  @brief  Copy value at the end of first container.
+ *
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   value      Value of container's value type.
+ *  @return  Value-appended container as @c result_container .
+ *
+ *  @see  cu::combine.
+ */
+template<cu::cu_compatible container>
+requires(!std::is_same_v<container, std::string>
+      && !std::is_same_v<container, std::string_view>)
+inline constexpr auto operator+= (
+    container                       &ctr_a,
+    const cu::value_type<container> &value
+) -> container &
+{
+    ctr_a = ctr_a + value;
+    return ctr_a;
+}
+
+/**
+ *  @brief  Filter out the occurrences of sequence from the container.
+ *
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   pattern    Sequence to remove.
+ *  @return  Filtered container as @c result_container .
+ *
+ *  @note  Use String Manipulators' operators for @c std::string or
+ *         @c std::basic_string_view .
+ *
+ *  @see  cu::filter_out_seq.
+ */
+template<cu::cu_compatible container>
+requires(!std::is_same_v<container, std::string>
+      && !std::is_same_v<container, std::string_view>)
+inline constexpr auto operator-= (
+    container       &ctr,
+    const container &pattern
+) -> container &
+{
+    ctr = ctr - pattern;
+    return ctr;
+}
+
+/**
+ *  @brief  Filter out the occurrences of value from the container.
+ *
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   value      Value to remove.
+ *  @return  Filtered container as @c result_container .
+ *
+ *  @note  Use String Manipulators' operators for @c std::string or
+ *         @c std::basic_string_view .
+ *
+ *  @see  cu::filter_out.
+ */
+template<cu::cu_compatible container>
+requires(!std::is_same_v<container, std::string>
+      && !std::is_same_v<container, std::string_view>)
+inline constexpr auto operator-= (
+    container                       &ctr,
+    const cu::value_type<container> &value
+) -> container &
+{
+    ctr = ctr - value;
+    return ctr;
+}
+
+/**
+ *  @brief  Repeat container @c n times.
+ *
+ *  @tparam  container  Compatible container type.
+ *  @param   ctr        Container.
+ *  @param   n          Number of times to repeat.
+ *  @return  Repeated container as @c result_container .
+ *
+ *  @note  Use String Manipulators' operators for @c std::string or
+ *         @c std::basic_string_view .
+ *
+ *  @see  cu::repeat.
+ */
+template<cu::cu_compatible container, typename count>
+requires(!std::is_same_v<container, std::string>
+      && !std::is_same_v<container, std::string_view>)
+inline constexpr auto operator*= (
+    container &ctr,
+    count      n
+) -> container &
+{
+    ctr = ctr * n;
+    return ctr;
 }
 
 } // namespace cu_operators
