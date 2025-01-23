@@ -72,6 +72,12 @@
 [[nodiscard]] CT_TESTER_FN(test_file);
 
 /**
+ *  @brief  Test Properties.
+ *  @return  Number of errors.
+ */
+[[nodiscard]] CT_TESTER_FN(test_prop);
+
+/**
  *  @brief  The biggie.
  *  @return  Zero on success.
  */
@@ -87,32 +93,44 @@ auto main() -> int try
     }
     log_file.close();
 
-    test_case cu_test  = {
+    test_case cu_test_case  = {
         .title         = "Test Container Utilities",
         .function_name = "test_cu",
         .function      = test_cu
     };
 
-    test_case sm_test  = {
+    test_case sm_test_case  = {
         .title         = "Test String Manipulators",
         .function_name = "test_sm",
         .function      = test_sm
     };
 
-    test_case aec_test = {
+    test_case aec_test_case = {
         .title         = "Test ANSI Escape Codes",
         .function_name = "test_aec",
         .function      = test_aec
     };
 
-    test_case file_test = {
+    test_case file_test_case = {
         .title          = "Test File Utilities",
         .function_name  = "test_file",
         .function       = test_file
     };
 
+    test_case prop_test_case = {
+        .title          = "Test Properties",
+        .function_name  = "test_prop",
+        .function       = test_prop
+    };
+
     test_suite suite = {
-        .tests       = { &cu_test, &sm_test, &aec_test, &file_test },
+        .tests       = {
+            &cu_test_case,
+            &sm_test_case,
+            &aec_test_case,
+            &file_test_case,
+            &prop_test_case
+        },
         .pre_run     = [&](const test_case *test)
         {
             log_file.open(test->function_name + ".log");

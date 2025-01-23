@@ -5,6 +5,7 @@ set(ALCELIN_TESTS
     "${CMAKE_CURRENT_SOURCE_DIR}/test_sm.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/test_aec.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/test_file.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/test_prop.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/tester.cpp"
 )
 

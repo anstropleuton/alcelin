@@ -47,6 +47,11 @@
 namespace alcelin {
 
 /**
+ *  @brief  Properties.
+ */
+namespace prop {
+
+/**
  *  @brief  Property with getter.  Variable read operation will call the getter
  *          to retrieve the value.
  */
@@ -168,9 +173,15 @@ struct property_readonly {
     }
 
     [[nodiscard]] inline constexpr auto operator> (const type &o) const
-    requires requires { std::declval<type>() <= std::declval<type>(); }
+    requires requires { std::declval<type>() > std::declval<type>(); }
     {
-        return getter() <= o;
+        return getter() > o;
+    }
+
+    [[nodiscard]] inline constexpr auto operator>= (const type &o) const
+    requires requires { std::declval<type>() >= std::declval<type>(); }
+    {
+        return getter() >= o;
     }
 
     [[nodiscard]] inline constexpr auto operator== (const type &o) const
@@ -233,83 +244,84 @@ struct property : property_readonly<type> {
     // All the below operators call getter and setter.
 
     inline constexpr auto operator= (const type &t) -> property &
+    requires requires(type t) { t = std::declval<type>(); }
     {
         setter(t);
         return *this;
     }
 
     inline constexpr auto operator+= (const type &o) -> property &
-    requires requires { std::declval<type>() += std::declval<type>(); }
+    requires requires(type t) { t += std::declval<type>(); }
     {
         setter(property_readonly<type>::getter() + o);
         return *this;
     }
 
     inline constexpr auto operator-= (const type &o) -> property &
-    requires requires { std::declval<type>() -= std::declval<type>(); }
+    requires requires(type t) { t -= std::declval<type>(); }
     {
         setter(property_readonly<type>::getter() - o);
         return *this;
     }
 
     inline constexpr auto operator*= (const type &o) -> property &
-    requires requires { std::declval<type>() *= std::declval<type>(); }
+    requires requires(type t) { t *= std::declval<type>(); }
     {
         setter(property_readonly<type>::getter() * o);
         return *this;
     }
 
     inline constexpr auto operator/= (const type &o) -> property &
-    requires requires { std::declval<type>() /= std::declval<type>(); }
+    requires requires(type t) { t /= std::declval<type>(); }
     {
         setter(property_readonly<type>::getter() / o);
         return *this;
     }
 
     inline constexpr auto operator%= (const type &o) -> property &
-    requires requires { std::declval<type>() %= std::declval<type>(); }
+    requires requires(type t) { t %= std::declval<type>(); }
     {
         setter(property_readonly<type>::getter() % o);
         return *this;
     }
 
     inline constexpr auto operator^= (const type &o) -> property &
-    requires requires { std::declval<type>() ^= std::declval<type>(); }
+    requires requires(type t) { t ^= std::declval<type>(); }
     {
         setter(property_readonly<type>::getter() ^ o);
         return *this;
     }
 
     inline constexpr auto operator&= (const type &o) -> property &
-    requires requires { std::declval<type>() &= std::declval<type>(); }
+    requires requires(type t) { t &= std::declval<type>(); }
     {
         setter(property_readonly<type>::getter() & o);
         return *this;
     }
 
     inline constexpr auto operator|= (const type &o) -> property &
-    requires requires { std::declval<type>() |= std::declval<type>(); }
+    requires requires(type t) { t |= std::declval<type>(); }
     {
         setter(property_readonly<type>::getter() | o);
         return *this;
     }
 
     inline constexpr auto operator<<= (const type &o) -> property &
-    requires requires { std::declval<type>() <<= std::declval<type>(); }
+    requires requires(type t) { t <<= std::declval<type>(); }
     {
         setter(property_readonly<type>::getter() << o);
         return *this;
     }
 
     inline constexpr auto operator>>= (const type &o) -> property &
-    requires requires { std::declval<type>() <<= std::declval<type>(); }
+    requires requires(type t) { t >>= std::declval<type>(); }
     {
-        setter(property_readonly<type>::getter() << o);
+        setter(property_readonly<type>::getter() >> o);
         return *this;
     }
 
     [[nodiscard]] inline constexpr auto operator++ ()
-    requires requires { ++std::declval<type>(); }
+    requires requires(type t) { ++t; }
     {
         type value = property_readonly<type>::getter();
         ++value;
@@ -318,7 +330,7 @@ struct property : property_readonly<type> {
     }
 
     [[nodiscard]] inline constexpr auto operator++ (int)
-    requires requires { std::declval<type>()++; }
+    requires requires(type t) { t++; }
     {
         type value = property_readonly<type>::getter();
         type copy  = value;
@@ -328,7 +340,7 @@ struct property : property_readonly<type> {
     }
 
     [[nodiscard]] inline constexpr auto operator-- ()
-    requires requires { --std::declval<type>(); }
+    requires requires(type t) { --t; }
     {
         type value = property_readonly<type>::getter();
         --value;
@@ -337,7 +349,7 @@ struct property : property_readonly<type> {
     }
 
     [[nodiscard]] inline constexpr auto operator-- (int)
-    requires requires { std::declval<type>()--; }
+    requires requires(type t) { t--; }
     {
         type value = property_readonly<type>::getter();
         type copy  = value;
@@ -401,5 +413,7 @@ struct observable : property<type> {
         std::function<void (const type &)> observer
     ) : property<type>(getter, setter), value(value), observer(observer) {}
 };
+
+} // namespace prop
 
 } // namespace alcelin
