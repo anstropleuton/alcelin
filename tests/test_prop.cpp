@@ -60,6 +60,7 @@ struct type_with_operators {
      */
     [[nodiscard]] inline constexpr auto operator() (int num)
     {
+        logln("type_with_operators::operator() called with value: {}", num);
         return num * 2;
     }
 
@@ -68,6 +69,7 @@ struct type_with_operators {
      */
     [[nodiscard]] inline constexpr auto operator[] (int num)
     {
+        logln("type_with_operators::operator[] called with value: {}", num);
         return num * 3;
     }
 
@@ -76,6 +78,7 @@ struct type_with_operators {
      */
     [[nodiscard]] inline constexpr auto operator-> ()
     {
+        logln("type_with_operators::operator-> called");
         return this;
     }
 };
@@ -90,6 +93,7 @@ struct type_with_operators {
     int prop_value = 42;
     prop::property_readonly<int> prop([&]()
     {
+        logln("Getter called");
         return prop_value;
     });
 
@@ -150,9 +154,11 @@ struct type_with_operators {
     int prop_value = 42;
     prop::property<int> prop([&]()
     {
+        logln("Getter called");
         return prop_value;
     }, [&](int value)
     {
+        logln("Setter called with value: {}", value);
         prop_value = value;
     });
 
@@ -243,10 +249,13 @@ struct type_with_operators {
     prop::property<type_with_operators> prop(
         []()
     {
+        logln("Getter called");
         return type_with_operators();
     },
         [](type_with_operators value)
     {
+        logln("Setter called");
+
         // Do nothing
     });
 
@@ -263,6 +272,44 @@ struct type_with_operators {
     };
 
     CT_ASSERT_CTR(values, expected);
+
+    CT_END;
+}
+
+/**
+ *  @brief  Test Prop's observable.
+ *  @return  Number of errors.
+ */
+[[nodiscard]] CT_TESTER_FN(test_prop_observable) {
+    CT_BEGIN;
+
+    int observed_count = 0;
+    prop::observable<int> observable([&](int value)
+    {
+        logln("Observer called with value: {}", value);
+        observed_count++;
+    });
+
+    // Perform actions that cause observer to be called.
+    observable = 42;
+    observable += 1;
+    observable -= 1;
+    observable *= 2;
+    observable /= 2;
+    observable %= 5;
+    observable ^= 2;
+    observable &= 2;
+    observable |= 2;
+    observable <<= 2;
+    observable >>= 2;
+    observable++;
+    ++observable;
+    observable--;
+    --observable;
+
+    int expected_count = 15;
+
+    CT_ASSERT(observed_count, expected_count, "Observer counter must match");
 
     CT_END;
 }
@@ -291,11 +338,18 @@ struct type_with_operators {
         .function      = test_prop_property_additional_operators
     };
 
+    test_case prop_observable_test_case {
+        .title         = "Test Prop's observable",
+        .function_name = "test_prop_observable",
+        .function      = test_prop_observable
+    };
+
     test_suite suite = {
         .tests       = {
             &prop_property_readonly_test_case,
             &prop_property_test_case,
-            &prop_property_additional_operators_test_case
+            &prop_property_additional_operators_test_case,
+            &prop_observable_test_case
         },
         .pre_run  = default_pre_runner('=', 3),
         .post_run = default_post_runner('=', 3)

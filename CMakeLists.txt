@@ -89,6 +89,11 @@ target_sources(alcelin PUBLIC
     FILES ${ALCELIN_HEADERS}
 )
 
+target_compile_options(alcelin PRIVATE
+    "$<$<COMPILE_LANG_AND_ID:CXX,ARMClang,AppleClang,Clang,GNU,LCC>:-Wall;-Wextra;-Wno-unused;-Wno-shadow>"
+    "$<$<COMPILE_LANG_AND_ID:CXX,MSVC>:/W4>"
+)
+
 if(ALCELIN_BUILD_TESTS)
     depman_make_available(confer)
     add_subdirectory(tests)

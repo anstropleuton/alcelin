@@ -70,9 +70,10 @@ struct property_readonly {
     inline constexpr property_readonly(std::function<type()> getter)
         : getter(getter) {}
 
-    // All the below operators call getter.
+    // All the below operators call getter
 
-    [[nodiscard]] inline constexpr operator auto () const {
+    [[nodiscard]] inline constexpr operator auto () const
+    {
         return getter();
     }
 
@@ -241,7 +242,7 @@ struct property : property_readonly<type> {
         std::function<void (const type &)> setter
     ) : property_readonly<type>(getter), setter(setter) {}
 
-    // All the below operators call getter and setter.
+    // All the below operators call getter and setter
 
     inline constexpr auto operator= (const type &t) -> property &
     requires requires(type t) { t = std::declval<type>(); }
@@ -320,7 +321,7 @@ struct property : property_readonly<type> {
         return *this;
     }
 
-    [[nodiscard]] inline constexpr auto operator++ ()
+    inline constexpr auto operator++ () -> property &
     requires requires(type t) { ++t; }
     {
         type value = property_readonly<type>::getter();
@@ -329,7 +330,7 @@ struct property : property_readonly<type> {
         return *this;
     }
 
-    [[nodiscard]] inline constexpr auto operator++ (int)
+    inline constexpr auto operator++ (int)
     requires requires(type t) { t++; }
     {
         type value = property_readonly<type>::getter();
@@ -339,7 +340,7 @@ struct property : property_readonly<type> {
         return copy;
     }
 
-    [[nodiscard]] inline constexpr auto operator-- ()
+    inline constexpr auto operator-- () -> property &
     requires requires(type t) { --t; }
     {
         type value = property_readonly<type>::getter();
@@ -348,7 +349,7 @@ struct property : property_readonly<type> {
         return *this;
     }
 
-    [[nodiscard]] inline constexpr auto operator-- (int)
+    inline constexpr auto operator-- (int)
     requires requires(type t) { t--; }
     {
         type value = property_readonly<type>::getter();
@@ -378,29 +379,19 @@ struct observable : property<type> {
     std::function<void (const type &)> observer;
 
     /**
-     *  @brief  Getter for the property.
-     */
-    const std::function<void (const type &)> getter = [&]()
-    {
-        return value;
-    };
-
-    /**
-     *  @brief  Setter for the property.
-     */
-    const std::function<void (const type &)> setter = [&](const type &t)
-    {
-        value = t;
-        observer(value);
-    };
-
-    /**
      *  @brief  Creates an observable property with default value and observer.
      *  @param  observer  Observer function.
      */
     inline constexpr observable(
         std::function<void (const type &)> observer
-    ) : property<type>(getter, setter), value(type()), observer(observer) {}
+    ) : property<type>([&]()
+    {
+        return value;
+    }, [&](const type &t)
+    {
+        value = t;
+        observer(value);
+    }), value(type()), observer { observer } {}
 
     /**
      *  @brief  Creates an observable property with provided value and observer.
@@ -411,7 +402,48 @@ struct observable : property<type> {
     inline constexpr observable(
         type                               value,
         std::function<void (const type &)> observer
+    ) : property<type>([&]()
+    {
+        return value;
+    }, [&](const type &t)
+    {
+        value = t;
+        observer(value);
+    }), value(value), observer(observer) {}
+
+    /**
+     *  @brief  Creates an observable property with provided getter, setter, and
+     *          observer.
+     *
+     *  @param  getter   Getter function.
+     *  @param  setter   Setter function.
+     *  @param  observer Observer function.
+     */
+    inline constexpr observable(
+        std::function<type()>              getter,
+        std::function<void (const type &)> setter,
+        std::function<void (const type &)> observer
+    ) : property<type>(getter, setter), value(type()), observer(observer) {}
+
+    /**
+     *  @brief  Creates an observable property with provided getter, setter,
+     *          initial value, and observer.
+     *
+     *  @param  getter   Getter function.
+     *  @param  setter   Setter function.
+     *  @param  value    Initial value.
+     *  @param  observer Observer function.
+     */
+    inline constexpr observable(
+        std::function<type()>              getter,
+        std::function<void (const type &)> setter,
+        type                               value,
+        std::function<void (const type &)> observer
     ) : property<type>(getter, setter), value(value), observer(observer) {}
+
+    // Explicitly inherit operator= from property due to interference with
+    // constructor
+    using property<type>::operator=;
 };
 
 } // namespace prop
