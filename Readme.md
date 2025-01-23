@@ -8,10 +8,14 @@ This library is subdivided into sections:
 - **ANSI Escape Codes** contains easy handlers for manipulation output using decorator [ANSI Escape Codes](https://en.wikipedia.org/wiki/ANSI_escape_code).
 - **Argument Parser** is [removed](#removed-sections).
 - **File Utilities** contains file utilities such as function to **read all the file contents**, and other utilities ability to **convert any trivially copyable** type from and to **vector of bytes** (`sd_chunk`) and **read/write to file/generic streams**.
+- **Properties**. Yes, properties. The similar one from C#. Properties allow you to define function that **return a value** when a variable is being observed (used its value), or a function that **sets a value** when a variable is assigned to or operated on.
 
 # Removed Sections
 - **Argument Parser** contains functionality to parse **Command Line Arguments** and structures to **define options** (or **switches** if you are old and use Microsoft Windows) to easily validate arguments.
   - This is removed from Alcelin, and is now available in [Optrone](https://github.com/anstropleuton/optrone).
+
+# Dependencies
+- [Confer](https://github.com/anstropleuton/confer) - Only for testing.
 
 # Prerequisite
 - Know to program in C++

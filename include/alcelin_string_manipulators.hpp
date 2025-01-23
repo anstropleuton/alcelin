@@ -61,7 +61,7 @@ namespace alcelin {
 namespace sm {
 
 /**
- *  @brief  A container of strings compatible for String Manipulators.
+ *  @brief  Container of strings compatible for String Manipulators.
  *
  *  A container that is CU Compatible with elements type being @c std::string or
  *  @c std::string_view .

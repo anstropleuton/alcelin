@@ -72,7 +72,7 @@ namespace alcelin {
 namespace file {
 
 /**
- *  @brief  A "SD chunk" is basically a vector of unsigned characters (bytes).
+ *  @brief  "SD chunk" is basically a vector of unsigned characters (bytes).
  */
 using sd_chunk = std::vector<unsigned char>;
 

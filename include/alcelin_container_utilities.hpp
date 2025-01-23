@@ -115,7 +115,7 @@ concept cu_compatible_nested =
  && cu_compatible<value_type<container>>;
 
 /**
- *  @brief  A compatible container for @c boundless_access.
+ *  @brief  Compatible container for @c boundless_access.
  *
  *  The container must satisfy @c cu_compatible and it's value type should also
  *  assignable with default constructed value type.
@@ -172,7 +172,7 @@ template<boundless_accessible Container>
 }
 
 /**
- *  @brief  A boundless vector.
+ *  @brief  Boundless version of std::vector.
  *
  *  Index-access of this vector always returns a default constructed element
  *  when an invalid index is provided.  Requires a default-constructible type.
@@ -486,7 +486,7 @@ boundless_vector(input_iterator, input_iterator, alloc = alloc())
                           -> boundless_vector<value_type, alloc>;
 
 /**
- *  @brief  A boundless array.
+ *  @brief  Boundless version of std::array.
  *
  *  Index-access of this array always returns a default constructed element
  *  when an invalid index is provided.  Requires a default-constructible type.
@@ -607,7 +607,7 @@ boundless_array(element_type,
     1 + sizeof... (elements_type)>;
 
 /**
- *  @brief  A boundless span.
+ *  @brief  Boundless version of std::span.
  *
  *  Index-access of this span always returns a default constructed element
  *  when an invalid index is provided.  Requires a default-constructible type.
@@ -727,7 +727,7 @@ boundless_span(Range &&) -> boundless_span<
     std::remove_reference_t<std::ranges::range_reference_t<Range &>>>;
 
 /**
- *  @brief  A boundless basic string.
+ *  @brief  Boundless version of std::basic_string.
  *
  *  Index-access of this string always returns a default constructed element
  *  when an invalid index is provided.  Requires a default-constructible type.
@@ -1151,7 +1151,7 @@ struct boundless_basic_string : std::basic_string<char_type, traits, alloc> {
 };
 
 /**
- *  @brief  A boundless basic string view.
+ *  @brief  Boundless version of std::basic_string_view.
  *
  *  Index-access of this string view always returns a default constructed element
  *  when an invalid index is provided.  Requires a default-constructible type.
@@ -1302,42 +1302,42 @@ struct boundless_basic_string_view : std::basic_string_view<char_type, traits> {
 };
 
 /**
- *  @brief  boundless_A string of @c char .
+ *  @brief  Boundless version of std::string of @c char .
  */
 using boundless_string = boundless_basic_string<char>;
 
 /**
- *  @brief  boundless_A string of @c wchar_t .
+ *  @brief  Boundless version of std::string of @c wchar_t .
  */
 using boundless_wstring = boundless_basic_string<wchar_t>;
 
 /**
- *  @brief  boundless_A string of @c char16_t .
+ *  @brief  Boundless version of std::string of @c char16_t .
  */
 using boundless_u16string = boundless_basic_string<char16_t>;
 
 /**
- *  @brief  boundless_A string of @c char32_t .
+ *  @brief  Boundless version of std::string of @c char32_t .
  */
 using boundless_u32string = boundless_basic_string<char32_t>;
 
 /**
- *  @brief  A non-owning @boundless_c string .
+ *  @brief  Non-owning @boundless_c string .
  */
 using boundless_string_view = boundless_basic_string_view<char>;
 
 /**
- *  @brief  A non-owning @c boundless_wstring .
+ *  @brief  Non-owning @c boundless_wstring .
  */
 using boundless_wstring_view = boundless_basic_string_view<wchar_t>;
 
 /**
- *  @brief  A non-owning @c boundless_u16string .
+ *  @brief  Non-owning @c boundless_u16string .
  */
 using boundless_u16string_view = boundless_basic_string_view<char16_t>;
 
 /**
- *  @brief  A non-owning @c boundless_u32string .
+ *  @brief  Non-owning @c boundless_u32string .
  */
 using boundless_u32string_view = boundless_basic_string_view<char32_t>;
 
