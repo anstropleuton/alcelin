@@ -49,7 +49,7 @@ using namespace alcelin;
 using namespace std::string_literals;
 
 /**
- *  @brief  Test SM's to_string function (overload 1).
+ *  @brief   Test SM's @c to_string function (overload 1).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_sm_to_string_1) {
@@ -71,7 +71,7 @@ using namespace std::string_literals;
 }
 
 /**
- *  @brief  Test SM's to_string function (overload 2).
+ *  @brief   Test SM's @c to_string function (overload 2).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_sm_to_string_2) {
@@ -91,7 +91,7 @@ using namespace std::string_literals;
 }
 
 /**
- *  @brief  Test SM's to_string function (overload 3).
+ *  @brief   Test SM's @c to_string function (overload 3).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_sm_to_string_3) {
@@ -111,7 +111,7 @@ using namespace std::string_literals;
 }
 
 /**
- *  @brief  Test SM's to_string function (overload 4).
+ *  @brief   Test SM's @c to_string function (overload 4).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_sm_to_string_4) {
@@ -133,7 +133,7 @@ using namespace std::string_literals;
 }
 
 /**
- *  @brief  Test SM's chars_to_string function.
+ *  @brief   Test SM's chars_to_string function.
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_sm_chars_to_string) {
@@ -155,31 +155,31 @@ using namespace std::string_literals;
 }
 
 /**
- *  @brief  Test String Manipulators' to_string.
+ *  @brief   Test SM's @c to_string.
  *  @return  Number of errors.
  */
 [[nodiscard]] CT_TESTER_FN(test_sm_to_string) try
 {
     test_case sm_to_string_1_test_case {
-        .title         = "Test SM's to_string function (overload 1)",
+        .title         = "Test SM's @c to_string function (overload 1)",
         .function_name = "test_sm_to_string_1",
         .function      = test_sm_to_string_1
     };
 
     test_case sm_to_string_2_test_case {
-        .title         = "Test SM's to_string function (overload 2)",
+        .title         = "Test SM's @c to_string function (overload 2)",
         .function_name = "test_sm_to_string_2",
         .function      = test_sm_to_string_2
     };
 
     test_case sm_to_string_3_test_case {
-        .title         = "Test SM's to_string function (overload 3)",
+        .title         = "Test SM's @c to_string function (overload 3)",
         .function_name = "test_sm_to_string_3",
         .function      = test_sm_to_string_3
     };
 
     test_case sm_to_string_4_test_case {
-        .title         = "Test SM's to_string function (overload 4)",
+        .title         = "Test SM's @c to_string function (overload 4)",
         .function_name = "test_sm_to_string_4",
         .function      = test_sm_to_string_4
     };

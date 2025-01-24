@@ -1,9 +1,10 @@
 set(ALCELIN_EXAMPLES
     "sm/to_string"
-    "cu/boundless_containers"
-    "cu/enumerated_array"
+    "cc/boundless_containers"
+    "cc/enumerated_array"
     "cu/arithmetics"
     "sm/arithmetics"
+    "file/file_utilized"
 )
 
 function(add_example source executable)

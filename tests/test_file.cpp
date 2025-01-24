@@ -51,7 +51,7 @@ using namespace alcelin;
 using namespace std::string_literals;
 
 /**
- *  @brief  Test File Utilities' read_all function.
+ *  @brief   Test File' read_all function.
  *  @return  Number of errors.
  */
 [[nodiscard]] CT_TESTER_FN(test_file_read_all) {
@@ -76,7 +76,7 @@ using namespace std::string_literals;
 }
 
 /**
- *  @brief  Test File Utilities' SD chunk conversion functions.
+ *  @brief   Test File' SD chunk conversion functions.
  */
 [[nodiscard]] CT_TESTER_FN(test_file_sd_chunk_conversion) {
     CT_BEGIN;
@@ -111,19 +111,19 @@ using namespace std::string_literals;
 }
 
 /**
- *  @brief  Test File Utilities.
+ *  @brief   Test File.
  *  @return  Number of errors.
  */
 [[nodiscard]] CT_TESTER_FN(test_file) try
 {
     test_case file_read_all_test_case {
-        .title         = "Test File Utilities's read_all function",
+        .title         = "Test File's read_all function",
         .function_name = "test_file_read_all",
         .function      = test_file_read_all
     };
 
     test_case file_sd_chunk_conversion_test_case {
-        .title         = "Test File Utilities' SD chunk conversion functions",
+        .title         = "Test File' SD chunk conversion functions",
         .function_name = "test_file_sd_chunk_conversion",
         .function      = test_file_sd_chunk_conversion
     };

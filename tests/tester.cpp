@@ -42,43 +42,49 @@
 #include "confer.hpp"
 
 /**
- *  @brief  Test String Manipulators' to_string.
+ *  @brief   Test SM' to_string.
  *  @return  Number of errors.
  */
 [[nodiscard]] CT_TESTER_FN(test_sm_to_string);
 
 /**
- *  @brief  Test... copper?  No wait, test Container Utilities.
+ *  @brief   Test CU.
  *  @return  Number of errors.
  */
 [[nodiscard]] CT_TESTER_FN(test_cu);
 
 /**
- *  @brief  Test String Manipulators.
+ *  @brief   Test CC.
+ *  @return  Number of errors.
+ */
+[[nodiscard]] CT_TESTER_FN(test_cu);
+
+/**
+ *  @brief   Test SM.
  *  @return  Number of errors.
  */
 [[nodiscard]] CT_TESTER_FN(test_sm);
 
 /**
- *  @brief  Test ANSI Escape Codes.
+ *  @brief   Test AEC.
  *  @return  Zero.
  */
 [[nodiscard]] CT_TESTER_FN(test_aec);
 
 /**
- *  @brief  Test File Utilities.
+ *  @brief   Test File.
  *  @return  Number of errors.
  */
 [[nodiscard]] CT_TESTER_FN(test_file);
 
 /**
- *  @brief  Test Properties.
+ *  @brief   Test Prop.
  *  @return  Number of errors.
  */
 [[nodiscard]] CT_TESTER_FN(test_prop);
 
 /**
- *  @brief  The biggie.
+ *  @brief   The biggie.
  *  @return  Zero on success.
  */
 auto main() -> int try
@@ -94,31 +100,31 @@ auto main() -> int try
     log_file.close();
 
     test_case cu_test_case  = {
-        .title         = "Test Container Utilities",
+        .title         = "Test CU",
         .function_name = "test_cu",
         .function      = test_cu
     };
 
     test_case sm_test_case  = {
-        .title         = "Test String Manipulators",
+        .title         = "Test SM",
         .function_name = "test_sm",
         .function      = test_sm
     };
 
     test_case aec_test_case = {
-        .title         = "Test ANSI Escape Codes",
+        .title         = "Test AEC",
         .function_name = "test_aec",
         .function      = test_aec
     };
 
     test_case file_test_case = {
-        .title          = "Test File Utilities",
+        .title          = "Test File",
         .function_name  = "test_file",
         .function       = test_file
     };
 
     test_case prop_test_case = {
-        .title          = "Test Properties",
+        .title          = "Test Prop",
         .function_name  = "test_prop",
         .function       = test_prop
     };

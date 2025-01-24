@@ -4,6 +4,7 @@ Alcelin is a collection of utils for Anstro Pleuton's programs. This library con
 # Sections
 This library is subdivided into sections:
 - **Container Utilities** contains several utilities for container types (i.e., **std::vector**, **std::array**, etc. or custom compatible container types) which includes **appending elements** (combining), **filtering elements out**, etc. And several **operators** for these operations.
+- **Custom Containers** contains **boundless** version of standard library containers, in which you can access elements without having to **worry about bounds check**.
 - **String Manipulators** contains several utilities for **std::string** (or **std::string_view** as parameters) which includes **converting containers to string**, **word-wrap**, **trimming string**, converting **to lower case**, etc. And several **operators** from Container Utilities applied to string types.
 - **ANSI Escape Codes** contains easy handlers for manipulation output using decorator [ANSI Escape Codes](https://en.wikipedia.org/wiki/ANSI_escape_code).
 - **Argument Parser** is [removed](#removed-sections).
@@ -66,6 +67,11 @@ The documentation is generated as a web-pages. Open the file `build/docs/html/in
 ```bash
 firefox docs/html/index.html
 ```
+
+# TODO
+- Review all CMake files
+- Refactor tests to be less repetitive
+- Refactor examples to be more structured
 
 # Changelog
 Refer to the [Changelog](Changelog.md) for info about changes in each version.

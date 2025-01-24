@@ -1,6 +1,6 @@
 /**
  *  @author  Anstro Pleuton (https://github.com/anstropleuton)
- *  @brief   How to use CU's @c cu::boundless_access and boundless containers.
+ *  @brief   How to use CC's @c boundless_access and boundless containers.
  *
  *  @copyright  Copyright (c) 2024 Anstro Pleuton
  *
@@ -50,12 +50,12 @@ auto main() -> int
 {
     std::vector my_vector = { 1, 2, 3, 4, 5 };
 
-    // Access and edit vector using cu::boundless_access :
-    cu::boundless_access(my_vector, 2) = 6; // Now the vector is
+    // Access and edit vector using cc::boundless_access :
+    cc::boundless_access(my_vector, 2) = 6; // Now the vector is
                                             // { 1, 2, 6, 4, 5 }
 
-    std::println("cu::boundless_access(my_vector, 2) after setting it to 6: {}",
-        cu::boundless_access(my_vector, 2));
+    std::println("cc::boundless_access(my_vector, 2) after setting it to 6: {}",
+        cc::boundless_access(my_vector, 2));
 
     // Print it, see examples/sm/to_string.cpp for more info on sm::to_string .
     std::println("my_vector: {}", sm::to_string(my_vector));
@@ -64,8 +64,8 @@ auto main() -> int
     // not throw.  That's what "boundless" is.  This helps you ignore bounds by
     // proceeding to validate elements instead of having to care about bounds
     // and validating elements at the same time
-    std::println("cu::boundless_access(my_vector, 6): {}",
-        cu::boundless_access(my_vector, 6));
+    std::println("cc::boundless_access(my_vector, 6): {}",
+        cc::boundless_access(my_vector, 6));
 
     // What happens when the index is out of range and when you try to write to
     // it?  Don't.  The data written goes to an internal static variable with
@@ -79,18 +79,18 @@ auto main() -> int
     // accessible.  Effectively, **writing to a void**.
     //
     // TL;DR: Don't, and handle bounds checks when writing to it
-    cu::boundless_access(my_vector, 7) = 9; // Don't
+    cc::boundless_access(my_vector, 7) = 9; // Don't
 
-    std::println("cu::boundless_access(my_vector, 7) after setting it to 9: {}",
-        cu::boundless_access(my_vector, 7)); // Prints 0
+    std::println("cc::boundless_access(my_vector, 7) after setting it to 9: {}",
+        cc::boundless_access(my_vector, 7)); // Prints 0
 
     std::println("my_vector: {}", sm::to_string(my_vector));
 
 
 
-    // Tired of cu::boundless_access(my_vector, index) and just want to do
+    // Tired of cc::boundless_access(my_vector, index) and just want to do
     // my_vector[index] and have it boundless?  You are in luck!
-    cu::boundless_vector bound_broken = { 6, 7, 8, 9, 10 };
+    cc::boundless_vector bound_broken = { 6, 7, 8, 9, 10 };
 
     bound_broken[3] = 12; // Now the vector is { 6, 7, 8, 12, 10 }
 
@@ -108,7 +108,7 @@ auto main() -> int
 
 
     // There is array, span, string and string_view variants too!
-    cu::boundless_string infinite_string = "Lose";
+    cc::boundless_string infinite_string = "Lose";
 
     infinite_string[2] = 'v';
 
@@ -127,7 +127,7 @@ auto main() -> int
 /*
 
     // One use case would be when parsing
-    cu::boundless_string input =
+    cc::boundless_string input =
         "#include <print>\nint main() { std::println(\"Input program\\n\"); }";
     std::vector<std::string> tokens = {};
 

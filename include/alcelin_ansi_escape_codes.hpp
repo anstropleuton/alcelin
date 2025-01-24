@@ -49,7 +49,7 @@ namespace alcelin {
 
 /**
  *  @brief  ANSI Escape Codes.
- *  @see  https://en.wikipedia.org/wiki/Ansi_escape_code#Colors .
+ *  @see    https://en.wikipedia.org/wiki/Ansi_escape_code#Colors .
  */
 namespace aec {
 
@@ -59,9 +59,9 @@ namespace aec {
 inline constinit std::string_view csi = "\x1b\x5b";
 
 /**
- *  @brief  Format code for Select Graphics Rendition.
+ *  @brief   Format code for Select Graphics Rendition.
  *
- *  @param  code  SGR code.
+ *  @param   code  SGR code.
  *  @return  Formatted SGR code ready to be std::cout'd or std::print'd.
  */
 [[nodiscard]] inline constexpr auto sgr(std::string_view code)
@@ -86,8 +86,8 @@ inline constinit std::string_view csi = "\x1b\x5b";
               << reset << std::endl;
     ```
  *
- *  @todo  Make ! and ~ operators return reverse object instead of returning the
- *         resetter, if possible, to allow:
+ *  @todo   Make ! and ~ operators return reverse object instead of returning the
+ *          resetter, if possible, to allow:
     ```cpp
     std::cout << bold << "Bold text, " << ~bold("Not bold text, ")
               << "Still bold text" << ~bold << std::endl;
@@ -106,13 +106,13 @@ struct aec_t {
     std::string resetter;
 
     /**
-     *  @brief  Combine sequence with text to get ANSI Escape Code formatted
-     *          text.
+     *  @brief   Combine sequence with text to get ANSI Escape Code formatted
+     *           text.
      *
      *  The setter sequence is placed before text, followed by the resetter
      *  sequence.
      *
-     *  @param  text  Text to format.
+     *  @param   text  Text to format.
      *  @return  Combined sequence for formatted text.
      */
     [[nodiscard]] inline constexpr auto operator() (std::string_view text) const
@@ -122,7 +122,7 @@ struct aec_t {
     }
 
     /**
-     *  @brief  Object call without parameter to get only the setter.
+     *  @brief   Object call without parameter to get only the setter.
      *  @return  Setter sequence string.
      */
     [[nodiscard]] inline constexpr auto operator() () const
@@ -131,7 +131,7 @@ struct aec_t {
     }
 
     /**
-     *  @brief  Logical NOT operator to get the resetter.
+     *  @brief   Logical NOT operator to get the resetter.
      *  @return  Resetter sequence string.
      */
     [[nodiscard]] inline constexpr auto operator! () const
@@ -140,7 +140,7 @@ struct aec_t {
     }
 
     /**
-     *  @brief  Bitwise NOT operator to get the resetter.
+     *  @brief   Bitwise NOT operator to get the resetter.
      *  @return  Resetter sequence string.
      */
     [[nodiscard]] inline constexpr auto operator~ () const
@@ -149,7 +149,7 @@ struct aec_t {
     }
 
     /**
-     *  @brief  Conversion operator to get setter.
+     *  @brief   Conversion operator to get setter.
      *  @return  Setter sequence string.
      */
     [[nodiscard]] inline constexpr operator auto () const
@@ -159,10 +159,10 @@ struct aec_t {
 };
 
 /**
- *  @brief  Combine two AECs to get a combined AEC.
+ *  @brief   Combine two AECs to get a combined AEC.
  *
- *  @param  a  First AEC.
- *  @param  b  Second AEC.
+ *  @param   a  First AEC.
+ *  @param   b  Second AEC.
  *  @return  Combined AEC.
  */
 [[nodiscard]] inline constexpr auto combine(const aec_t a, const aec_t b)
@@ -222,10 +222,10 @@ inline const aec_t bright_white_bg   = { sgr("107"), sgr("49") };
 namespace aec_operators {
 
 /**
- *  @brief  Overload << operator for streams and AEC.
+ *  @brief   Overload << operator for streams and AEC.
  *
- *  @param  ostream  Output stream.
- *  @param  aec      AEC.
+ *  @param   ostream  Output stream.
+ *  @param   aec      AEC.
  *  @return  Output stream.
  */
 [[nodiscard]] inline constexpr auto operator<< (
@@ -238,10 +238,10 @@ namespace aec_operators {
 }
 
 /**
- *  @brief  Operator to combine AECs.
+ *  @brief   Operator to combine AECs.
  *
- *  @param  a  First AEC.
- *  @param  b  Second AEC.
+ *  @param   a  First AEC.
+ *  @param   b  Second AEC.
  *  @return  Combined AEC.
  */
 [[nodiscard]] inline constexpr auto operator+ (
@@ -253,10 +253,10 @@ namespace aec_operators {
 }
 
 /**
- *  @brief  Operator to combine AECs.
+ *  @brief   Operator to combine AECs.
  *
- *  @param  a  First AEC.
- *  @param  b  Second AEC.
+ *  @param   a  First AEC.
+ *  @param   b  Second AEC.
  *  @return  Combined AEC.
  */
 [[nodiscard]] inline constexpr auto operator* (
@@ -268,10 +268,10 @@ namespace aec_operators {
 }
 
 /**
- *  @brief  Operator to combine AECs.
+ *  @brief   Operator to combine AECs.
  *
- *  @param  a  First AEC.
- *  @param  b  Second AEC.
+ *  @param   a  First AEC.
+ *  @param   b  Second AEC.
  *  @return  Combined AEC.
  */
 [[nodiscard]] inline constexpr auto operator& (
@@ -283,10 +283,10 @@ namespace aec_operators {
 }
 
 /**
- *  @brief  Operator to combine AECs.
+ *  @brief   Operator to combine AECs.
  *
- *  @param  a  First AEC.
- *  @param  b  Second AEC.
+ *  @param   a  First AEC.
+ *  @param   b  Second AEC.
  *  @return  Combined AEC.
  */
 [[nodiscard]] inline constexpr auto operator| (
@@ -298,10 +298,10 @@ namespace aec_operators {
 }
 
 /**
- *  @brief  Operator to combine AECs.
+ *  @brief   Operator to combine AECs.
  *
- *  @param  a  First AEC.
- *  @param  b  Second AEC.
+ *  @param   a  First AEC.
+ *  @param   b  Second AEC.
  *  @return  Combined AEC.
  */
 [[nodiscard]] inline constexpr auto operator&& (
@@ -313,10 +313,10 @@ namespace aec_operators {
 }
 
 /**
- *  @brief  Operator to combine AECs.
+ *  @brief   Operator to combine AECs.
  *
- *  @param  a  First AEC.
- *  @param  b  Second AEC.
+ *  @param   a  First AEC.
+ *  @param   b  Second AEC.
  *  @return  Combined AEC.
  */
 [[nodiscard]] inline constexpr auto operator|| (
@@ -342,7 +342,7 @@ template<typename char_type>
 struct formatter<alcelin::aec::aec_t, char_type> {
 
     /**
-     *  @brief  Parse the format specifiers (none).
+     *  @brief   Parse the format specifiers (none).
      *
      *  @tparam  parse_context  Parse context type.
      *  @param   ctx            Parse context.
@@ -357,7 +357,7 @@ struct formatter<alcelin::aec::aec_t, char_type> {
     }
 
     /**
-     *  @brief  Format the string using parsed specifiers (none).
+     *  @brief   Format the string using parsed specifiers (none).
      *
      *  @tparam  format_context  Format context type.
      *  @param   aec             AEC to format.

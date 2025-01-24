@@ -38,7 +38,6 @@
  */
 
 #include <cstddef>
-#include <functional>
 
 #include "alcelin_container_utilities.hpp"
 #include "alcelin_string_manipulators.hpp"
@@ -48,7 +47,7 @@ using namespace alcelin;
 using namespace cu_operators;
 
 /**
- *  @brief  Test CU's @c subordinate function.
+ *  @brief   Test CU's @c subordinate function.
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_cu_subordinate) {
@@ -73,7 +72,7 @@ using namespace cu_operators;
 }
 
 /**
- *  @brief  Test CU's @c combine function (overload 1).
+ *  @brief   Test CU's @c combine function (overload 1).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_cu_combine_1) {
@@ -96,7 +95,7 @@ using namespace cu_operators;
 }
 
 /**
- *  @brief  Test CU's @c combine function (overload 2).
+ *  @brief   Test CU's @c combine function (overload 2).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_cu_combine_2) {
@@ -119,7 +118,7 @@ using namespace cu_operators;
 }
 
 /**
- *  @brief  Test CU's @c filter_out_seq function.
+ *  @brief   Test CU's @c filter_out_seq function.
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_cu_filter_out_seq) {
@@ -142,7 +141,7 @@ using namespace cu_operators;
 }
 
 /**
- *  @brief  Test CU's @c filter_out_occ function.
+ *  @brief   Test CU's @c filter_out_occ function.
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_cu_filter_out_occ) {
@@ -165,7 +164,7 @@ using namespace cu_operators;
 }
 
 /**
- *  @brief  Test CU's @c filter_out_occ_seq function.
+ *  @brief   Test CU's @c filter_out_occ_seq function.
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_cu_filter_out_occ_seq) {
@@ -189,7 +188,7 @@ using namespace cu_operators;
 }
 
 /**
- *  @brief  Test CU's @c filter_out function.
+ *  @brief   Test CU's @c filter_out function.
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_cu_filter_out) {
@@ -212,7 +211,7 @@ using namespace cu_operators;
 }
 
 /**
- *  @brief  Test CU's @c repeat function (overload 1).
+ *  @brief   Test CU's @c repeat function (overload 1).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_cu_repeat_1) {
@@ -235,7 +234,7 @@ using namespace cu_operators;
 }
 
 /**
- *  @brief  Test CU's @c repeat function (overload 2).
+ *  @brief   Test CU's @c repeat function (overload 2).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_cu_repeat_2) {
@@ -259,7 +258,7 @@ using namespace cu_operators;
 }
 
 /**
- *  @brief  Test CU's @c split_seq function.
+ *  @brief   Test CU's @c split_seq function.
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_cu_split_seq) {
@@ -292,7 +291,7 @@ using namespace cu_operators;
 }
 
 /**
- *  @brief  Test CU's @c split_occ function.
+ *  @brief   Test CU's @c split_occ function.
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_cu_split_occ) {
@@ -330,7 +329,7 @@ using namespace cu_operators;
 }
 
 /**
- *  @brief  Test CU's @c split_occ_seq function.
+ *  @brief   Test CU's @c split_occ_seq function.
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_cu_split_occ_seq) {
@@ -369,7 +368,7 @@ using namespace cu_operators;
 }
 
 /**
- *  @brief  Test CU's @c split function.
+ *  @brief   Test CU's @c split function.
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_cu_split) {
@@ -402,7 +401,7 @@ using namespace cu_operators;
 }
 
 /**
- *  @brief  Test CU operators' @c operator+ (overload 1).
+ *  @brief   Test CU operators' @c operator+ (overload 1).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_cu_operator_plus_1) {
@@ -425,7 +424,7 @@ using namespace cu_operators;
 }
 
 /**
- *  @brief  Test CU operators' @c operator+ (overload 2).
+ *  @brief   Test CU operators' @c operator+ (overload 2).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_cu_operator_plus_2) {
@@ -448,7 +447,7 @@ using namespace cu_operators;
 }
 
 /**
- *  @brief  Test CU operators' @c operator- (overload 1).
+ *  @brief   Test CU operators' @c operator- (overload 1).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_cu_operator_minus_1) {
@@ -471,7 +470,7 @@ using namespace cu_operators;
 }
 
 /**
- *  @brief  Test CU operators' @c operator- (overload 2).
+ *  @brief   Test CU operators' @c operator- (overload 2).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_cu_operator_minus_2) {
@@ -494,7 +493,7 @@ using namespace cu_operators;
 }
 
 /**
- *  @brief  Test CU operators' @c operator* (overload 1).
+ *  @brief   Test CU operators' @c operator* (overload 1).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_cu_operator_star_1) {
@@ -517,7 +516,7 @@ using namespace cu_operators;
 }
 
 /**
- *  @brief  Test CU operators' @c operator* (overload 2).
+ *  @brief   Test CU operators' @c operator* (overload 2).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_cu_operator_star_2) {
@@ -541,7 +540,7 @@ using namespace cu_operators;
 }
 
 /**
- *  @brief  Test CU operators' @c operator/ (overload 1).
+ *  @brief   Test CU operators' @c operator/ (overload 1).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_cu_operator_slash_1) {
@@ -574,7 +573,7 @@ using namespace cu_operators;
 }
 
 /**
- *  @brief  Test CU operators' @c operator/ (overload 2).
+ *  @brief   Test CU operators' @c operator/ (overload 2).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_cu_operator_slash_2) {
@@ -607,7 +606,7 @@ using namespace cu_operators;
 }
 
 /**
- *  @brief  Test CU operators' @c operator+= (overload 1).
+ *  @brief   Test CU operators' @c operator+= (overload 1).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_cu_operator_plus_equals_1) {
@@ -631,7 +630,7 @@ using namespace cu_operators;
 }
 
 /**
- *  @brief  Test CU operators' @c operator+= (overload 2).
+ *  @brief   Test CU operators' @c operator+= (overload 2).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_cu_operator_plus_equals_2) {
@@ -655,7 +654,7 @@ using namespace cu_operators;
 }
 
 /**
- *  @brief  Test CU operators' @c operator-= (overload 1).
+ *  @brief   Test CU operators' @c operator-= (overload 1).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_cu_operator_minus_equals_1) {
@@ -679,7 +678,7 @@ using namespace cu_operators;
 }
 
 /**
- *  @brief  Test CU operators' @c operator-= (overload 2).
+ *  @brief   Test CU operators' @c operator-= (overload 2).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_cu_operator_minus_equals_2) {
@@ -703,7 +702,7 @@ using namespace cu_operators;
 }
 
 /**
- *  @brief  Test CU operators' @c operator*= (overload 1).
+ *  @brief   Test CU operators' @c operator*= (overload 1).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_cu_operator_star_equals_1) {
@@ -727,7 +726,7 @@ using namespace cu_operators;
 }
 
 /**
- *  @brief  Test CU operators' @c operator*= (overload 2).
+ *  @brief   Test CU operators' @c operator*= (overload 2).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_cu_operator_star_equals_2) {
@@ -752,49 +751,7 @@ using namespace cu_operators;
 }
 
 /**
- *  @brief  Test CU containers' @c boundless_access function.
- *  @return  Number of errors.
- */
-[[nodiscard]] CT_TESTER_FN(test_cu_containers_boundless_access);
-
-/**
- *  @brief  Test CU containers' @c boundless_vector struct.
- *  @return  Number of errors.
- */
-[[nodiscard]] CT_TESTER_FN(test_cu_containers_boundless_vector);
-
-/**
- *  @brief  Test CU containers' @c boundless_array struct.
- *  @return  Number of errors.
- */
-[[nodiscard]] CT_TESTER_FN(test_cu_containers_boundless_array);
-
-/**
- *  @brief  Test CU containers' @c boundless_span struct.
- *  @return  Number of errors.
- */
-[[nodiscard]] CT_TESTER_FN(test_cu_containers_boundless_span);
-
-/**
- *  @brief  Test CU containers' @c boundless_string struct.
- *  @return  Number of errors.
- */
-[[nodiscard]] CT_TESTER_FN(test_cu_containers_boundless_string);
-
-/**
- *  @brief  Test CU containers' @c boundless_string_view struct.
- *  @return  Number of errors.
- */
-[[nodiscard]] CT_TESTER_FN(test_cu_containers_boundless_string_view);
-
-/**
- *  @brief  Test CU containers' @c enumerated_array struct.
- *  @return  Number of errors.
- */
-[[nodiscard]] CT_TESTER_FN(test_cu_containers_enumerated_array);
-
-/**
- *  @brief  Test... copper?  No wait, test Container Utilities.
+ *  @brief   Test CU.
  *  @return  Number of errors.
  */
 [[nodiscard]] CT_TESTER_FN(test_cu) try
@@ -961,48 +918,6 @@ using namespace cu_operators;
         .function      = test_cu_operator_star_equals_2
     };
 
-    test_case cu_containers_boundless_access_test_case {
-        .title         = "Test CU containers' boundless_access function.",
-        .function_name = "test_cu_containers_boundless_access",
-        .function      = test_cu_containers_boundless_access
-    };
-
-    test_case cu_containers_boundless_vector_test_case {
-        .title         = "Test CU containers' boundless_vector struct.",
-        .function_name = "test_cu_containers_boundless_vector",
-        .function      = test_cu_containers_boundless_vector
-    };
-
-    test_case cu_containers_boundless_array_test_case {
-        .title         = "Test CU containers' boundless_array struct.",
-        .function_name = "test_cu_containers_boundless_array",
-        .function      = test_cu_containers_boundless_array
-    };
-
-    test_case cu_containers_boundless_span_test_case {
-        .title         = "Test CU containers' boundless_span struct.",
-        .function_name = "test_cu_containers_boundless_span",
-        .function      = test_cu_containers_boundless_span
-    };
-
-    test_case cu_containers_boundless_string_test_case {
-        .title         = "Test CU containers' boundless_string struct.",
-        .function_name = "test_cu_containers_boundless_string",
-        .function      = test_cu_containers_boundless_string
-    };
-
-    test_case cu_containers_boundless_string_view_test_case {
-        .title         = "Test CU containers' boundless_string_view struct.",
-        .function_name = "test_cu_containers_boundless_string_view",
-        .function      = test_cu_containers_boundless_string_view
-    };
-
-    test_case cu_containers_enumerated_array_test_case {
-        .title         = "Test CU containers' enumerated_array struct.",
-        .function_name = "test_cu_containers_enumerated_array",
-        .function      = test_cu_containers_enumerated_array
-    };
-
     test_suite suite = {
         .tests       = {
             &cu_subordinate_test_case,
@@ -1032,14 +947,7 @@ using namespace cu_operators;
             &cu_operator_minus_equals_1_test_case,
             &cu_operator_minus_equals_2_test_case,
             &cu_operator_star_equals_1_test_case,
-            &cu_operator_star_equals_2_test_case,
-            &cu_containers_boundless_access_test_case,
-            &cu_containers_boundless_vector_test_case,
-            &cu_containers_boundless_array_test_case,
-            &cu_containers_boundless_span_test_case,
-            &cu_containers_boundless_string_test_case,
-            &cu_containers_boundless_string_view_test_case,
-            &cu_containers_enumerated_array_test_case
+            &cu_operator_star_equals_2_test_case
         },
         .pre_run  = default_pre_runner('=', 3),
         .post_run = default_post_runner('=', 3)

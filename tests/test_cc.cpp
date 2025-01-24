@@ -39,17 +39,16 @@
 
 #include <vector>
 
-#include "alcelin_container_utilities.hpp"
+#include "alcelin_custom_containers.hpp"
 #include "confer.hpp"
 
 using namespace alcelin;
 
 /**
- *  @brief  Test CU containers' @c boundless_access function.
+ *  @brief   Test CC' @c boundless_access function.
  *  @return  Number of errors.
  */
-[[nodiscard]] CT_TESTER_FN(test_cu_containers_boundless_access)
-{
+[[nodiscard]] CT_TESTER_FN(test_cc_boundless_access) {
     CT_BEGIN;
 
     std::vector values { 1, 2, 3, 4, 5 };
@@ -58,7 +57,7 @@ using namespace alcelin;
     {
         for (std::size_t i = 0; i < values.size(); i++)
         {
-            auto value    = cu::boundless_access(values, i);
+            auto value    = cc::boundless_access(values, i);
             auto expected = values[i];
 
             logln("- - - - -");
@@ -70,7 +69,7 @@ using namespace alcelin;
         }
         for (std::size_t i = values.size(); i < values.size() * 2; i++)
         {
-            auto value    = cu::boundless_access(values, i);
+            auto value    = cc::boundless_access(values, i);
             auto expected = 0;
 
             logln("- - - - -");
@@ -82,7 +81,7 @@ using namespace alcelin;
         }
         for (std::size_t i = -values.size(); i != 0; i++)
         {
-            auto value    = cu::boundless_access(values, i);
+            auto value    = cc::boundless_access(values, i);
             auto expected = 0;
 
             logln("- - - - -");
@@ -95,9 +94,9 @@ using namespace alcelin;
 
         for (std::size_t i = -values.size(); i != values.size(); i++)
         {
-            cu::boundless_access(values, i) = i;
+            cc::boundless_access(values, i) = i;
 
-            auto value    = cu::boundless_access(values, i);
+            auto value    = cc::boundless_access(values, i);
             auto expected = 0;
 
             if (i < values.size())
@@ -115,33 +114,32 @@ using namespace alcelin;
     }
     catch (const std::exception &e)
     {
-        logln("Exception occurred in test_cu_containers_boundless_access: {}",
+        logln("Exception occurred in test_cc_boundless_access: {}",
             e.what());
     }
     catch (...)
     {
         logln("Unknown exception occurred in "
-            "test_cu_containers_boundless_access");
+            "test_cc_boundless_access");
     }
 
     CT_END;
 }
 
 /**
- *  @brief  Test CU containers' @c boundless_vector struct.
+ *  @brief   Test CC' @c boundless_vector struct.
  *  @return  Number of errors.
  */
-[[nodiscard]] CT_TESTER_FN(test_cu_containers_boundless_vector)
-{
+[[nodiscard]] CT_TESTER_FN(test_cc_boundless_vector) {
     CT_BEGIN;
 
-    cu::boundless_vector values = { 1, 2, 3, 4, 5 };
+    cc::boundless_vector values = { 1, 2, 3, 4, 5 };
 
     try
     {
         for (std::size_t i = 0; i < values.size(); i++)
         {
-            auto value    = cu::boundless_access(values, i);
+            auto value    = cc::boundless_access(values, i);
             auto expected = values[i];
 
             logln("- - - - -");
@@ -153,7 +151,7 @@ using namespace alcelin;
         }
         for (std::size_t i = values.size(); i < values.size() * 2; i++)
         {
-            auto value    = cu::boundless_access(values, i);
+            auto value    = cc::boundless_access(values, i);
             auto expected = 0;
 
             logln("- - - - -");
@@ -165,7 +163,7 @@ using namespace alcelin;
         }
         for (std::size_t i = -values.size(); i != 0; i++)
         {
-            auto value    = cu::boundless_access(values, i);
+            auto value    = cc::boundless_access(values, i);
             auto expected = 0;
 
             logln("- - - - -");
@@ -178,9 +176,9 @@ using namespace alcelin;
 
         for (std::size_t i = -values.size(); i != values.size(); i++)
         {
-            cu::boundless_access(values, i) = i;
+            cc::boundless_access(values, i) = i;
 
-            auto value    = cu::boundless_access(values, i);
+            auto value    = cc::boundless_access(values, i);
             auto expected = 0;
 
             if (i < values.size())
@@ -198,33 +196,32 @@ using namespace alcelin;
     }
     catch (const std::exception &e)
     {
-        logln("Exception occurred in test_cu_containers_boundless_vector: {}",
+        logln("Exception occurred in test_cc_boundless_vector: {}",
             e.what());
     }
     catch (...)
     {
         logln("Unknown exception occurred in "
-            "test_cu_containers_boundless_vector");
+            "test_cc_boundless_vector");
     }
 
     CT_END;
 }
 
 /**
- *  @brief  Test CU containers' @c boundless_array struct.
+ *  @brief   Test CC' @c boundless_array struct.
  *  @return  Number of errors.
  */
-[[nodiscard]] CT_TESTER_FN(test_cu_containers_boundless_array)
-{
+[[nodiscard]] CT_TESTER_FN(test_cc_boundless_array) {
     CT_BEGIN;
 
-    cu::boundless_array values = { 1, 2, 3, 4, 5 };
+    cc::boundless_array values = { 1, 2, 3, 4, 5 };
 
     try
     {
         for (std::size_t i = 0; i < values.size(); i++)
         {
-            auto value    = cu::boundless_access(values, i);
+            auto value    = cc::boundless_access(values, i);
             auto expected = values[i];
 
             logln("- - - - -");
@@ -236,7 +233,7 @@ using namespace alcelin;
         }
         for (std::size_t i = values.size(); i < values.size() * 2; i++)
         {
-            auto value    = cu::boundless_access(values, i);
+            auto value    = cc::boundless_access(values, i);
             auto expected = 0;
 
             logln("- - - - -");
@@ -248,7 +245,7 @@ using namespace alcelin;
         }
         for (std::size_t i = -values.size(); i != 0; i++)
         {
-            auto value    = cu::boundless_access(values, i);
+            auto value    = cc::boundless_access(values, i);
             auto expected = 0;
 
             logln("- - - - -");
@@ -261,9 +258,9 @@ using namespace alcelin;
 
         for (std::size_t i = -values.size(); i != values.size(); i++)
         {
-            cu::boundless_access(values, i) = i;
+            cc::boundless_access(values, i) = i;
 
-            auto value    = cu::boundless_access(values, i);
+            auto value    = cc::boundless_access(values, i);
             auto expected = 0;
 
             if (i < values.size())
@@ -281,34 +278,33 @@ using namespace alcelin;
     }
     catch (const std::exception &e)
     {
-        logln("Exception occurred in test_cu_containers_boundless_array: {}",
+        logln("Exception occurred in test_cc_boundless_array: {}",
             e.what());
     }
     catch (...)
     {
         logln("Unknown exception occurred in "
-            "test_cu_containers_boundless_array");
+            "test_cc_boundless_array");
     }
 
     CT_END;
 }
 
 /**
- *  @brief  Test CU containers' @c boundless_span struct.
+ *  @brief   Test CC' @c boundless_span struct.
  *  @return  Number of errors.
  */
-[[nodiscard]] CT_TESTER_FN(test_cu_containers_boundless_span)
-{
+[[nodiscard]] CT_TESTER_FN(test_cc_boundless_span) {
     CT_BEGIN;
 
-    cu::boundless_vector    vec    = { 1, 2, 3, 4, 5 };
-    cu::boundless_span<int> values = vec;
+    cc::boundless_vector    vec    = { 1, 2, 3, 4, 5 };
+    cc::boundless_span<int> values = vec;
 
     try
     {
         for (std::size_t i = 0; i < values.size(); i++)
         {
-            auto value    = cu::boundless_access(values, i);
+            auto value    = cc::boundless_access(values, i);
             auto expected = values[i];
 
             logln("- - - - -");
@@ -320,7 +316,7 @@ using namespace alcelin;
         }
         for (std::size_t i = values.size(); i < values.size() * 2; i++)
         {
-            auto value    = cu::boundless_access(values, i);
+            auto value    = cc::boundless_access(values, i);
             auto expected = 0;
 
             logln("- - - - -");
@@ -332,7 +328,7 @@ using namespace alcelin;
         }
         for (std::size_t i = -values.size(); i != 0; i++)
         {
-            auto value    = cu::boundless_access(values, i);
+            auto value    = cc::boundless_access(values, i);
             auto expected = 0;
 
             logln("- - - - -");
@@ -345,33 +341,32 @@ using namespace alcelin;
     }
     catch (const std::exception &e)
     {
-        logln("Exception occurred in test_cu_containers_boundless_span: {}",
+        logln("Exception occurred in test_cc_boundless_span: {}",
             e.what());
     }
     catch (...)
     {
         logln("Unknown exception occurred in "
-            "test_cu_containers_boundless_span");
+            "test_cc_boundless_span");
     }
 
     CT_END;
 }
 
 /**
- *  @brief  Test CU containers' @c boundless_string struct.
+ *  @brief   Test CC' @c boundless_string struct.
  *  @return  Number of errors.
  */
-[[nodiscard]] CT_TESTER_FN(test_cu_containers_boundless_string)
-{
+[[nodiscard]] CT_TESTER_FN(test_cc_boundless_string) {
     CT_BEGIN;
 
-    cu::boundless_string values = "String test #9999";
+    cc::boundless_string values = "String test #9999";
 
     try
     {
         for (std::size_t i = 0; i < values.size(); i++)
         {
-            auto value    = cu::boundless_access(values, i);
+            auto value    = cc::boundless_access(values, i);
             auto expected = values[i];
 
             logln("- - - - -");
@@ -383,7 +378,7 @@ using namespace alcelin;
         }
         for (std::size_t i = values.size(); i < values.size() * 2; i++)
         {
-            auto value    = cu::boundless_access(values, i);
+            auto value    = cc::boundless_access(values, i);
             auto expected = '\0';
 
             logln("- - - - -");
@@ -395,7 +390,7 @@ using namespace alcelin;
         }
         for (std::size_t i = -values.size(); i != 0; i++)
         {
-            auto value    = cu::boundless_access(values, i);
+            auto value    = cc::boundless_access(values, i);
             auto expected = '\0';
 
             logln("- - - - -");
@@ -408,9 +403,9 @@ using namespace alcelin;
 
         for (std::size_t i = -values.size(); i != values.size(); i++)
         {
-            cu::boundless_access(values, i) = i % ('z' - 'a') + 'a';
+            cc::boundless_access(values, i) = i % ('z' - 'a') + 'a';
 
-            auto value    = cu::boundless_access(values, i);
+            auto value    = cc::boundless_access(values, i);
             auto expected = '\0';
 
             if (i < values.size())
@@ -428,33 +423,32 @@ using namespace alcelin;
     }
     catch (const std::exception &e)
     {
-        logln("Exception occurred in test_cu_containers_boundless_string: {}",
+        logln("Exception occurred in test_cc_boundless_string: {}",
             e.what());
     }
     catch (...)
     {
         logln("Unknown exception occurred in "
-            "test_cu_containers_boundless_string");
+            "test_cc_boundless_string");
     }
 
     CT_END;
 }
 
 /**
- *  @brief  Test CU containers' @c boundless_string_view struct.
+ *  @brief   Test CC' @c boundless_string_view struct.
  *  @return  Number of errors.
  */
-[[nodiscard]] CT_TESTER_FN(test_cu_containers_boundless_string_view)
-{
+[[nodiscard]] CT_TESTER_FN(test_cc_boundless_string_view) {
     CT_BEGIN;
 
-    cu::boundless_string_view values = "String test #9999";
+    cc::boundless_string_view values = "String test #9999";
 
     try
     {
         for (std::size_t i = 0; i < values.size(); i++)
         {
-            auto value    = cu::boundless_access(values, i);
+            auto value    = cc::boundless_access(values, i);
             auto expected = values[i];
 
             logln("- - - - -");
@@ -466,7 +460,7 @@ using namespace alcelin;
         }
         for (std::size_t i = values.size(); i < values.size() * 2; i++)
         {
-            auto value    = cu::boundless_access(values, i);
+            auto value    = cc::boundless_access(values, i);
             auto expected = '\0';
 
             logln("- - - - -");
@@ -478,7 +472,7 @@ using namespace alcelin;
         }
         for (std::size_t i = -values.size(); i != 0; i++)
         {
-            auto value    = cu::boundless_access(values, i);
+            auto value    = cc::boundless_access(values, i);
             auto expected = '\0';
 
             logln("- - - - -");
@@ -492,24 +486,23 @@ using namespace alcelin;
     catch (const std::exception &e)
     {
         logln(
-            "Exception occurred in test_cu_containers_boundless_string_view: {}",
+            "Exception occurred in test_cc_boundless_string_view: {}",
             e.what());
     }
     catch (...)
     {
         logln("Unknown exception occurred in "
-            "test_cu_containers_boundless_string_view");
+            "test_cc_boundless_string_view");
     }
 
     CT_END;
 }
 
 /**
- *  @brief  Test CU containers' @c enumerated_array struct.
+ *  @brief   Test CC' @c enumerated_array struct.
  *  @return  Number of errors.
  */
-[[nodiscard]] CT_TESTER_FN(test_cu_containers_enumerated_array)
-{
+[[nodiscard]] CT_TESTER_FN(test_cc_enumerated_array) {
     CT_BEGIN;
 
     enum class enumerator {
@@ -529,8 +522,7 @@ using namespace alcelin;
 
     // Best name ever
     std::vector values = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-    cu::enumerated_array<enumerator, int> erray = { 0, 1, 2, 3, 4, 5, 6, 7, 8,
-        9 };
+    cc::erray<enumerator, int> erray = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
     try
     {
@@ -558,15 +550,92 @@ using namespace alcelin;
     catch (const std::exception &e)
     {
         logln(
-            "Exception occurred in test_cu_containers_boundless_string_view: "
+            "Exception occurred in test_cc_boundless_string_view: "
             "{}",
             e.what());
     }
     catch (...)
     {
         logln("Unknown exception occurred in "
-            "test_cu_containers_boundless_string_view");
+            "test_cc_boundless_string_view");
     }
 
     CT_END;
+}
+
+/**
+ *  @brief   Test CC.
+ *  @return  Number of errors.
+ */
+[[nodiscard]] CT_TESTER_FN(test_cc) try
+{
+    test_case cc_boundless_access_test_case {
+        .title         = "Test CC' boundless_access function.",
+        .function_name = "test_cc_boundless_access",
+        .function      = test_cc_boundless_access
+    };
+
+    test_case cc_boundless_vector_test_case {
+        .title         = "Test CC' boundless_vector struct.",
+        .function_name = "test_cc_boundless_vector",
+        .function      = test_cc_boundless_vector
+    };
+
+    test_case cc_boundless_array_test_case {
+        .title         = "Test CC' boundless_array struct.",
+        .function_name = "test_cc_boundless_array",
+        .function      = test_cc_boundless_array
+    };
+
+    test_case cc_boundless_span_test_case {
+        .title         = "Test CC' boundless_span struct.",
+        .function_name = "test_cc_boundless_span",
+        .function      = test_cc_boundless_span
+    };
+
+    test_case cc_boundless_string_test_case {
+        .title         = "Test CC' boundless_string struct.",
+        .function_name = "test_cc_boundless_string",
+        .function      = test_cc_boundless_string
+    };
+
+    test_case cc_boundless_string_view_test_case {
+        .title         = "Test CC' boundless_string_view struct.",
+        .function_name = "test_cc_boundless_string_view",
+        .function      = test_cc_boundless_string_view
+    };
+
+    test_case cc_enumerated_array_test_case {
+        .title         = "Test CC' enumerated_array struct.",
+        .function_name = "test_cc_enumerated_array",
+        .function      = test_cc_enumerated_array
+    };
+
+    test_suite suite = {
+        .tests       = {
+            &cc_boundless_access_test_case,
+            &cc_boundless_vector_test_case,
+            &cc_boundless_array_test_case,
+            &cc_boundless_span_test_case,
+            &cc_boundless_string_test_case,
+            &cc_boundless_string_view_test_case,
+            &cc_enumerated_array_test_case
+        },
+        .pre_run  = default_pre_runner('=', 3),
+        .post_run = default_post_runner('=', 3)
+    };
+
+    auto failed_tests = suite.run();
+    print_failed_tests(failed_tests);
+    return sum_failed_tests_errors(failed_tests);
+}
+catch (const std::exception &e)
+{
+    logln("Exception occurred during test: {}", e.what());
+    return 1;
+}
+catch (...)
+{
+    logln("Unknown exception occurred during test");
+    return 1;
 }

@@ -48,3 +48,7 @@ Added properties which allows custom getters and setters to be called when a thi
 
 ## v2.3.1.0 - Switch template orders for enumerated_array
 Swap `enum_type` and `element_type` around to match that of an unordered map.
+
+## v2.4.0.0 - Extract custom containers into its own header
+Extract custom containers from CU into its own section (CC).
+This is where I `rm -rf`'ed my current working directory... glad I use Git and VS Code omg... Opened files in VS Code, when the file itself is deleted, stays opened in the memmory of VS Code. This, paired with Git, allowed me to recover all the deleted files. Man I hate myself...

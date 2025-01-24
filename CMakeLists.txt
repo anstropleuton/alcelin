@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.30)
 
 project(alcelin
-    VERSION 2.3.1.0
+    VERSION 2.4.0.0
     DESCRIPTION "Alcelin is a collection of utils for Anstro Pleuton's programs."
     LANGUAGES CXX
 )
@@ -70,6 +70,7 @@ set(ALCELIN_SOURCES
 set(ALCELIN_HEADERS
     "${CMAKE_CURRENT_SOURCE_DIR}/include/alcelin_ansi_escape_codes.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/alcelin_container_utilities.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/alcelin_custom_containers.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/alcelin_file_utilities.hpp"
     "${CMAKE_CURRENT_BINARY_DIR}/alcelin_config.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/alcelin.hpp"

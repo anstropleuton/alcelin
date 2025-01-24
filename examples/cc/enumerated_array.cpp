@@ -1,6 +1,6 @@
 /**
  *  @author  Anstro Pleuton (https://github.com/anstropleuton)
- *  @brief   How to use CU's @c cu::enumerated_array .
+ *  @brief   How to use CC's @c enumerated_array .
  *
  *  @copyright  Copyright (c) 2024 Anstro Pleuton
  *
@@ -76,7 +76,7 @@ auto main() -> int
     };
 
     // All the stats in the enumerated array
-    cu::enumerated_array<character_type, character_stats> characters = {
+    cc::erray<character_type, character_stats> characters = {
         character_stats { "Warrior", 150, 50,  30 },
         character_stats { "Mage",    80,  200, 15 },
         character_stats { "Archer",  100, 75,  45 }

@@ -47,7 +47,7 @@ using namespace alcelin;
 using namespace aec_operators;
 
 /**
- *  @brief  Test ANSI Escape Codes.
+ *  @brief  Test AEC.
  *  @return  Zero.
  */
 [[nodiscard]] CT_TESTER_FN(test_aec)

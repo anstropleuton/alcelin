@@ -61,7 +61,7 @@ namespace alcelin {
 namespace sm {
 
 /**
- *  @brief  Container of strings compatible for String Manipulators.
+ *  @brief   Container of strings compatible for String Manipulators.
  *
  *  A container that is CU Compatible with elements type being @c std::string or
  *  @c std::string_view .
@@ -79,7 +79,7 @@ concept sm_compatible = cu::cu_compatible<container>
 using result_string_nested = std::vector<std::string>;
 
 /**
- *  @brief  Convert a container to comma separated string.
+ *  @brief   Convert a container to comma separated string.
  *
  *  @tparam  container  Compatible container type.
  *  @tparam  converter  Type of element stringify function.
@@ -90,7 +90,7 @@ using result_string_nested = std::vector<std::string>;
  *  @param   suffix     Suffix to the element (optional).
  *  @return  String representation of all elements.
  *
- *  @note  The string is comma AND space separated by default.
+ *  @note    The string is comma AND space separated by default.
  */
 template<cu::cu_compatible container, typename converter>
 requires(!std::is_same_v<converter, std::string>)
@@ -114,7 +114,7 @@ requires(!std::is_same_v<converter, std::string>)
 }
 
 /**
- *  @brief  Convert a container to comma separated string.
+ *  @brief   Convert a container to comma separated string.
  *
  *  @tparam  container  Compatible container type.
  *  @param   ctr        Container.
@@ -123,7 +123,7 @@ requires(!std::is_same_v<converter, std::string>)
  *  @param   suffix     Suffix to the element (optional).
  *  @return  String representation of all elements.
  *
- *  @note  The string is comma AND space separated by default.
+ *  @note    The string is comma AND space separated by default.
  */
 template<cu::cu_compatible container>
 [[nodiscard]] inline constexpr auto to_string(
@@ -138,8 +138,8 @@ template<cu::cu_compatible container>
 }
 
 /**
- *  @brief  Convert a container of char to string with single-quoted elements
- *          separated by comma.
+ *  @brief   Convert a container of char to string with single-quoted elements
+ *           separated by comma.
  *
  *  @tparam  container  Compatible container type.
  *  @param   ctr        Container.
@@ -148,7 +148,7 @@ template<cu::cu_compatible container>
  *  @param   suffix     Suffix to the element (optional).
  *  @return  String representation of all elements.
  *
- *  @note  The string is comma AND space separated by default.
+ *  @note    The string is comma AND space separated by default.
  */
 template<cu::cu_compatible container>
 requires std::is_same_v<cu::value_type<container>, char>
@@ -168,8 +168,8 @@ requires std::is_same_v<cu::value_type<container>, char>
 }
 
 /**
- *  @brief  Convert a container of @c std::string to string with double-quoted
- *          elements separated by comma.
+ *  @brief   Convert a container of @c std::string to string with double-quoted
+ *           elements separated by comma.
  *
  *  @tparam  container  Compatible container type.
  *  @param   ctr        Container.
@@ -178,7 +178,7 @@ requires std::is_same_v<cu::value_type<container>, char>
  *  @param   suffix     Suffix to the element (optional).
  *  @return  String representation of all elements.
  *
- *  @note  The string is comma AND space separated by default.
+ *  @note    The string is comma AND space separated by default.
  */
 template<cu::cu_compatible container>
 requires std::is_same_v<cu::value_type<container>, std::string>
@@ -193,7 +193,7 @@ requires std::is_same_v<cu::value_type<container>, std::string>
 }
 
 /**
- *  @brief  Convert a container of char to a regular string.
+ *  @brief   Convert a container of char to a regular string.
  *
  *  @tparam  container  Compatible container type with char element type.
  *  @param   ctr        Container.
@@ -207,9 +207,9 @@ requires std::is_same_v<cu::value_type<container>, char>
 }
 
 /**
- *  @brief  Convert a character to a string.
+ *  @brief   Convert a character to a string.
  *
- *  @param  character  Character.
+ *  @param   character  Character.
  *  @return  String of one character.
  */
 [[nodiscard]] inline constexpr auto to_string(char character)
@@ -219,7 +219,7 @@ requires std::is_same_v<cu::value_type<container>, char>
 }
 
 /**
- *  @brief  Word-wrap a string at width or before width depending on the delim.
+ *  @brief   Word-wrap a string at width or before width depending on the delim.
  *
  *  The string is tried to be split at the width if the character at the width
  *  is one of the delimiter.  If not, the split occurs at the character before
@@ -228,14 +228,15 @@ requires std::is_same_v<cu::value_type<container>, char>
  *  specified width, the word is kept as is.  If you use force, the word will be
  *  split.
  *
- *  @param  string  String to word-wrap.
- *  @param  width   Width for max word-wrap.
- *  @param  force   Whether to force the string to always be less than or equal
- *                  to the width (optional).
- *  @param  delims  Delimiters, usually whitespace (optional).
+ *  @param   string  String to word-wrap.
+ *  @param   width   Width for max word-wrap.
+ *  @param   force   Whether to force the string to always be less than or equal
+ *                   to the width (optional).
+ *  @param   delims  Delimiters, usually whitespace (optional).
  *  @return  @c result_string_nested of word-wrapped lines.
  *
- *  @note  word-wrapped lines can be larger than width.
+ *  @note    Word-wrapped lines can be larger than width unless @c force is
+ *           specified.
  */
 [[nodiscard]] inline constexpr auto word_wrap(
     std::string_view string,
@@ -288,11 +289,11 @@ requires std::is_same_v<cu::value_type<container>, char>
 }
 
 /**
- *  @brief  Trim a string (only from left side) using delimiters (usually
- *          whitespace).
+ *  @brief   Trim a string (only from left side) using delimiters (usually
+ *           whitespace).
  *
- *  @param  string  String to trim from left.
- *  @param  delims  Delimiters, usually whitespace (optional).
+ *  @param   string  String to trim from left.
+ *  @param   delims  Delimiters, usually whitespace (optional).
  *  @return  Trimmed string.
  */
 [[nodiscard]] inline constexpr auto trim_left(
@@ -309,11 +310,11 @@ requires std::is_same_v<cu::value_type<container>, char>
 }
 
 /**
- *  @brief  Trim a string (only from right side) using delimiters (usually
- *          whitespace).
+ *  @brief   Trim a string (only from right side) using delimiters (usually
+ *           whitespace).
  *
- *  @param  string  String to trim from right.
- *  @param  delims  Delimiters, usually whitespace (optional).
+ *  @param   string  String to trim from right.
+ *  @param   delims  Delimiters, usually whitespace (optional).
  *  @return  Trimmed string.
  */
 [[nodiscard]] inline constexpr auto trim_right(
@@ -330,10 +331,10 @@ requires std::is_same_v<cu::value_type<container>, char>
 }
 
 /**
- *  @brief  Trim a string using delimiters (usually whitespace).
+ *  @brief   Trim a string using delimiters (usually whitespace).
  *
- *  @param  string  String to trim.
- *  @param  delims  Delimiters, usually whitespace (optional).
+ *  @param   string  String to trim.
+ *  @param   delims  Delimiters, usually whitespace (optional).
  *  @return  Trimmed string.
  */
 [[nodiscard]] inline constexpr auto trim(
@@ -345,9 +346,9 @@ requires std::is_same_v<cu::value_type<container>, char>
 }
 
 /**
- *  @brief  Convert string to uppercase.
+ *  @brief   Convert string to uppercase.
  *
- *  @param  string  String to convert.
+ *  @param   string  String to convert.
  *  @return  Uppercase string.
  */
 [[nodiscard]] inline constexpr auto to_upper(std::string_view string)
@@ -358,9 +359,9 @@ requires std::is_same_v<cu::value_type<container>, char>
 }
 
 /**
- *  @brief  Convert string to lowercase.
+ *  @brief   Convert string to lowercase.
  *
- *  @param  string  String to convert.
+ *  @param   string  String to convert.
  *  @return  Lowercase string.
  */
 [[nodiscard]] inline constexpr auto to_lower(std::string_view string)
@@ -371,9 +372,9 @@ requires std::is_same_v<cu::value_type<container>, char>
 }
 
 /**
- *  @brief  Convert character to uppercase (exists for consistency).
+ *  @brief   Convert character to uppercase (exists for consistency).
  *
- *  @param  character  Character to convert.
+ *  @param   character  Character to convert.
  *  @return  Uppercase character.
  */
 [[nodiscard]] inline constexpr auto to_upper(char character)
@@ -382,9 +383,9 @@ requires std::is_same_v<cu::value_type<container>, char>
 }
 
 /**
- *  @brief  Convert character to lowercase (exists for consistency).
+ *  @brief   Convert character to lowercase (exists for consistency).
  *
- *  @param  character  Character to convert.
+ *  @param   character  Character to convert.
  *  @return  Lowercase character.
  */
 [[nodiscard]] inline constexpr auto to_lower(char character)
@@ -420,13 +421,13 @@ requires std::is_same_v<cu::value_type<container>, char>
 }
 
 /**
- *  @brief  Filter out the occurrences of sequence from the string.
+ *  @brief   Filter out the occurrences of sequence from the string.
  *
- *  @param  string   String.
- *  @param  pattern  Sequence to remove.
+ *  @param   string   String.
+ *  @param   pattern  Sequence to remove.
  *  @return  Filtered string as @c std::string .
  *
- *  @see  cu::filter_out_seq.
+ *  @see     cu::filter_out_seq.
  */
 [[nodiscard]] inline constexpr auto filter_out_seq(
     std::string_view string,
@@ -439,13 +440,13 @@ requires std::is_same_v<cu::value_type<container>, char>
 }
 
 /**
- *  @brief  Filter out the occurrences of any of characters from the string.
+ *  @brief   Filter out the occurrences of any of characters from the string.
  *
- *  @param  string      String.
- *  @param  characters  Characters to remove.
+ *  @param   string      String.
+ *  @param   characters  Characters to remove.
  *  @return  Filtered string as @c std::string .
  *
- *  @see  cu::filter_out_occ.
+ *  @see     cu::filter_out_occ.
  */
 [[nodiscard]] inline constexpr auto filter_out_occ(
     std::string_view string,
@@ -458,14 +459,14 @@ requires std::is_same_v<cu::value_type<container>, char>
 }
 
 /**
- *  @brief  Filter out the occurrences of any of sequences from the string.
+ *  @brief   Filter out the occurrences of any of sequences from the string.
  *
  *  @tparam  strings   CU compatible container with string elements.
  *  @param   string    String.
  *  @param   patterns  Sequences to remove.
  *  @return  Filtered string as @c std::string .
  *
- *  @see  cu::filter_out_occ_seq.
+ *  @see     cu::filter_out_occ_seq.
  */
 template<sm_compatible strings>
 [[nodiscard]] inline constexpr auto filter_out_occ_seq(
@@ -484,13 +485,13 @@ template<sm_compatible strings>
 }
 
 /**
- *  @brief  Filter out the occurrences of character from the string.
+ *  @brief   Filter out the occurrences of character from the string.
  *
- *  @param  string     String.
- *  @param  character  Character to remove.
+ *  @param   string     String.
+ *  @param   character  Character to remove.
  *  @return  Filtered string as @c std::string .
  *
- *  @see  cu::filter_out.
+ *  @see     cu::filter_out.
  */
 [[nodiscard]] inline constexpr auto filter_out(
     std::string_view string,
@@ -502,14 +503,14 @@ template<sm_compatible strings>
 }
 
 /**
- *  @brief  Repeat string @c n times.
+ *  @brief   Repeat string @c n times.
  *
  *  @tparam  count   Integral or floating type for repeat count.
  *  @param   string  String.
  *  @param   n       Number of times to repeat.
  *  @return  Repeated string as @c std::string .
  *
- *  @see  cu::repeat.
+ *  @see     cu::repeat.
  */
 template<typename count>
 [[nodiscard]] inline constexpr auto repeat(
@@ -522,13 +523,13 @@ template<typename count>
 }
 
 /**
- *  @brief  Split the string with pattern.
+ *  @brief   Split the string with pattern.
  *
- *  @param  string   String.
- *  @param  pattern  Pattern to split with.
+ *  @param   string   String.
+ *  @param   pattern  Pattern to split with.
  *  @return  Split string as @c result_string_nested .
  *
- *  @see  cu::split_seq.
+ *  @see     cu::split_seq.
  */
 [[nodiscard]] inline constexpr auto split_seq(
     std::string_view string,
@@ -543,13 +544,13 @@ template<typename count>
 }
 
 /**
- *  @brief  Split the string with occurrences of value.
+ *  @brief   Split the string with occurrences of value.
  *
- *  @param  string      String.
- *  @param  characters  Characters to split with.
+ *  @param   string      String.
+ *  @param   characters  Characters to split with.
  *  @return  Split string as @c result_string_nested .
  *
- *  @see  cu::split_occ.
+ *  @see     cu::split_occ.
  */
 [[nodiscard]] inline constexpr auto split_occ(
     std::string_view string,
@@ -564,14 +565,14 @@ template<typename count>
 }
 
 /**
- *  @brief  Split the string with occurrences of any of pattern.
+ *  @brief   Split the string with occurrences of any of pattern.
  *
  *  @tparam  strings   CU compatible string with string elements.
  *  @param   string    String.
  *  @param   patterns  Patterns to split with.
  *  @return  Split string as @c result_string_nested .
  *
- *  @see  cu::split_occ_seq.
+ *  @see     cu::split_occ_seq.
  */
 template<sm_compatible strings>
 [[nodiscard]] inline constexpr auto split_occ_seq(
@@ -591,13 +592,13 @@ template<sm_compatible strings>
 }
 
 /**
- *  @brief  Split the string with value.
+ *  @brief   Split the string with value.
  *
  *  @param   string  String.
  *  @param   value   Value to split with.
  *  @return  Split string as @c result_container_nested .
  *
- *  @see  cu::split.
+ *  @see     cu::split.
  */
 [[nodiscard]] inline constexpr auto split(
     std::string_view string,
@@ -618,13 +619,13 @@ template<sm_compatible strings>
 namespace sm_operators {
 
 /**
- *  @brief  Filter out the occurrences of sequence from the string.
+ *  @brief   Filter out the occurrences of sequence from the string.
  *
- *  @param  string   String.
- *  @param  pattern  Sequence to remove.
+ *  @param   string   String.
+ *  @param   pattern  Sequence to remove.
  *  @return  Filtered string as @c std::string .
  *
- *  @see  sm::filter_out_seq.
+ *  @see     sm::filter_out_seq.
  */
 [[nodiscard]] inline constexpr auto operator- (
     std::string_view string,
@@ -635,13 +636,13 @@ namespace sm_operators {
 }
 
 /**
- *  @brief  Filter out the occurrences of character from the string.
+ *  @brief   Filter out the occurrences of character from the string.
  *
- *  @param  string     String.
- *  @param  character  Character to remove.
+ *  @param   string     String.
+ *  @param   character  Character to remove.
  *  @return  Filtered string as @c std::string .
  *
- *  @see  sm::filter_out.
+ *  @see     sm::filter_out.
  */
 [[nodiscard]] inline constexpr auto operator- (
     std::string_view string,
@@ -652,14 +653,14 @@ namespace sm_operators {
 }
 
 /**
- *  @brief  Repeat string @c n times.
+ *  @brief   Repeat string @c n times.
  *
  *  @tparam  count   Integral or floating type for repeat count.
  *  @param   string  String.
  *  @param   n       Number of times to repeat.
  *  @return  Repeated string as @c std::string .
  *
- *  @see  sm::repeat.
+ *  @see     sm::repeat.
  */
 template<typename count>
 [[nodiscard]] inline constexpr auto operator* (
@@ -671,13 +672,13 @@ template<typename count>
 }
 
 /**
- *  @brief  Split the string with pattern.
+ *  @brief   Split the string with pattern.
  *
- *  @param  string   String.
- *  @param  pattern  Pattern to split with.
+ *  @param   string   String.
+ *  @param   pattern  Pattern to split with.
  *  @return  Split string as @c sm::result_string_nested .
  *
- *  @see  sm::split_seq.
+ *  @see     sm::split_seq.
  */
 [[nodiscard]] inline constexpr auto operator/ (
     std::string_view string,
@@ -688,13 +689,13 @@ template<typename count>
 }
 
 /**
- *  @brief  Split the string with value.
+ *  @brief   Split the string with value.
  *
  *  @param   string  String.
  *  @param   value   Value to split with.
  *  @return  Split string as @c result_container_nested .
  *
- *  @see  sm::split.
+ *  @see     sm::split.
  */
 [[nodiscard]] inline constexpr auto operator/ (
     std::string_view string,
@@ -705,13 +706,13 @@ template<typename count>
 }
 
 /**
- *  @brief  Filter out the occurrences of sequence from the string.
+ *  @brief   Filter out the occurrences of sequence from the string.
  *
- *  @param  string   String.
- *  @param  pattern  Sequence to remove.
+ *  @param   string   String.
+ *  @param   pattern  Sequence to remove.
  *  @return  Filtered string as @c std::string .
  *
- *  @see  sm::filter_out_seq.
+ *  @see     sm::filter_out_seq.
  */
 inline constexpr auto operator-= (
     std::string     &string,
@@ -723,13 +724,13 @@ inline constexpr auto operator-= (
 }
 
 /**
- *  @brief  Filter out the occurrences of character from the string.
+ *  @brief   Filter out the occurrences of character from the string.
  *
- *  @param  string     String.
- *  @param  character  Character to remove.
+ *  @param   string     String.
+ *  @param   character  Character to remove.
  *  @return  Filtered string as @c std::string .
  *
- *  @see  sm::filter_out.
+ *  @see     sm::filter_out.
  */
 inline constexpr auto operator-= (
     std::string &string,
@@ -741,14 +742,14 @@ inline constexpr auto operator-= (
 }
 
 /**
- *  @brief  Repeat string @c n times.
+ *  @brief   Repeat string @c n times.
  *
  *  @tparam  count   Integral or floating type for repeat count.
  *  @param   string  String.
  *  @param   n       Number of times to repeat.
  *  @return  Repeated string as @c std::string .
  *
- *  @see  sm::repeat.
+ *  @see     sm::repeat.
  */
 template<typename count>
 inline constexpr auto operator*= (
@@ -767,7 +768,7 @@ inline constexpr auto operator*= (
 namespace std {
 
 /**
- *  @brief  Formatter for container.
+ *  @brief   Formatter for container.
  *
  *  @tparam  container   Compatible container type.
  *  @tparam  char_type   Character type.
@@ -800,7 +801,7 @@ struct formatter<container, char_type> {
     std::string element_format = "";
 
     /**
-     *  @brief  Parse the string within the format specifier (single quoted).
+     *  @brief   Parse the string within the format specifier (single quoted).
      *
      *  @tparam  parse_context  Parse context type.
      *  @param   it             Parse context's iterator.
@@ -834,7 +835,7 @@ struct formatter<container, char_type> {
     };
 
     /**
-     *  @brief  Parse the format specifiers.
+     *  @brief   Parse the format specifiers.
      *
      *  @tparam  parse_context  Parse context type.
      *  @param   ctx            Parse context.
@@ -865,7 +866,7 @@ struct formatter<container, char_type> {
     }
 
     /**
-     *  @brief  Format to string using parsed specifiers.
+     *  @brief   Format to string using parsed specifiers.
      *
      *  @tparam  format_context  Format context type.
      *  @param   ctr             Container.

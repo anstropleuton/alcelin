@@ -61,13 +61,13 @@ namespace alcelin {
  *  of *Size* and *Data*.  The Size part of the data is @c std::size_t bytes and
  *  specifies the size of the chunk to be read to get the entire chunk.
  *
- *  @note  The SD Format does not specify the endianness of the data, neither
- *         does the code to handle this format.  This implies that the binary
- *         file may not be portable for systems with different endianness.
- *  @todo  When C++ introduces a good reflection support, implement automatic
- *         endianness conversion to make the binary file actually be portable.
- *         but for now, this is an impossible task and no plans to support it
- *         with hack codes.
+ *  @note   The SD Format does not specify the endianness of the data, neither
+ *          does the code to handle this format.  This implies that the binary
+ *          file may not be portable for systems with different endianness.
+ *  @todo   When C++ introduces a good reflection support, implement automatic
+ *          endianness conversion to make the binary file actually be portable.
+ *          but for now, this is an impossible task and no plans to support it
+ *          with hack codes.
  */
 namespace file {
 
@@ -77,13 +77,13 @@ namespace file {
 using sd_chunk = std::vector<unsigned char>;
 
 /**
- *  @brief  Read all the file's content at once and return @c std::string
- *          representing the file's content.
+ *  @brief   Read all the file's content at once and return @c std::string
+ *           representing the file's content.
  *
- *  @param  filename  Filename.
+ *  @param   filename  Filename.
  *  @return  @c std::string representing all the file's contents.
  *
- *  @note  Large files causes problems.
+ *  @note    Large files causes problems.
  */
 [[nodiscard]] inline auto read_all(std::string_view filename)
 {
@@ -98,7 +98,7 @@ using sd_chunk = std::vector<unsigned char>;
 }
 
 /**
- *  @brief  Creates a chunk from object @c t .
+ *  @brief   Creates a chunk from object @c t .
  *
  *  @tparam  type  Trivially copyable type.
  *  @param   t     Trivially copyable value.
@@ -116,7 +116,7 @@ requires(std::is_trivially_copyable_v<type>)
 }
 
 /**
- *  @brief  Convert a @c type from chunk.
+ *  @brief   Convert a @c type from chunk.
  *
  *  @tparam  type   Trivially copyable chunk.
  *  @param   chunk  Chunk with size and data of @c type .
@@ -141,9 +141,9 @@ requires(std::is_trivially_copyable_v<type>)
 }
 
 /**
- *  @brief  Read a chunk from an input stream.
+ *  @brief   Read a chunk from an input stream.
  *
- *  @param  input  Input stream to read from.
+ *  @param   input  Input stream to read from.
  *  @return  Chunk read from the stream.
  */
 [[nodiscard]] inline constexpr auto read_chunk(std::istream &input)
@@ -174,7 +174,7 @@ requires(std::is_trivially_copyable_v<type>)
 }
 
 /**
- *  @brief  Helper to read a chunk and convert it to type.
+ *  @brief   Helper to read a chunk and convert it to type.
  *
  *  @tparam  type    Trivially copyable type.
  *  @param   input   Input stream to read from.
@@ -189,7 +189,7 @@ requires(std::is_trivially_copyable_v<type>)
 }
 
 /**
- *  @brief  Helper to convert the type to chunk and write it.
+ *  @brief   Helper to convert the type to chunk and write it.
  *
  *  @tparam  type    Trivially copyable type.
  *  @param   output  Output stream to write to.

@@ -52,7 +52,7 @@ using namespace std::string_literals;
 using namespace std::string_view_literals;
 
 /**
- *  @brief  Test SM's @c word_wrap function.
+ *  @brief   Test SM's @c word_wrap function.
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_sm_word_wrap) {
@@ -111,7 +111,7 @@ using namespace std::string_view_literals;
 }
 
 /**
- *  @brief  Test SM's @c trim_left function.
+ *  @brief   Test SM's @c trim_left function.
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_sm_trim_left) {
@@ -132,7 +132,7 @@ using namespace std::string_view_literals;
 }
 
 /**
- *  @brief  Test SM's @c trim_right function.
+ *  @brief   Test SM's @c trim_right function.
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_sm_trim_right) {
@@ -153,7 +153,7 @@ using namespace std::string_view_literals;
 }
 
 /**
- *  @brief  Test SM's @c trim function.
+ *  @brief   Test SM's @c trim function.
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_sm_trim) {
@@ -174,7 +174,7 @@ using namespace std::string_view_literals;
 }
 
 /**
- *  @brief  Test SM's @c to_upper function (overload 1).
+ *  @brief   Test SM's @c to_upper function (overload 1).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_sm_to_upper_1) {
@@ -195,7 +195,7 @@ using namespace std::string_view_literals;
 }
 
 /**
- *  @brief  Test SM's @c to_lower function (overload 1).
+ *  @brief   Test SM's @c to_lower function (overload 1).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_sm_to_lower_1) {
@@ -216,7 +216,7 @@ using namespace std::string_view_literals;
 }
 
 /**
- *  @brief  Test SM's @c to_upper function (overload 2).
+ *  @brief   Test SM's @c to_upper function (overload 2).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_sm_to_upper_2) {
@@ -237,7 +237,7 @@ using namespace std::string_view_literals;
 }
 
 /**
- *  @brief  Test SM's @c to_lower function (overload 2).
+ *  @brief   Test SM's @c to_lower function (overload 2).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_sm_to_lower_2) {
@@ -258,7 +258,7 @@ using namespace std::string_view_literals;
 }
 
 /**
- *  @brief  Test SM's @c is_equal_ins function (overload 1).
+ *  @brief   Test SM's @c is_equal_ins function (overload 1).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_sm_is_equal_ins_1) {
@@ -286,7 +286,7 @@ using namespace std::string_view_literals;
 }
 
 /**
- *  @brief  Test SM's @c is_equal_ins function (overload 2).
+ *  @brief   Test SM's @c is_equal_ins function (overload 2).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_sm_is_equal_ins_2) {
@@ -314,7 +314,7 @@ using namespace std::string_view_literals;
 }
 
 /**
- *  @brief  Test SM operators' @c operator- (overload 1).
+ *  @brief   Test SM operators' @c operator- (overload 1).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_sm_operator_minus_1) {
@@ -341,7 +341,7 @@ using namespace std::string_view_literals;
 }
 
 /**
- *  @brief  Test SM operators' @c operator- (overload 2).
+ *  @brief   Test SM operators' @c operator- (overload 2).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_sm_operator_minus_2) {
@@ -364,7 +364,7 @@ using namespace std::string_view_literals;
 }
 
 /**
- *  @brief  Test SM operators' @c operator* (overload 1).
+ *  @brief   Test SM operators' @c operator* (overload 1).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_sm_operator_star_1) {
@@ -388,7 +388,7 @@ using namespace std::string_view_literals;
 }
 
 /**
- *  @brief  Test SM operators' @c operator* (overload 2).
+ *  @brief   Test SM operators' @c operator* (overload 2).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_sm_operator_star_2) {
@@ -413,7 +413,7 @@ using namespace std::string_view_literals;
 }
 
 /**
- *  @brief  Test SM operators' @c operator/ (overload 1).
+ *  @brief   Test SM operators' @c operator/ (overload 1).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_sm_operator_slash_1) {
@@ -452,7 +452,7 @@ using namespace std::string_view_literals;
 }
 
 /**
- *  @brief  Test SM operators' @c operator/ (overload 2).
+ *  @brief   Test SM operators' @c operator/ (overload 2).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_sm_operator_slash_2) {
@@ -493,7 +493,7 @@ using namespace std::string_view_literals;
 }
 
 /**
- *  @brief  Test SM operators' @c operator-= (overload 1).
+ *  @brief   Test SM operators' @c operator-= (overload 1).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_sm_operator_minus_equals_1) {
@@ -521,7 +521,7 @@ using namespace std::string_view_literals;
 }
 
 /**
- *  @brief  Test SM operators' @c operator-= (overload 2).
+ *  @brief   Test SM operators' @c operator-= (overload 2).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_sm_operator_minus_equals_2) {
@@ -545,7 +545,7 @@ using namespace std::string_view_literals;
 }
 
 /**
- *  @brief  Test SM operators' @c operator*= (overload 1).
+ *  @brief   Test SM operators' @c operator*= (overload 1).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_sm_operator_star_equals_1) {
@@ -570,7 +570,7 @@ using namespace std::string_view_literals;
 }
 
 /**
- *  @brief  Test SM operators' @c operator*= (overload 2).
+ *  @brief   Test SM operators' @c operator*= (overload 2).
  *  @return  Number of errors.
  */
 [[nodiscard]] static CT_TESTER_FN(test_sm_operator_star_equals_2) {
@@ -596,7 +596,7 @@ using namespace std::string_view_literals;
 }
 
 /**
- *  @brief  Test String Manipulators.
+ *  @brief   Test SM.
  *  @return  Number of errors.
  */
 [[nodiscard]] CT_TESTER_FN(test_sm) try

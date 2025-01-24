@@ -52,8 +52,9 @@ namespace alcelin {
 namespace prop {
 
 /**
- *  @brief  Property with getter.  Variable read operation will call the getter
- *          to retrieve the value.
+ *  @brief   Property with getter.  Variable read operation will call the getter
+ *           to retrieve the value.
+ *  @tparam  type  Type to work with.
  */
 template<typename type>
 struct property_readonly {
@@ -219,9 +220,10 @@ struct property_readonly {
 };
 
 /**
- *  @brief  Property with getter and setter.  Variable read operation will call
- *          the getter to retrieve the value, and write operation will call the
- *          setter to set the value.
+ *  @brief   Property with getter and setter.  Variable read operation will call
+ *           the getter to retrieve the value, and write operation will call the
+ *           setter to set the value.
+ *  @tparam  type  Type to work with.
  */
 template<typename type>
 struct property : property_readonly<type> {
@@ -361,9 +363,10 @@ struct property : property_readonly<type> {
 };
 
 /**
- *  @brief  A property with default getter and setter, useful to call something
- *          when a variable is changed (technically, doesn't need to be changed
- *          either).
+ *  @brief   A property with default getter and setter, useful to call something
+ *           when a variable is changed (technically, doesn't need to be changed
+ *           either).
+ *  @tparam  type  Type to work with.
  */
 template<typename type>
 struct observable : property<type> {
@@ -415,9 +418,9 @@ struct observable : property<type> {
      *  @brief  Creates an observable property with provided getter, setter, and
      *          observer.
      *
-     *  @param  getter   Getter function.
-     *  @param  setter   Setter function.
-     *  @param  observer Observer function.
+     *  @param  getter    Getter function.
+     *  @param  setter    Setter function.
+     *  @param  observer  Observer function.
      */
     inline constexpr observable(
         std::function<type()>              getter,
@@ -429,10 +432,10 @@ struct observable : property<type> {
      *  @brief  Creates an observable property with provided getter, setter,
      *          initial value, and observer.
      *
-     *  @param  getter   Getter function.
-     *  @param  setter   Setter function.
-     *  @param  value    Initial value.
-     *  @param  observer Observer function.
+     *  @param  getter    Getter function.
+     *  @param  setter    Setter function.
+     *  @param  value     Initial value.
+     *  @param  observer  Observer function.
      */
     inline constexpr observable(
         std::function<type()>              getter,

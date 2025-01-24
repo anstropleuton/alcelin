@@ -1,7 +1,7 @@
 set(ALCELIN_TESTS
     "${CMAKE_CURRENT_SOURCE_DIR}/test_to_string.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/test_cu.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/test_cu_containers.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/test_cc.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/test_sm.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/test_aec.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/test_file.cpp"

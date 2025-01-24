@@ -45,6 +45,7 @@
 #include "alcelin_config.hpp"
 
 #include "alcelin_container_utilities.hpp" // IWYU pragma: keep
+#include "alcelin_custom_containers.hpp" // IWYU pragma: keep
 #include "alcelin_string_manipulators.hpp" // IWYU pragma: keep
 #include "alcelin_ansi_escape_codes.hpp" // IWYU pragma: keep
 #include "alcelin_file_utilities.hpp" // IWYU pragma: keep

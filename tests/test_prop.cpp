@@ -84,7 +84,7 @@ struct type_with_operators {
 };
 
 /**
- *  @brief  Test Prop's Read-only property.
+ *  @brief   Test Prop's Read-only property.
  *  @return  Number of errors.
  */
 [[nodiscard]] CT_TESTER_FN(test_prop_property_readonly) {
@@ -145,7 +145,7 @@ struct type_with_operators {
 }
 
 /**
- *  @brief  Test Prop's read-write property.
+ *  @brief   Test Prop's read-write property.
  *  @return  Number of errors.
  */
 [[nodiscard]] CT_TESTER_FN(test_prop_property) {
@@ -240,7 +240,7 @@ struct type_with_operators {
 }
 
 /**
- *  @brief  Test Prop's properties' additional operators.
+ *  @brief   Test Prop's properties' additional operators.
  *  @return  Number of errors.
  */
 [[nodiscard]] CT_TESTER_FN(test_prop_property_additional_operators) {
@@ -277,7 +277,7 @@ struct type_with_operators {
 }
 
 /**
- *  @brief  Test Prop's observable.
+ *  @brief   Test Prop's observable.
  *  @return  Number of errors.
  */
 [[nodiscard]] CT_TESTER_FN(test_prop_observable) {
@@ -315,7 +315,7 @@ struct type_with_operators {
 }
 
 /**
- *  @brief  Test Properties.
+ *  @brief   Test Prop.
  *  @return  Number of errors.
  */
 [[nodiscard]] CT_TESTER_FN(test_prop) try
