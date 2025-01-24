@@ -397,7 +397,6 @@ requires std::is_same_v<cu::value_type<container>, char>
  *
  *  @param  a  First string.
  *  @param  b  Second string.
- *  @return  True if they are equal, case insensitively.
  */
 [[nodiscard]] inline constexpr auto is_equal_ins(
     std::string_view a,
@@ -413,7 +412,6 @@ requires std::is_same_v<cu::value_type<container>, char>
  *
  *  @param  a  First character.
  *  @param  b  Second character.
- *  @return  True if they are equal, case insensitively.
  */
 [[nodiscard]] inline constexpr auto is_equal_ins(char a, char b)
 {

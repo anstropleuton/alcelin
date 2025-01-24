@@ -168,6 +168,14 @@ Use two spaces after tags (e.g., `@param`, `@return`) and two spaces after tag's
 
 Do not begin with articles in the description of tags.
 
+Don't use `@return` if the `@brief` describes return.
+```cpp
+/**
+ *  @brief  Return true when a key is pressed
+ */
+auto is_key_pressed(int key) -> bool;
+```
+
 ### Punctuations
 Use periods to end the sentence in a document comment, and not in regular comment.
 ```cpp
