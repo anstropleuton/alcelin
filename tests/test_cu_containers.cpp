@@ -513,6 +513,7 @@ using namespace alcelin;
     CT_BEGIN;
 
     enum class enumerator {
+        unknown = -1,
         zeroth,
         first,
         second,

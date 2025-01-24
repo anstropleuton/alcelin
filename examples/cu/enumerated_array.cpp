@@ -68,6 +68,7 @@ auto main() -> int
     // used as index, this is where enumerated array comes in which does *not*
     // require you to cast it to an integer type!
     enum class character_type {
+        unknown = -1,
         warrior,
         mage,
         archer,

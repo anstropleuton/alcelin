@@ -336,7 +336,7 @@ struct password {
 Prefer making a type aggregate unless you really need constructors.
 
 ### Enumerators
-Include a `max` member in enumerators intended for use as indexes, and an `unknown` member intended to serve as uninitialized/default.
+Include a `max` member in enumerators intended for use as indexes, and an `unknown` member initialized to `-1`, intended to serve as uninitialized/default.
 
 ### Enum Classes
 Always use `enum class` instead of `enum` for better type safety, with the only exception being when the `enum` is inside of a struct.
@@ -345,7 +345,7 @@ Always use `enum class` instead of `enum` for better type safety, with the only 
 Always create an overload of `to_string` for every `enum class` to enable convenient text formatting of the enum values, enhancing readability and usability in code.
 ```cpp
 enum class enumerator {
-    unknown,
+    unknown = -1,
     member_1,
     member_2,
     // ...

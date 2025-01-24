@@ -42,3 +42,6 @@ Also added `std::formatter` for formatting containers. Automatically works with 
 
 ## v2.2.1.0 - Add member assignment operators
 Added member assignment operators (`operator+=`, `operator-=` and `operator*/`) for CU and member assignment operators (`operator-=` and `operator*=`) for SM.
+
+## v2.3.0.0 - Add properties
+Added properties which allows custom getters and setters to be called when a thing changes.
