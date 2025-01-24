@@ -104,9 +104,8 @@ using namespace std::string_view_literals;
     logln("wrapped_2:\n{}",  sm::to_string(wrapped_2, "\n"sv, "  \""));
     logln("expected_2:\n{}", sm::to_string(expected_2, "\n"sv, "  \""));
 
-    CT_ASSERT_SIZE(wrapped_1, expected_1);
-
-    CT_ASSERT_SIZE(wrapped_2, expected_2);
+    CT_ASSERT_CTR(wrapped_1, expected_1);
+    CT_ASSERT_CTR(wrapped_2, expected_2);
 
     CT_END;
 }

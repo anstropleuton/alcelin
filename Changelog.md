@@ -45,3 +45,6 @@ Added member assignment operators (`operator+=`, `operator-=` and `operator*/`) 
 
 ## v2.3.0.0 - Add properties
 Added properties which allows custom getters and setters to be called when a thing changes.
+
+## v2.3.1.0 - Switch template orders for enumerated_array
+Swap `enum_type` and `element_type` around to match that of an unordered map.

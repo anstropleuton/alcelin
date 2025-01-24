@@ -76,7 +76,7 @@ auto main() -> int
     };
 
     // All the stats in the enumerated array
-    cu::enumerated_array<character_stats, character_type> characters = {
+    cu::enumerated_array<character_type, character_stats> characters = {
         character_stats { "Warrior", 150, 50,  30 },
         character_stats { "Mage",    80,  200, 15 },
         character_stats { "Archer",  100, 75,  45 }

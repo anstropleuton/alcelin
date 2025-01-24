@@ -1374,10 +1374,10 @@ inline constexpr auto enum_max_v = enum_max<enum_type>::value;
 /**
  *  @brief  Array with enumerator as index.
  *
- *  @tparam  element_type  Type of element.
  *  @tparam  enum_type  Container Utilities compatible enumerator type.
+ *  @tparam  element_type  Type of element.
  */
-template<typename element_type, cu_compatible_enum enum_type>
+template<cu_compatible_enum enum_type, typename element_type>
 struct enumerated_array : std::array<element_type, enum_max_v<enum_type>> {
 
     /**

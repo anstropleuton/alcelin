@@ -529,7 +529,7 @@ using namespace alcelin;
 
     // Best name ever
     std::vector values = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-    cu::enumerated_array<int, enumerator> erray = { 0, 1, 2, 3, 4, 5, 6, 7, 8,
+    cu::enumerated_array<enumerator, int> erray = { 0, 1, 2, 3, 4, 5, 6, 7, 8,
         9 };
 
     try
