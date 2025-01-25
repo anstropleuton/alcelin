@@ -232,8 +232,7 @@ template<cu_compatible container>
     const container &values
 )
 {
-    auto filterer = [&](const cu::value_type<container> &element)
-    {
+    auto filterer = [&](const cu::value_type<container> &element) {
         return std::ranges::find(values, element) == values.end();
     };
 

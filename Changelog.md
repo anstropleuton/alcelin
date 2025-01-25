@@ -52,3 +52,6 @@ Swap `enum_type` and `element_type` around to match that of an unordered map.
 ## v2.4.0.0 - Extract custom containers into its own header
 Extract custom containers from CU into its own section (CC).
 This is where I `rm -rf`'ed my current working directory... glad I use Git and VS Code omg... Opened files in VS Code, when the file itself is deleted, stays opened in the memmory of VS Code. This, paired with Git, allowed me to recover all the deleted files. Man I hate myself...
+
+## v2.4.0.1 - Upgrade Observables
+It can now take only value as an constructor parameter.

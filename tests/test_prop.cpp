@@ -91,8 +91,7 @@ struct type_with_operators {
     CT_BEGIN;
 
     int prop_value = 42;
-    prop::property_readonly<int> prop([&]()
-    {
+    prop::property_readonly<int> prop([&]() {
         logln("Getter called");
         return prop_value;
     });
@@ -152,12 +151,10 @@ struct type_with_operators {
     CT_BEGIN;
 
     int prop_value = 42;
-    prop::property<int> prop([&]()
-    {
+    prop::property<int> prop([&]() {
         logln("Getter called");
         return prop_value;
-    }, [&](int value)
-    {
+    }, [&](int value) {
         logln("Setter called with value: {}", value);
         prop_value = value;
     });
@@ -246,17 +243,11 @@ struct type_with_operators {
 [[nodiscard]] CT_TESTER_FN(test_prop_property_additional_operators) {
     CT_BEGIN;
 
-    prop::property<type_with_operators> prop(
-        []()
-    {
+    prop::property<type_with_operators> prop([]() {
         logln("Getter called");
         return type_with_operators();
-    },
-        [](type_with_operators value)
-    {
+    }, [](type_with_operators value) {
         logln("Setter called");
-
-        // Do nothing
     });
 
     std::vector values = {
@@ -284,22 +275,21 @@ struct type_with_operators {
     CT_BEGIN;
 
     int observed_count = 0;
-    prop::observable<int> observable([&](int value)
-    {
+    prop::observable<int> observable([&](int value) {
         logln("Observer called with value: {}", value);
         observed_count++;
     });
 
     // Perform actions that cause observer to be called.
-    observable = 42;
-    observable += 1;
-    observable -= 1;
-    observable *= 2;
-    observable /= 2;
-    observable %= 5;
-    observable ^= 2;
-    observable &= 2;
-    observable |= 2;
+    observable   = 42;
+    observable  += 1;
+    observable  -= 1;
+    observable  *= 2;
+    observable  /= 2;
+    observable  %= 5;
+    observable  ^= 2;
+    observable  &= 2;
+    observable  |= 2;
     observable <<= 2;
     observable >>= 2;
     observable++;

@@ -137,13 +137,11 @@ auto main() -> int try
             &file_test_case,
             &prop_test_case
         },
-        .pre_run     = [&](const test_case *test)
-        {
+        .pre_run     = [&](const test_case *test) {
             log_file.open(test->function_name + ".log");
             default_pre_runner('=', 5)(test);
         },
-        .post_run    = [&](const test_case *test, std::size_t errors)
-        {
+        .post_run    = [&](const test_case *test, std::size_t errors) {
             default_post_runner('=', 5)(test, errors);
             log_file.close();
         }

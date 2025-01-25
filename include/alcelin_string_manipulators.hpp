@@ -102,8 +102,7 @@ requires(!std::is_same_v<converter, std::string>)
     std::string_view suffix    = ""
 )
 {
-    auto transformer = [&](const cu::value_type<container> &element)
-    {
+    auto transformer = [&](const cu::value_type<container> &element) {
         ///  @todo  Remove this cast when C++26 comes out.
         return std::string(prefix) + conv(element) + std::string(suffix);
     };
@@ -159,8 +158,7 @@ requires std::is_same_v<cu::value_type<container>, char>
     std::string_view suffix    = "\'"
 )
 {
-    auto converter = [&](const cu::value_type<container> &element)
-    {
+    auto converter = [&](const cu::value_type<container> &element) {
         return std::string(1, element);
     };
 
@@ -881,8 +879,7 @@ struct formatter<container, char_type> {
     {
         // WTF?
         auto string = alcelin::sm::to_string(ctr, [&](
-            const alcelin::cu::value_type<container> &element)
-        {
+            const alcelin::cu::value_type<container> &element) {
             return std::vformat("{" + element_format + "}",
                 std::make_format_args(element));
         }, separator, prefix, suffix);

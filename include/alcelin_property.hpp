@@ -382,67 +382,38 @@ struct observable : property<type> {
     std::function<void (const type &)> observer;
 
     /**
+     *  @brief  Default constructor initializes observer to do nothing.
+     */
+    inline constexpr observable() : value(type()), observer(),
+        property<type>([&]() {
+        return this->value;
+    }, [&](const type &value) {
+        this->value = value;
+        if (this->observer) this->observer(this->value);
+    }) {}
+
+    /**
      *  @brief  Creates an observable property with default value and observer.
      *  @param  observer  Observer function.
      */
     inline constexpr observable(
         std::function<void (const type &)> observer
-    ) : property<type>([&]()
+    ) : observable()
     {
-        return value;
-    }, [&](const type &t)
-    {
-        value = t;
-        observer(value);
-    }), value(type()), observer { observer } {}
+        this->observer = observer;
+    }
 
     /**
-     *  @brief  Creates an observable property with provided value and observer.
-     *
-     *  @param  value     Initial value.
-     *  @param  observer  Observer function.
+     *  @brief  Creates an observable property with provided value and no
+     *          observer (observer does nothing).
+     *  @param  value  Initial value.
      */
     inline constexpr observable(
-        type                               value,
-        std::function<void (const type &)> observer
-    ) : property<type>([&]()
+        type value
+    ) : observable()
     {
-        return value;
-    }, [&](const type &t)
-    {
-        value = t;
-        observer(value);
-    }), value(value), observer(observer) {}
-
-    /**
-     *  @brief  Creates an observable property with provided getter, setter, and
-     *          observer.
-     *
-     *  @param  getter    Getter function.
-     *  @param  setter    Setter function.
-     *  @param  observer  Observer function.
-     */
-    inline constexpr observable(
-        std::function<type()>              getter,
-        std::function<void (const type &)> setter,
-        std::function<void (const type &)> observer
-    ) : property<type>(getter, setter), value(type()), observer(observer) {}
-
-    /**
-     *  @brief  Creates an observable property with provided getter, setter,
-     *          initial value, and observer.
-     *
-     *  @param  getter    Getter function.
-     *  @param  setter    Setter function.
-     *  @param  value     Initial value.
-     *  @param  observer  Observer function.
-     */
-    inline constexpr observable(
-        std::function<type()>              getter,
-        std::function<void (const type &)> setter,
-        type                               value,
-        std::function<void (const type &)> observer
-    ) : property<type>(getter, setter), value(value), observer(observer) {}
+        this->value = value;
+    }
 
     // Explicitly inherit operator= from property due to interference with
     // constructor
