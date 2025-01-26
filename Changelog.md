@@ -55,3 +55,6 @@ This is where I `rm -rf`'ed my current working directory... glad I use Git and V
 
 ## v2.4.0.1 - Upgrade Observables
 It can now take only value as an constructor parameter.
+
+## v2.4.1.0 - Add Proxy
+Proxy is like an observer but instead of internal value, it control external value.

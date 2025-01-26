@@ -40,6 +40,7 @@
 #pragma once
 
 #include <functional>
+#include <memory>
 
 /**
  *  @brief  All Alcelin's contents in this namespace.
@@ -363,9 +364,9 @@ struct property : property_readonly<type> {
 };
 
 /**
- *  @brief   A property with default getter and setter, useful to call something
- *           when a variable is changed (technically, doesn't need to be changed
- *           either).
+ *  @brief   A property with default getter and setter, and an observer that is
+ *           called when the variable is changed (technically, when an operation
+ *           is performed on it).
  *  @tparam  type  Type to work with.
  */
 template<typename type>
@@ -413,6 +414,81 @@ struct observable : property<type> {
     ) : observable()
     {
         this->value = value;
+    }
+
+    // Explicitly inherit operator= from property due to interference with
+    // constructor
+    using property<type>::operator=;
+};
+
+/**
+ *  @brief   A proxy is an observable which modifies external value instead of
+ *           internally storing it.  It also has an observer that is called when
+ *           an operation is performed.
+ *
+ *  @tparam  type  Type to work with.
+ *  @note    It cannot detect change in external value.
+ */
+template<typename type>
+struct proxy : property<type> {
+
+    /**
+     *  @brief  External value to modify.
+     */
+    type *external;
+
+    /**
+     *  @brief  Observer, called when the variable is performed on.
+     */
+    std::function<void (const type &)> observer;
+
+    /**
+     *  @brief  Creates a proxy with default value and observer.
+     */
+    inline constexpr proxy() : external(nullptr), observer(),
+        property<type>([&]() {
+        if (!external) return type();
+        return *external;
+    }, [&](const type &value) {
+        if (external) *external = value;
+        if (observer) observer(value);
+    }) {}
+
+    /**
+     *  @brief  Creates a proxy with default value and provided observer.
+     *  @param  observer  Observer function.
+     */
+    inline constexpr proxy(
+        std::function<void (const type &)> observer
+    ) : proxy()
+    {
+        this->observer = observer;
+    }
+
+    /**
+     *  @brief  Creates a proxy with provided value and no observer (observer
+     *          does nothing).
+     *  @param  value  Link to value.
+     */
+    inline constexpr proxy(
+        type *value
+    ) : proxy()
+    {
+        external = value;
+    }
+
+    /**
+     *  @brief  Creates a proxy with provided value and observer.
+     *  @param  value    Link to value.
+     *  @param  observer Observer function.
+     */
+    inline constexpr proxy(
+        type *value,
+        std::function<void (const type &)> observer
+    ) : proxy()
+    {
+        external = value;
+        this->observer = observer;
     }
 
     // Explicitly inherit operator= from property due to interference with

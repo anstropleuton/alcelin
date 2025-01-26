@@ -38,6 +38,7 @@
  */
 
 #include <exception>
+#include <memory>
 
 #include "alcelin_property.hpp"
 #include "confer.hpp"
@@ -305,6 +306,37 @@ struct type_with_operators {
 }
 
 /**
+ *  @brief   Test Prop's proxy.
+ *  @return  Number of errors.
+ */
+[[nodiscard]] CT_TESTER_FN(test_prop_proxy) {
+    CT_BEGIN;
+
+    int external_value   = 0;
+    int controlled_value = 0;
+
+    prop::proxy<int> proxy(&external_value, [&](int value) {
+        logln("Observer called with value: {}", value);
+
+        // Also modify controlled value
+        controlled_value = value * 2;
+        logln("Controlled value set to: {}", controlled_value);
+    });
+
+    proxy = 42;
+
+    int expected_value = 42;
+    int expected_controlled_value = 84;
+
+    CT_ASSERT(external_value, expected_value, "External value must match");
+
+    CT_ASSERT(controlled_value, expected_controlled_value,
+        "Controlled value must match");
+
+    CT_END;
+}
+
+/**
  *  @brief   Test Prop.
  *  @return  Number of errors.
  */
@@ -334,12 +366,19 @@ struct type_with_operators {
         .function      = test_prop_observable
     };
 
+    test_case prop_proxy_test_case {
+        .title         = "Test Prop's proxy",
+        .function_name = "test_prop_proxy",
+        .function      = test_prop_proxy
+    };
+
     test_suite suite = {
         .tests       = {
             &prop_property_readonly_test_case,
             &prop_property_test_case,
             &prop_property_additional_operators_test_case,
-            &prop_observable_test_case
+            &prop_observable_test_case,
+            &prop_proxy_test_case
         },
         .pre_run  = default_pre_runner('=', 3),
         .post_run = default_post_runner('=', 3)
