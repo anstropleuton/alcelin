@@ -45,7 +45,7 @@ configure_file(
 )
 configure_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/cmake/config.cmake.in"
-    "${CMAKE_CURRENT_BINARY_DIR}/alcelin_config.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/alcelinConfig.cmake"
     @ONLY
 )
 
@@ -104,26 +104,28 @@ if(ALCELIN_BUILD_EXAMPLES)
     add_subdirectory(examples)
 endif()
 
-write_basic_package_version_file(
-    "${CMAKE_CURRENT_BINARY_DIR}/alcelin_config_version.cmake"
-    COMPATIBILITY AnyNewerVersion
-)
-
-install(
-    FILES "${CMAKE_CURRENT_BINARY_DIR}/alcelin_config_version.cmake"
-    DESTINATION "${CMAKE_INSTALL_DATADIR}/alcelin"
-)
 install(
     FILES "${CMAKE_CURRENT_BINARY_DIR}/alcelin.pc"
     DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig"
 )
+
+write_basic_package_version_file(
+    "${CMAKE_CURRENT_BINARY_DIR}/alcelinConfigVersion.cmake"
+    COMPATIBILITY AnyNewerVersion
+)
+
+install(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/alcelinConfig.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/alcelinConfigVersion.cmake"
+    DESTINATION "${CMAKE_INSTALL_DATADIR}/alcelin"
+)
 install(
     TARGETS alcelin
-    EXPORT alcelin_targets
+    EXPORT alcelinTargets
     FILE_SET HEADERS
 )
 install(
-    EXPORT alcelin_targets
+    EXPORT alcelinTargets
     NAMESPACE alcelin::
     DESTINATION "${CMAKE_INSTALL_DATADIR}/alcelin"
 )
