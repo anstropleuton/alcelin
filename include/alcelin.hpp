@@ -49,6 +49,7 @@
 #include "alcelin_string_manipulators.hpp" // IWYU pragma: keep
 #include "alcelin_ansi_escape_codes.hpp" // IWYU pragma: keep
 #include "alcelin_file_utilities.hpp" // IWYU pragma: keep
+#include "alcelin_property.hpp" // IWYU pragma: keep
 // uncrustify:on
 
 /**

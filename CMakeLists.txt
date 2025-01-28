@@ -68,13 +68,14 @@ set(ALCELIN_SOURCES
     "${CMAKE_CURRENT_SOURCE_DIR}/src/alcelin.cpp"
 )
 set(ALCELIN_HEADERS
-    "${CMAKE_CURRENT_SOURCE_DIR}/include/alcelin_ansi_escape_codes.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/alcelin_container_utilities.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/alcelin_custom_containers.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/alcelin_string_manipulators.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/alcelin_ansi_escape_codes.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/alcelin_file_utilities.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/alcelin_property.hpp"
     "${CMAKE_CURRENT_BINARY_DIR}/alcelin_config.hpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/alcelin.hpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/include/alcelin_string_manipulators.hpp"
 )
 set(ALCELIN_INCLUDE_DIRS
     "${CMAKE_CURRENT_SOURCE_DIR}/include"
