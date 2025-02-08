@@ -781,22 +781,34 @@ struct formatter<container, char_type> {
     std::string separator = ", ";
 
     /**
-     *  @brief  Prefix for each element.  Use p'PREFIX' in format specifier to
+     *  @brief  Prefix for container.  Use p'PREFIX' in format specifier to
      *          customize prefix.
      */
-    std::string prefix = "";
+    std::string prefix = "[";
 
     /**
-     *  @brief  Suffix for each element.  Use s'SUFFIX' in format specifier to
+     *  @brief  Suffix for container.  Use s'SUFFIX' in format specifier to
      *          customize suffix.
      */
-    std::string suffix = "";
+    std::string suffix = "]";
+
+    /**
+     *  @brief  Prefix for each element.  Use r'PREFIX' in format specifier to
+     *          customize element prefix.
+     */
+    std::string elm_prefix = "";
+
+    /**
+     *  @brief  Suffix for each element.  Use u'SUFFIX' in format specifier to
+     *          customize element suffix.
+     */
+    std::string elm_suffix = "";
 
     /**
      *  @brief  Format specifier for elements.  Use f'FORMAT' in format
      *          specifier to customize element format specifier.
      */
-    std::string element_format = "";
+    std::string elm_format = "";
 
     /**
      *  @brief   Parse the string within the format specifier (single quoted).
@@ -819,6 +831,15 @@ struct formatter<container, char_type> {
 
         while (*it != '\'')
         {
+            // Escape character using '\'
+            if (*it == '\\')
+            {
+                ++it;
+                result += *it;
+                ++it;
+                continue;
+            }
+
             if (*it == '}')
             {
                 throw std::format_error("Unexpected end of format specifier"
@@ -850,10 +871,12 @@ struct formatter<container, char_type> {
         {
             switch (*(it++))
             {
-                case 'e': separator      = parse_str<parse_context>(it); break;
-                case 'p': prefix         = parse_str<parse_context>(it); break;
-                case 's': suffix         = parse_str<parse_context>(it); break;
-                case 'f': element_format = parse_str<parse_context>(it); break;
+                case 'e': separator  = parse_str<parse_context>(it); break;
+                case 'p': prefix     = parse_str<parse_context>(it); break;
+                case 's': suffix     = parse_str<parse_context>(it); break;
+                case 'r': elm_prefix = parse_str<parse_context>(it); break;
+                case 'u': elm_suffix = parse_str<parse_context>(it); break;
+                case 'f': elm_format = parse_str<parse_context>(it); break;
 
                 default: throw std::format_error("Invalid format specifier for "
                 "container");
@@ -878,11 +901,12 @@ struct formatter<container, char_type> {
     ) const
     {
         // WTF?
-        auto string = alcelin::sm::to_string(ctr, [&](
-            const alcelin::cu::value_type<container> &element) {
-            return std::vformat("{" + element_format + "}",
+        auto string = prefix + alcelin::sm::to_string(ctr,
+            [&](const alcelin::cu::value_type<container> &element)
+        {
+            return std::vformat("{:" + elm_format + "}",
                 std::make_format_args(element));
-        }, separator, prefix, suffix);
+        }, separator, elm_prefix, elm_suffix) + suffix;
 
         return std::ranges::copy(string, ctx.out()).out;
     }

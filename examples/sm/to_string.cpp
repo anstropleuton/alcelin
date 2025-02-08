@@ -86,7 +86,7 @@ auto main() -> int
     std::println("Converted characters to an actual string: {}",
         string_from_chars);
 
-    // Convert character to a string
+    // Convert character to a string (useless?  maybe)
     char character = '!';
 
     std::string char_to_string = sm::to_string(character);

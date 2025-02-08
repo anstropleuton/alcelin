@@ -50,10 +50,10 @@ auto main() -> int
     // Let's consider an RPG game example where each character is an enum member
     // and has different stats
     struct character_stats {
-        std::string name;
-        int health;
-        int mana; // Resources to cast spell
-        int attack_power;
+        std::string name = "";
+        int health       = 1;
+        int mana         = 1; // Resources to cast spell
+        int attack_power = 1;
 
         void print()
         {
@@ -83,8 +83,8 @@ auto main() -> int
     };
 
     // Access specific character stats
-    auto warrior_stats = characters[character_type::warrior]; // Just access
-                                                              // from the enum!
+    // Just access from the enum!
+    auto warrior_stats = characters[character_type::warrior];
     warrior_stats.print();
 
     // Access using instance of enumerator

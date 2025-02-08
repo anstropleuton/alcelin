@@ -58,3 +58,6 @@ It can now take only value as an constructor parameter.
 
 ## v2.4.1.0 - Add Proxy
 Proxy is like an observer but instead of internal value, it control external value.
+
+## v2.4.2.0 - Improvements
+Add more AECs, upgrade formatter, update guidelines, and small tweaks.

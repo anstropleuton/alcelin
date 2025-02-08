@@ -162,7 +162,7 @@ Use Doxygen-style comments for documentation.
  *
  *  @param   a  First parameter.
  *  @param   b  Second parameter.
- *  @return  Return description.
+ *  @return  Return value.
  */
 ```
 Use two spaces after tags (e.g., `@param`, `@return`) and two spaces after tag's parameters (e.g., `a`, `b`).
@@ -292,6 +292,9 @@ struct {
 };
 ```
 
+### Default Initialization
+Always default-initialize all members without a constructor of a structure.
+
 ### Class Organization
 When writing a class, Organize members in this order:
 - Data members
@@ -306,7 +309,7 @@ struct password {
 
     // Data members
     std::string content;
-    bool raw;
+    bool raw = false;
 
     // Constructors
     password() = default;

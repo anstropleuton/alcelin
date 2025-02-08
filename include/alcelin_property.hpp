@@ -74,8 +74,7 @@ struct property_readonly {
 
     // All the below operators call getter
 
-    [[nodiscard]] inline constexpr operator auto () const
-    {
+    [[nodiscard]] inline constexpr operator auto () const {
         return getter();
     }
 
@@ -375,7 +374,7 @@ struct observable : property<type> {
     /**
      *  @brief  Internal value of type.
      */
-    type value;
+    type value = type();
 
     /**
      *  @brief  Observer, called when the value is changed.
@@ -385,10 +384,11 @@ struct observable : property<type> {
     /**
      *  @brief  Default constructor initializes observer to do nothing.
      */
-    inline constexpr observable() : value(type()), observer(),
-        property<type>([&]() {
+    inline constexpr observable() : property<type>([&]()
+    {
         return this->value;
-    }, [&](const type &value) {
+    }, [&](const type &value)
+    {
         this->value = value;
         if (this->observer) this->observer(this->value);
     }) {}
@@ -435,7 +435,7 @@ struct proxy : property<type> {
     /**
      *  @brief  External value to modify.
      */
-    type *external;
+    type *external = nullptr;
 
     /**
      *  @brief  Observer, called when the variable is performed on.
@@ -445,8 +445,7 @@ struct proxy : property<type> {
     /**
      *  @brief  Creates a proxy with default value and observer.
      */
-    inline constexpr proxy() : external(nullptr), observer(),
-        property<type>([&]() {
+    inline constexpr proxy() : property<type>([&]() {
         if (!external) return type();
         return *external;
     }, [&](const type &value) {
@@ -483,11 +482,11 @@ struct proxy : property<type> {
      *  @param  observer Observer function.
      */
     inline constexpr proxy(
-        type *value,
+        type                              *value,
         std::function<void (const type &)> observer
     ) : proxy()
     {
-        external = value;
+        external       = value;
         this->observer = observer;
     }
 

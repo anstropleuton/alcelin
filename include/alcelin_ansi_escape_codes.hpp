@@ -152,8 +152,7 @@ struct aec_t {
      *  @brief   Conversion operator to get setter.
      *  @return  Setter sequence string.
      */
-    [[nodiscard]] inline constexpr operator auto () const
-    {
+    [[nodiscard]] inline constexpr operator auto () const {
         return setter;
     }
 };
@@ -170,13 +169,12 @@ struct aec_t {
     return aec_t { a.setter + b.setter, a.resetter + b.resetter };
 }
 
-///  @todo  Add more AECs.
-
 inline const aec_t reset         = { sgr("0"), sgr("0") };
 inline const aec_t bold          = { sgr("1"), sgr("22") };
 inline const aec_t faint         = { sgr("2"), sgr("22") };
 inline const aec_t italic        = { sgr("3"), sgr("23") };
 inline const aec_t underline     = { sgr("4"), sgr("24") };
+inline const aec_t blink         = { sgr("5"), sgr("25") };
 inline const aec_t reverse_video = { sgr("7"), sgr("27") };
 inline const aec_t strike        = { sgr("9"), sgr("29") };
 
@@ -213,6 +211,141 @@ inline const aec_t bright_blue_bg    = { sgr("104"), sgr("49") };
 inline const aec_t bright_magenta_bg = { sgr("105"), sgr("49") };
 inline const aec_t bright_cyan_bg    = { sgr("106"), sgr("49") };
 inline const aec_t bright_white_bg   = { sgr("107"), sgr("49") };
+
+/**
+ *  @brief  Get 8-bit color escape code.
+ *
+ *  @param  color  8-bit color code.
+ *  @see    https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit .
+ */
+[[nodiscard]] inline constexpr auto color(unsigned char color)
+{
+    return aec_t { sgr(std::format("38;5;{}", color)), sgr("39") };
+}
+
+/**
+ *  @brief  Get 8-bit background color escape code.
+ *
+ *  @param  color  8-bit color code.
+ *  @see    https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit .
+ */
+[[nodiscard]] inline constexpr auto color_bg(unsigned char color)
+{
+    return aec_t { sgr(std::format("48;5;{}", color)), sgr("49") };
+}
+
+/**
+ *  @brief  Get 24-bit color escape code.
+ *
+ *  @param  r  Red color code.
+ *  @param  g  Green color code.
+ *  @param  b  Blue color code.
+ *  @see    https://en.wikipedia.org/wiki/ANSI_escape_code#24-bit .
+ */
+[[nodiscard]] inline constexpr auto color(
+    unsigned char r,
+    unsigned char g,
+    unsigned char b
+)
+{
+    return aec_t { sgr(std::format("38;2;{};{};{}", r, g, b)), sgr("39") };
+}
+
+/**
+ *  @brief  Get 24-bit background color escape code.
+ *
+ *  @param  r  Red color code.
+ *  @param  g  Green color code.
+ *  @param  b  Blue color code.
+ *  @see    https://en.wikipedia.org/wiki/ANSI_escape_code#24-bit .
+ */
+[[nodiscard]] inline constexpr auto color_bg(
+    unsigned char r,
+    unsigned char g,
+    unsigned char b
+)
+{
+    return aec_t { sgr(std::format("48;2;{};{};{}", r, g, b)), sgr("49") };
+}
+
+/**
+ *  @brief  Move the cursor up by @c n cells.
+ *  @param  n  Number of cells to move up (defaults to 1).
+ */
+[[nodiscard]] inline constexpr auto cuu(int n = 1)
+{
+    return std::string(csi) + std::to_string(n) + "A";
+}
+
+/**
+ *  @brief  Move the cursor down by @c n cells.
+ *  @param  n  Number of cells to move down (defaults to 1).
+ */
+[[nodiscard]] inline constexpr auto cud(int n = 1)
+{
+    return std::string(csi) + std::to_string(n) + "B";
+}
+
+/**
+ *  @brief  Move the cursor right by @c n cells.
+ *  @param  n  Number of cells to move right (defaults to 1).
+ */
+[[nodiscard]] inline constexpr auto cuf(int n = 1)
+{
+    return std::string(csi) + std::to_string(n) + "C";
+}
+
+/**
+ *  @brief  Move the cursor left by @c n cells.
+ *  @param  n  Number of cells to move left (defaults to 1).
+ */
+[[nodiscard]] inline constexpr auto cub(int n = 1)
+{
+    return std::string(csi) + std::to_string(n) + "D";
+}
+
+/**
+ *  @brief  Move the cursor to column @c x .
+ *  @param  x  Column number.
+ */
+[[nodiscard]] inline constexpr auto cha(int x)
+{
+    return std::string(csi) + std::to_string(x) + "G";
+}
+
+/**
+ *  @brief  Move the cursor to column @c x and row @c y .
+ *
+ *  @param  x  Column number.
+ *  @param  y  Row number.
+ */
+[[nodiscard]] inline constexpr auto cup(int x, int y)
+{
+    return std::string(csi) + std::to_string(y) + ";" + std::to_string(x) + "H";
+}
+
+/**
+ *  @brief  Clear the entire terminal screen.
+ *  @note   Also clears the scrollback buffer and moves cursor to 1, 1.
+ */
+inline const aec_t clear_screen = {
+    std::string(csi) + "2J" + std::string(csi) + "3J" + cup(1, 1), "" };
+
+/**
+ *  @brief  Clear a single line in terminal.
+ *  @note   Also moves the cursor to the beginning of line.
+ */
+inline const aec_t clear_line = { std::string(csi) + "2K" + cha(1), "" };
+
+/**
+ *  @brief  Show the cursor.
+ */
+inline const aec_t show_cursor = { std::string(csi) + "?25h", "" };
+
+/**
+ *  @brief  Hide the cursor.
+ */
+inline const aec_t hide_cursor = { std::string(csi) + "?25l", "" };
 
 } // namespace aec
 

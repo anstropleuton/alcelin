@@ -84,7 +84,9 @@ auto main() -> int
     std::println("cc::boundless_access(my_vector, 7) after setting it to 9: {}",
         cc::boundless_access(my_vector, 7)); // Prints 0
 
-    std::println("my_vector: {}", sm::to_string(my_vector));
+    // This time print using std::formatter overload,
+    // see examples/sm/formatter.cpp
+    std::println("my_vector: {}", my_vector);
 
 
 
@@ -95,7 +97,7 @@ auto main() -> int
     bound_broken[3] = 12; // Now the vector is { 6, 7, 8, 12, 10 }
 
     std::println("bound_broken[3] after setting it to 12: {}", bound_broken[3]);
-    std::println("bound_broken: {}", sm::to_string(bound_broken));
+    std::println("bound_broken: {}", bound_broken);
 
     // Same thing happens when the index is out of range and when you try to
     // write to it
@@ -103,7 +105,7 @@ auto main() -> int
 
     // Prints 0 as above
     std::println("bound_broken[9] after setting it to 14: {}", bound_broken[9]);
-    std::println("bound_broken: {}", sm::to_string(bound_broken));
+    std::println("bound_broken: {}", bound_broken);
 
 
 

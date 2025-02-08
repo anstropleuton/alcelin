@@ -50,11 +50,16 @@ using namespace alcelin;
 auto main() -> int
 {
     // Write to a binary file and read it back
+
+    // The numbers
     int my_very_special_number = 2'189'263;
-    int a_copy_of_that_number = my_very_special_number;
     int my_another_very_special_number = 3'786'231;
+
+    // Keep copies to compare later
+    int a_copy_of_that_number = my_very_special_number;
     int another_copy_of_that_number = my_another_very_special_number;
 
+    // Open in binary mode
     std::ofstream outfile("binary_file.bin", std::ios::binary);
     if (!outfile)
     {
@@ -62,11 +67,16 @@ auto main() -> int
         return 1;
     }
 
+    // Write both the numbers to the binary file
     file::write_data(outfile, my_very_special_number);
     file::write_data(outfile, my_another_very_special_number);
 
+    std::println("Wrote numbers {} and {} to binary_file.bin",
+        my_very_special_number, my_another_very_special_number);
+
     outfile.close();
 
+    // It's time to read the numbers back, in binary mode of course
     std::ifstream infile("binary_file.bin", std::ios::binary);
     if (!infile)
     {
@@ -74,15 +84,21 @@ auto main() -> int
         return 1;
     }
 
+    // Read the numbers back (in the same order)
     my_very_special_number = file::read_data<int>(infile);
     my_another_very_special_number = file::read_data<int>(infile);
 
-    // Compare values with original to see if it worked
+    std::println("Read numbers {} and {} from binary_file.bin",
+        my_very_special_number, my_another_very_special_number);
+
+    // Compare values with originals to see if it worked
     if (my_very_special_number == a_copy_of_that_number
      && my_another_very_special_number == another_copy_of_that_number)
     {
-        std::println("Written and read back a number, it works!");
+        std::println("Written and read back the numbers, and it works!");
     }
+
+    // Unexpected output
     else
     {
         if (my_very_special_number != a_copy_of_that_number)

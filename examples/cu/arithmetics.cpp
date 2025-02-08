@@ -85,10 +85,15 @@ auto main() -> int
     g = c / std::vector { 3, 6 };
 
     // Use std::formatter overload for any containers from alcelin::sm !
-    std::println("d: [{}]", d);
-    std::println("e: [{}]", e);
-    std::println("f: [{}]", f);
-    std::println("g: [{:p'['s']'}]", g);
+    std::println("d: {}", d);
+    std::println("e: {}", e);
+    std::println("f: {}", f);
+    std::println("g: {}", g);
+    // The above prints
+    // d: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    // e: [3, 6, 5, 4, 3, 6, 5, 4]
+    // f: [1, 2, 3, 4, 5, 1, 2, 3, 4, 5]
+    // g: [[1, 2], [5, 4], [1, 2], [5, 4]]
 
 
 
